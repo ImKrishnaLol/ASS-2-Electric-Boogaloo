@@ -1,0 +1,8 @@
+Hi everyone, I’m CuriousBlobfish (Blobfish for short)
+
+I’m a professional lead software engineer with 11 years programming experience, I’ve been making games in my free time, initially in Unity, and for the last few months in Godot. I’ve made 9 games in total since September last year and participated in 4 game jams (well 5, but 1 I failed to submit to, we don't talk about that one 🤫). Also, I'm solo-developing a game in Godot that I've been working on the for the last 2 months that I hope to release on steam eventually. Only jammed solo till now, looking forward to being part of a cool ASS team 🫏.
+
+Discord: curious_blobfish
+github: CuriousBlobfish
+itch: CuriousBlobfish
+Role: Programmer, Github reviewier
