@@ -1,0 +1,16 @@
+Hey! I'm K. (@imkrishnalol). I'm the co lead dev (On the git side)
+This file is an example for you to put your attendance in, as a verification of your setup. 
+All you have to do is make a folder with your name and put a text file in it.
+
+You can write your name, discord & git info, whatever, in an intro.txt file. 
+
+The folder you create will persist for all of the development period. You can also use it as a miscellanious dump folder for things you're working on and haven't made a place yet.
+
+Anyway, Good luck y'all. 
+
+My info btw:
+	
+	Discord: imkrishnalol
+	github: imkrishnalol
+	itch: K with a mouse
+	Role: Co-lead dev, Github manager, + whatever else I feel like working on throughout the jam.

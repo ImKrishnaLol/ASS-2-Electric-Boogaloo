@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Gamejam Template"
+config/name="ASS 2: Electric Boogaloo"
+config/description="The second project by the prestigious and well renowned All Serious Studios, the prettiest, funnest, greatest game in the history of the internet."
 run/main_scene="uid://dngrto4qu8516"
 config/features=PackedStringArray("4.7", "Forward Plus")
 boot_splash/show_image=false
