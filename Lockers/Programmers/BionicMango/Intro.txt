@@ -1,0 +1,15 @@
+Hey! I'm Bionic Mango (@BionicMango).
+
+I'm a (rising) sophomore university student studying aerospace engineering.
+I don't have a whole lot of game dev experience but I do have coding experience, mostly with python.
+
+During this game jam, my timezone is UTC+10:00 - weird timing =[
+
+Below are my github, discord, itch etc. details:
+	Discord: bionic_mango
+	Itch: bionic.mango
+	Github: BionicMango
+
+My Role: Just an ordinary programmer hoping to pick up a few skills and contribute as well.
+
+Any questions just ping me on discord =]
