@@ -5,25 +5,100 @@
 
 [node name="DialogueTestScene" type="Node2D" unique_id=811228987]
 
-[node name="DialogueBox" parent="." unique_id=1109237251 instance=ExtResource("1_33k7w")]
+[node name="DialogueBox1" parent="." unique_id=1109237251 instance=ExtResource("1_33k7w")]
+visible = false
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 243.0
-offset_top = 36.0
+offset_top = 28.0
 offset_right = 243.0
-offset_bottom = 36.0
+offset_bottom = 28.0
 grow_horizontal = 1
 grow_vertical = 1
+level_dialogue = 0
+
+[node name="DialogueBox2" parent="." unique_id=10391914 instance=ExtResource("1_33k7w")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 243.0
+offset_top = 81.0
+offset_right = 243.0
+offset_bottom = 81.0
+grow_horizontal = 1
+grow_vertical = 1
+level_dialogue = 1
+
+[node name="DialogueBox3" parent="." unique_id=1102558879 instance=ExtResource("1_33k7w")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 243.0
+offset_top = 134.0
+offset_right = 243.0
+offset_bottom = 134.0
+grow_horizontal = 1
+grow_vertical = 1
+level_dialogue = 2
+
+[node name="DialogueBox4" parent="." unique_id=1422541676 instance=ExtResource("1_33k7w")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 243.0
+offset_top = 187.0
+offset_right = 243.0
+offset_bottom = 187.0
+grow_horizontal = 1
+grow_vertical = 1
+level_dialogue = 3
+
+[node name="DialogueBox5" parent="." unique_id=1015711830 instance=ExtResource("1_33k7w")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 243.0
+offset_top = 241.0
+offset_right = 243.0
+offset_bottom = 241.0
+grow_horizontal = 1
+grow_vertical = 1
+level_dialogue = 4
 
 [node name="ButtonsTest" type="VBoxContainer" parent="." unique_id=288035053]
-offset_top = 94.0
+offset_top = 19.0
 offset_right = 62.0
-offset_bottom = 194.0
+offset_bottom = 249.0
 script = ExtResource("2_xk30d")
 metadata/_edit_group_ = true
 
-[node name="HappyButton" type="Button" parent="ButtonsTest" unique_id=1018677165]
+[node name="LevelButton1" type="Button" parent="ButtonsTest" unique_id=1018677165]
+layout_mode = 2
+text = "Level 1"
+
+[node name="LevelButton2" type="Button" parent="ButtonsTest" unique_id=972003340]
+layout_mode = 2
+text = "Level 2
+"
+
+[node name="LevelButton3" type="Button" parent="ButtonsTest" unique_id=1620349485]
+layout_mode = 2
+text = "Level 3"
+
+[node name="LevelButton4" type="Button" parent="ButtonsTest" unique_id=189248357]
+layout_mode = 2
+text = "Level 4"
+
+[node name="LevelButton5" type="Button" parent="ButtonsTest" unique_id=1654119974]
+layout_mode = 2
+text = "Level 5"
+
+[node name="HappyButton" type="Button" parent="ButtonsTest" unique_id=1063432979]
 layout_mode = 2
 text = "Happy"
 
@@ -39,6 +114,11 @@ text = "Angry"
 layout_mode = 2
 text = "Dejected"
 
+[connection signal="pressed" from="ButtonsTest/LevelButton1" to="ButtonsTest" method="_on_level_button_1_pressed"]
+[connection signal="pressed" from="ButtonsTest/LevelButton2" to="ButtonsTest" method="_on_level_button_2_pressed"]
+[connection signal="pressed" from="ButtonsTest/LevelButton3" to="ButtonsTest" method="_on_level_button_3_pressed"]
+[connection signal="pressed" from="ButtonsTest/LevelButton4" to="ButtonsTest" method="_on_level_button_4_pressed"]
+[connection signal="pressed" from="ButtonsTest/LevelButton5" to="ButtonsTest" method="_on_level_button_5_pressed"]
 [connection signal="pressed" from="ButtonsTest/HappyButton" to="ButtonsTest" method="_on_happy_button_pressed"]
 [connection signal="pressed" from="ButtonsTest/FlirtyButton" to="ButtonsTest" method="_on_flirty_button_pressed"]
 [connection signal="pressed" from="ButtonsTest/AngryButton" to="ButtonsTest" method="_on_angry_button_pressed"]

@@ -1,10 +1,12 @@
 extends Control
 
-signal nextDialogue
+signal NextDialogue
 
 @onready var dialogue_label: Label = $Panel/DialogueLabel
 @onready var mood_label: Label = $Panel/MoodLabel
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+@export_enum("1", "2", "3", "4", "5") var level_dialogue
 
 var dialogue_levels: Dictionary = {
 	1: [
@@ -69,20 +71,34 @@ var dialogue_moods: Dictionary = {
 }
 
 func _ready() -> void:
-	EventBus.dialogue_triggered.connect(_on_dialogue_triggered)
+	EventBus.dialogue_mood_triggered.connect(_on_dialogue_mood_triggered)
+	EventBus.dialogue_level_triggered.connect(_on_dialogue_level_triggered)
 
 func _input(event: InputEvent) -> void:
 	# For whenever player press primary key, it skips to the next dialogue
 	if event.is_action_pressed("action_primary"):
-		nextDialogue.emit()
+		NextDialogue.emit()
 
-func _on_dialogue_triggered(mood) -> void:
-	# Dialogue system
-	visible = true
-	
-	mood_label.text = mood
-	animation_player.play("typing_anim")
-	dialogue_label.text = dialogue_moods[mood].pick_random()
-	await nextDialogue
-	
-	visible = false
+func _on_dialogue_level_triggered(level: int):
+	# Dialogue system for level mode
+	if level == int(level_dialogue)+1: # I have no idea why it needs to add 1
+		visible = true
+		
+		for message in dialogue_levels[level]:
+			animation_player.play("typing_anim")
+			dialogue_label.text = message
+			await NextDialogue
+		
+		visible = false
+
+func _on_dialogue_mood_triggered(mood: String, level: int) -> void:
+	# Dialogue system for mood mode
+	if level == int(level_dialogue):
+		visible = true
+		
+		mood_label.text = mood
+		animation_player.play("typing_anim")
+		dialogue_label.text = dialogue_moods[mood].pick_random()
+		await NextDialogue
+		
+		visible = false
