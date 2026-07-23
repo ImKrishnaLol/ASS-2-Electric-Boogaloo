@@ -12,6 +12,8 @@ func _on_angry_button_pressed() -> void:
 func _on_dejected_button_pressed() -> void:
 	EventBus.dialogue_mood_triggered.emit("DEJECTED", 1)
 
+func _on_level_button_0_pressed() -> void:
+	EventBus.dialogue_level_triggered.emit(0)
 
 func _on_level_button_1_pressed() -> void:
 	EventBus.dialogue_level_triggered.emit(1)

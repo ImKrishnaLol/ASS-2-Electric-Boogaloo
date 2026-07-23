@@ -9,26 +9,33 @@ extends Control
 var in_level_dialogue : bool = false
 
 var dialogue_levels: Dictionary = {
-	1: [
+	0: [
 		"SO: Lets make a deal then… This old machine is still here. You beat me five times. We delay the end one more day.",
 		"MC: And if you win?",
 		"SO: We play again. Each ball you lose, is another star I pluck from the sky.",
 		"MC: Until there are no more stars?",
 		"SO: You would still be here. For a few seconds.",
 	],
-	2: [
+	1: [
 		"MC: Dude I'm bored",
 		"SO: LEVEL TWOOOOO",
 		"MC: WHAT",
 		"SO: LEVEL TWOOOOO GRRRR",
 		"MC: WHAT",
 	],
-	3: [
+	2: [
 		"MC: Hi, did you know that I ate a sandwich today?",
 		"SO: So?",
 		"MC: ...",
 		"MC: So what?",
 		"SO: Didn't ask",
+	],
+	3: [
+		"MC: Why did the chicken cross the road?",
+		"SO: ... Really?",
+		"MC: To... get... to...",
+		"MC: No, your not going to finish that joke",
+		"SO: O...K...",
 	],
 	4: [
 		"MC: Quack quack",
