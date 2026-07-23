@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bwgf3r1i0sr32" path="res://Scripts/PeggleBoard/peggle_board.gd" id="1_g8rvb"]
 [ext_resource type="PackedScene" uid="uid://hxtqjqdwxevl" path="res://Scenes/PeggleBoard/Ball/peggle_ball.tscn" id="2_8lsjk"]
-[ext_resource type="Texture2D" uid="uid://b5tup536kmsls" path="res://Placeholders/clipart278522.png" id="3_ryebi"]
+[ext_resource type="PackedScene" uid="uid://6u1m71svqmc6" path="res://Scenes/PeggleBoard/peggle_ball_shooter.tscn" id="3_s3sbd"]
 [ext_resource type="PackedScene" uid="uid://kdyyhi2j2nne" path="res://Scenes/PeggleBoard/Pegs/normal_peg.tscn" id="4_ryebi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ddted"]
@@ -18,13 +18,10 @@ size = Vector2(484, 56)
 editor_description = "A prototype peggleboard (with placeholder art)"
 script = ExtResource("1_g8rvb")
 ball = ExtResource("2_8lsjk")
-shoot_offset = Vector2(0, 20)
 shoot_strength = 200.0
 
-[node name="PeggleBallShooter" type="Sprite2D" parent="." unique_id=621117258]
-position = Vector2(242, 34)
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("3_ryebi")
+[node name="PeggleBallShooter" parent="." unique_id=345197782 instance=ExtResource("3_s3sbd")]
+position = Vector2(242, 52)
 
 [node name="Pegs" type="Node2D" parent="." unique_id=200026943]
 
@@ -95,3 +92,5 @@ collision_mask = 4
 position = Vector2(242, 310)
 shape = SubResource("RectangleShape2D_36fd3")
 debug_color = Color(0.9649028, 0.17603526, 0.18158463, 0.41960785)
+
+[editable path="PeggleBallShooter"]
