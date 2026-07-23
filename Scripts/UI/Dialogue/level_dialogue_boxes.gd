@@ -2,6 +2,8 @@ extends Control
 
 @export var dialogue_boxes: Array[DialogueBox]
 
+var in_level_dialogue : bool = false
+
 var dialogue_levels: Dictionary = {
 	1: [
 		"SO: Lets make a deal then… This old machine is still here. You beat me five times. We delay the end one more day.",
@@ -47,15 +49,18 @@ func _ready() -> void:
 		box.instant_hide_dialogue()
 
 func _on_dialogue_level_triggered(level: int):
-	# Dialogue system for level mode
-	DialogueManager.dialogue_box_displayed = true
-	for index: int in range(len(dialogue_levels[level])):
-		var message : String = dialogue_levels[level][index]
-		if len(dialogue_boxes) >= index:
-			dialogue_boxes[index].display_dialogue(message)
-		else:
-			printerr("Error in level_dialogue_boxes: length of dialogue_levels for this level is too long")
-		await EventBus.dialogue_next
-	for box: DialogueBox in dialogue_boxes:
-		box.hide_dialogue()
-	DialogueManager.dialogue_box_displayed = false
+	if not in_level_dialogue:
+		in_level_dialogue = true
+		# Dialogue system for level mode
+		DialogueManager.dialogue_box_displayed = true
+		for index: int in range(len(dialogue_levels[level])):
+			var message : String = dialogue_levels[level][index]
+			if len(dialogue_boxes) >= index:
+				dialogue_boxes[index].display_dialogue(message)
+			else:
+				printerr("Error in level_dialogue_boxes: length of dialogue_levels for this level is too long")
+			await EventBus.dialogue_next
+		for box: DialogueBox in dialogue_boxes:
+			box.hide_dialogue()
+		DialogueManager.dialogue_box_displayed = false
+		in_level_dialogue = false

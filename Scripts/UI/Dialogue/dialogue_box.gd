@@ -1,19 +1,23 @@
 class_name DialogueBox extends Control
 
+@export var fade_in_time : float
+@export var fade_out_time : float
+@export_subgroup("Child Nodes")
 @export var dialogue_label: Label
 @export var mood_label: Label
 @export var animation_player: AnimationPlayer
+
 
 var placeholder_text = "placeholder text: if you see this something went wrong!"
 
 func display_dialogue(dialogue: String) -> void:
 	dialogue_label.text = dialogue
 	animation_player.play("RESET")
-	await _fade_in()
+	await _fade_in(fade_in_time)
 	animation_player.play("typing_anim")
 
 func hide_dialogue() -> void:
-	await _fade_out()
+	await _fade_out(fade_out_time)
 	dialogue_label.text = placeholder_text
 
 func instant_hide_dialogue() -> void:
