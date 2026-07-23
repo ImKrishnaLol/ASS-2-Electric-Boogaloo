@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bwgf3r1i0sr32" path="res://Scripts/PeggleBoard/peggle_board.gd" id="1_g8rvb"]
 [ext_resource type="PackedScene" uid="uid://hxtqjqdwxevl" path="res://Scenes/PeggleBoard/Ball/peggle_ball.tscn" id="2_8lsjk"]
+[ext_resource type="Texture2D" uid="uid://de148vuivb4ne" path="res://Assets/Art/Game/PeggleBoard/Peggle Machine (1).png" id="3_e02v7"]
 [ext_resource type="PackedScene" uid="uid://6u1m71svqmc6" path="res://Scenes/PeggleBoard/peggle_ball_shooter.tscn" id="3_s3sbd"]
 [ext_resource type="PackedScene" uid="uid://kdyyhi2j2nne" path="res://Scenes/PeggleBoard/Pegs/normal_peg.tscn" id="4_ryebi"]
 
@@ -22,6 +23,10 @@ script = ExtResource("1_g8rvb")
 ball = ExtResource("2_8lsjk")
 shoot_strength = 200.0
 left_turn_limit = 180
+
+[node name="PeggleboardBackground" type="Sprite2D" parent="." unique_id=1033068317]
+position = Vector2(244, 151)
+texture = ExtResource("3_e02v7")
 
 [node name="PeggleBallShooter" parent="." unique_id=345197782 instance=ExtResource("3_s3sbd")]
 position = Vector2(242, 52)
