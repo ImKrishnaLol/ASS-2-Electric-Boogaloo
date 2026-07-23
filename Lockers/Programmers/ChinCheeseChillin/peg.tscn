@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bmshp68uh2f4r" path="res://Lockers/Programmers/ChinCheeseChillin/Green_Peg.png" id="2_lxqax"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fdm2o"]
-radius = 32.0
+radius = 14.035668
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3c2fn"]
 animations = [{
@@ -27,19 +27,25 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_osicj"]
-radius = 33.0
+radius = 15.0
 
 [node name="Peg" type="StaticBody2D" unique_id=425628496]
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_lxqax")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=637964397]
 shape = SubResource("CircleShape2D_fdm2o")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1966578367]
+position = Vector2(0, 1.9073486e-06)
+scale = Vector2(0.4375, 0.4375)
 sprite_frames = SubResource("SpriteFrames_3c2fn")
 autoplay = "default"
 
 [node name="Area2D" type="Area2D" parent="." unique_id=164637598]
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1090620121]
 shape = SubResource("CircleShape2D_osicj")
