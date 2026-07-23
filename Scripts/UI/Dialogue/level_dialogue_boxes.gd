@@ -44,7 +44,7 @@ func _ready() -> void:
 	EventBus.dialogue_level_triggered.connect(_on_dialogue_level_triggered)
 	# hide dialogue boxes on ready
 	for box: DialogueBox in dialogue_boxes:
-		box.hide_dialogue()
+		box.instant_hide_dialogue()
 
 func _on_dialogue_level_triggered(level: int):
 	# Dialogue system for level mode

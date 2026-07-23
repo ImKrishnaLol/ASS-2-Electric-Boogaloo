@@ -29,7 +29,7 @@ var dialogue_moods: Dictionary = {
 func _ready() -> void:
 	EventBus.dialogue_mood_triggered.connect(_on_dialogue_mood_triggered)
 	# hide dialogue box on ready
-	dialogue_box.hide_dialogue()
+	dialogue_box.instant_hide_dialogue()
 
 func _on_dialogue_mood_triggered(mood: String, level: int) -> void:
 	DialogueManager.dialogue_box_displayed = true
