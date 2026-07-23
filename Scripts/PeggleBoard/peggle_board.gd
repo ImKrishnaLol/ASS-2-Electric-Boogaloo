@@ -7,12 +7,17 @@ extends Node2D
 
 # SCENES
 @export var ball: PackedScene
+# NODES
 @onready var peggle_ball_shooter: Node2D = $PeggleBallShooter
 @onready var peggle_ball_firing_point: Node2D = $PeggleBallShooter/PeggleBallBarrel/PeggleBallFiringPoint
+@onready var flash_cooldown: Timer = $PeggleBallShooter/FlashCooldown
+@onready var peggle_ball_animation_player: AnimationPlayer = $PeggleBallShooter/PeggleBallAnimationPlayer
 
 # VARIABLES (exports)
 @export var shoot_offset: Vector2; # how far from shooter balls should spawn
 @export var shoot_strength: float; # shooting momentum
+@export var left_turn_limit: int; # the ammount the cannon can rotate left
+@export var right_turn_limit: int; # the ammount the cannon can rotate right # inncrease me with negative numberes
 @onready var endzone: Area2D = $Endzone
 
 func _ready() -> void:
@@ -23,12 +28,20 @@ func _process(_delta: float) -> void:
 	peggle_ball_shooter.look_at(get_global_mouse_position())
 	peggle_ball_shooter.rotation = clampf(
 		peggle_ball_shooter.rotation,
-		deg_to_rad(0),
-		deg_to_rad(180))
+		deg_to_rad(right_turn_limit),
+		deg_to_rad(left_turn_limit))
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("action_primary"): # space/left click
 		shoot_ball()
+		game_feel()
+
+func game_feel():
+	peggle_ball_shooter.modulate = Color(2, 2, 2)
+	if peggle_ball_animation_player.is_playing():
+		peggle_ball_animation_player.play("RESET")
+	peggle_ball_animation_player.play("CANNON_FIRE")
+	flash_cooldown.start()
 
 func shoot_ball() -> void:
 	var new_ball = ball.instantiate()
@@ -47,3 +60,8 @@ func destroy_ball(body: Node2D) -> void:
 	if body is not RigidBody2D: return # not a ball
 	print("ball destroyed")
 	body.queue_free()
+
+
+func _on_flash_cooldown_timeout() -> void:
+	peggle_ball_shooter.modulate = Color(1.0, 1.0, 1.0)
+	peggle_ball_animation_player.play("RESET")
