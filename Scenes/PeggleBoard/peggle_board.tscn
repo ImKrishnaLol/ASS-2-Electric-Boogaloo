@@ -23,6 +23,9 @@ shoot_strength = 200.0
 [node name="PeggleBallShooter" parent="." unique_id=345197782 instance=ExtResource("3_s3sbd")]
 position = Vector2(242, 52)
 
+[node name="PeggleBallFiringPoint" parent="PeggleBallShooter/PeggleBallBarrel" parent_id_path=PackedInt32Array(345197782, 1449746995) index="0" unique_id=1606232759]
+show_behind_parent = true
+
 [node name="Pegs" type="Node2D" parent="." unique_id=200026943]
 
 [node name="PegglePeg" parent="Pegs" unique_id=1411103836 instance=ExtResource("4_ryebi")]

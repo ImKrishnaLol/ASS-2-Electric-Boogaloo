@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://hxtqjqdwxevl"]
 
-[ext_resource type="Texture2D" uid="uid://b5t0xcpm8x13p" path="res://Placeholders/PngItem_4184328.png" id="1_qyxuo"]
+[ext_resource type="Texture2D" uid="uid://bggdu3vaw7sfl" path="res://Assets/Art/Game/PeggleBoard/Ball (1).png" id="1_s56yy"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ryebi"]
 bounce = 1.0
@@ -17,10 +17,11 @@ linear_damp_mode = 1
 angular_damp_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=316302717]
-position = Vector2(0.05, -0.5)
-scale = Vector2(0.02, 0.02)
-texture = ExtResource("1_qyxuo")
+position = Vector2(0, 3.5762787e-07)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_s56yy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=71242518]
+visible = false
 scale = Vector2(1.02, 1.02)
 shape = SubResource("CircleShape2D_ddted")
