@@ -51,6 +51,11 @@ enabled=PackedStringArray("res://addons/TileMapDual/plugin.cfg")
 
 Player=""
 Stapler=""
+breakable_blocks=""
+orange_blocks=""
+green_blocks=""
+purple_blocks=""
+blue_blocks=""
 
 [gui]
 
