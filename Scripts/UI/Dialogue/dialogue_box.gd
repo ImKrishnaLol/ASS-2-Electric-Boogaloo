@@ -7,24 +7,24 @@ signal nextDialogue
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var dialogue_moods: Dictionary = {
-	"angry": [
+	"ANGRY": [
 		"BARK BARK VARK BARK",
 		"AAAAAAAAAAAAAAAAAAA",
 		"I ate chezburger too",
 		"MATH IS FUN",
 	],
-	"happy": [
+	"HAPPY": [
 		"YIPPY YIPPY YIPPY",
 		"HORAY",
 		":D",
 		"I LIKE UMBRELLAS",
 	],
-	"sad": [
+	"SAD": [
 		"Im sad :(",
 		"D:",
 		"*sleep*",
 	],
-	"neutral": [
+	"NEUTRAL": [
 		"Uh",
 		"Um",
 	]

@@ -91,7 +91,7 @@ offset_bottom = 1824.0
 scale = Vector2(0.08272093, 0.04480549)
 texture_normal = ExtResource("9_imbg2")
 script = ExtResource("8_hryqi")
-mood = "sad"
+mood = "SAD"
 metadata/_edit_group_ = true
 
 [connection signal="pressed" from="ToiletForDialogueTest" to="ToiletForDialogueTest" method="_on_pressed"]
