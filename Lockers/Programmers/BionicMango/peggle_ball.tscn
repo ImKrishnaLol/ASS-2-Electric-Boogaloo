@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://hxtqjqdwxevl"]
+
+[ext_resource type="Texture2D" uid="uid://b5t0xcpm8x13p" path="res://Placeholders/PngItem_4184328.png" id="1_qyxuo"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ryebi"]
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ddted"]
+radius = 6.0
+
+[node name="PeggleBall" type="RigidBody2D" unique_id=162794285]
+collision_layer = 4
+collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_ryebi")
+gravity_scale = 0.3
+linear_damp_mode = 1
+angular_damp_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=316302717]
+position = Vector2(0.05, -0.5)
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("1_qyxuo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=71242518]
+scale = Vector2(1.02, 1.02)
+shape = SubResource("CircleShape2D_ddted")
