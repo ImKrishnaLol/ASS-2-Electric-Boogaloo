@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://kdyyhi2j2nne"]
+
+[ext_resource type="Script" uid="uid://downuu7kdkevo" path="res://Scripts/PeggleBoard/Pegs/normal_peg.gd" id="1_53qdc"]
+[ext_resource type="Texture2D" uid="uid://dfr50ew5ksk84" path="res://Assets/Art/Game/PeggleBoard/Peg.png" id="2_nganx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ddted"]
+radius = 79.99999
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oy24c"]
+radius = 9.52381
+
+[node name="PegglePeg" type="StaticBody2D" unique_id=1411103836]
+scale = Vector2(0.3, 0.3)
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_53qdc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1086697409]
+position = Vector2(0.1, 0.1)
+texture = ExtResource("2_nganx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2028409614]
+scale = Vector2(0.1, 0.1)
+shape = SubResource("CircleShape2D_ddted")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1906178565]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1909567619]
+scale = Vector2(1.05, 1.05)
+shape = SubResource("CircleShape2D_oy24c")
+debug_color = Color(0.9647059, 0.1764706, 0.18039216, 0.41960785)

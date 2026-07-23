@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://6u1m71svqmc6"]
+
+[ext_resource type="Texture2D" uid="uid://blyqjy2v1o80x" path="res://Assets/Art/Game/PeggleBoard/Cannon rim.png" id="1_hqqx0"]
+[ext_resource type="Texture2D" uid="uid://dk4xq22h4saw1" path="res://Assets/Art/Game/PeggleBoard/Cannon barrel.png" id="2_y8aek"]
+
+[sub_resource type="Animation" id="Animation_hqqx0"]
+resource_name = "CANNON_FIRE"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PeggleBallBarrel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666666, 0.13333334),
+"transitions": PackedFloat32Array(1.5, 1, 1),
+"update": 0,
+"values": [Vector2(0.2, 0.2), Vector2(0.28, 0.28), Vector2(0.25, 0.25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PeggleBallBarrel:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666666, 0.13333334),
+"transitions": PackedFloat32Array(1.5, 1, 1),
+"update": 0,
+"values": [Vector2(0, 15), Vector2(0, -10), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_y8aek"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PeggleBallBarrel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.25, 0.25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PeggleBallBarrel:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hdkc6"]
+_data = {
+&"CANNON_FIRE": SubResource("Animation_hqqx0"),
+&"RESET": SubResource("Animation_y8aek")
+}
+
+[node name="PeggleBallShooter" type="Node2D" unique_id=1839521812]
+
+[node name="PeggleBallBase" type="Sprite2D" parent="." unique_id=345197782]
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("1_hqqx0")
+
+[node name="PeggleBallBarrel" type="Sprite2D" parent="." unique_id=1449746995]
+position = Vector2(0, -1)
+rotation = 4.712389
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_y8aek")
+
+[node name="PeggleBallFiringPoint" type="Node2D" parent="PeggleBallBarrel" unique_id=1606232759]
+position = Vector2(1.0489944e-06, 88)
+
+[node name="PeggleBallAnimationPlayer" type="AnimationPlayer" parent="." unique_id=336605750]
+libraries/ = SubResource("AnimationLibrary_hdkc6")
+
+[node name="FlashCooldown" type="Timer" parent="." unique_id=1384966503]
+wait_time = 0.2
+one_shot = true

@@ -36,10 +36,6 @@ var is_pushing_bindings_to_game_data: bool = false
 
 # Only labels. The actual default controls should be set in Project Settings > Input Map.
 var action_definitions: Array[Dictionary] = [
-	{"action": "move_left", "label": "Move left"},
-	{"action": "move_right", "label": "Move right"},
-	{"action": "move_up", "label": "Move up"},
-	{"action": "move_down", "label": "Move down"},
 	{"action": "action_primary", "label": "Primary action"},
 	{"action": "action_secondary", "label": "Secondary action"},
 	{"action": "pause", "label": "Pause"},

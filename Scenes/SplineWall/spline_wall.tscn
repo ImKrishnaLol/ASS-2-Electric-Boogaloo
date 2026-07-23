@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://y2x3jc6g3pst"]
+
+[ext_resource type="Script" uid="uid://cxjr30xwihcqx" path="res://Scripts/SplineWall/spline_wall.gd" id="1_wqrgr"]
+
+[node name="Bone2D" type="Line2D" unique_id=1988636135]
+position = Vector2(18, -9)
+points = PackedVector2Array(98, 314, 147, 386, 196.49991, 293.5455, 309, 300, 341, 246, 297, 118, 276, 16, 0, 0, 0, 0, 43, 175)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+sharp_limit = 100.0
+round_precision = 32
+script = ExtResource("1_wqrgr")
