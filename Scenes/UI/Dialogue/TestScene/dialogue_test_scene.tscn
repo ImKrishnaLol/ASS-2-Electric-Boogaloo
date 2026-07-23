@@ -25,10 +25,6 @@ offset_bottom = 249.0
 script = ExtResource("2_xk30d")
 metadata/_edit_group_ = true
 
-[node name="LevelButton0" type="Button" parent="ButtonsTest" unique_id=96187729]
-layout_mode = 2
-text = "Level 0"
-
 [node name="LevelButton1" type="Button" parent="ButtonsTest" unique_id=1018677165]
 layout_mode = 2
 text = "Level 1"
@@ -66,7 +62,6 @@ text = "Angry"
 layout_mode = 2
 text = "Dejected"
 
-[connection signal="pressed" from="ButtonsTest/LevelButton0" to="ButtonsTest" method="_on_level_button_0_pressed"]
 [connection signal="pressed" from="ButtonsTest/LevelButton1" to="ButtonsTest" method="_on_level_button_1_pressed"]
 [connection signal="pressed" from="ButtonsTest/LevelButton2" to="ButtonsTest" method="_on_level_button_2_pressed"]
 [connection signal="pressed" from="ButtonsTest/LevelButton3" to="ButtonsTest" method="_on_level_button_3_pressed"]
