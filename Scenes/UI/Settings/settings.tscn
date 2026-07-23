@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://fy5f6aswgy7c" path="res://Assets/Audio/SFX/UI/settings_land.mp3" id="2_7yuyr"]
 [ext_resource type="AudioStream" uid="uid://brlsii31k4pcw" path="res://Assets/Audio/SFX/UI/menu_click.wav" id="2_n8st6"]
 [ext_resource type="AudioStream" uid="uid://bkqfsw2ooppax" path="res://Assets/Audio/SFX/UI/ui_hover.wav" id="3_dkbde"]
-[ext_resource type="Shader" uid="uid://dyjtejd4wpkda" path="res://Shaders/Background/trippy_background.gdshader" id="4_btyfq"]
+[ext_resource type="Shader" uid="uid://ck5h06pek6dsm" path="res://Shaders/Background/starry.gdshader" id="5_hx2sp"]
 [ext_resource type="Script" uid="uid://sytxw8s1a7fi" path="res://Scripts/UI/Settings/key_configuration_panel.gd" id="6_hx2sp"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_btyfq"]
@@ -12,28 +12,17 @@ random_pitch = 1.0293022
 streams_count = 1
 stream_0/stream = ExtResource("3_dkbde")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7yuyr"]
-shader = ExtResource("4_btyfq")
-shader_parameter/base_colour = Color(0.001, 0.001, 0.003, 1)
-shader_parameter/colour_red = Color(0.85, 0.16, 0.18, 1)
-shader_parameter/colour_orange = Color(0.9, 0.45, 0.12, 1)
-shader_parameter/colour_yellow = Color(0.95, 0.82, 0.18, 1)
-shader_parameter/colour_green = Color(0.2, 0.72, 0.28, 1)
-shader_parameter/colour_blue = Color(0.16, 0.42, 0.9, 1)
-shader_parameter/colour_indigo = Color(0.34, 0.22, 0.72, 1)
-shader_parameter/colour_violet = Color(0.62, 0.2, 0.78, 1)
-shader_parameter/base_colour_strength = 0.035
-shader_parameter/swirl_colour_strength = 0.24
-shader_parameter/movement_speed = 0.35
-shader_parameter/colour_cycle_speed = 0.1
-shader_parameter/scale = 7.0
-shader_parameter/softness = 0.72
-shader_parameter/curve_strength = 0.18
-shader_parameter/curve_scale = 4.5
-shader_parameter/swirl_density = 16.0
-shader_parameter/swirl_thickness = 0.022
-shader_parameter/swirl_spin_speed = 0.45
-shader_parameter/black_cutoff = 0.035
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wtern"]
+shader = ExtResource("5_hx2sp")
+shader_parameter/scroll_speed = 0.003
+shader_parameter/star_amount = 0.32
+shader_parameter/star_brightness = 1.25
+shader_parameter/cloud_strength = 0.12
+shader_parameter/background_colour = Color(0.05098, 0.12941, 0.27843, 1)
+shader_parameter/star_colour_1 = Color(0.80784, 0.47451, 0.82353, 1)
+shader_parameter/star_colour_2 = Color(0.95686, 0.87451, 0.7451, 1)
+shader_parameter/star_colour_3 = Color(1, 0.5098, 0.74118, 1)
+shader_parameter/star_colour_4 = Color(0.7451, 0.79608, 0.92157, 1)
 
 [node name="Settings" type="Control" unique_id=933147905]
 layout_mode = 3
@@ -52,7 +41,7 @@ hover_sound = SubResource("AudioStreamRandomizer_btyfq")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=527442295]
 z_index = -100
-material = SubResource("ShaderMaterial_7yuyr")
+material = SubResource("ShaderMaterial_wtern")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

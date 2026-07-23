@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bj0bmdaxwttun"
-path="res://.godot/imported/Ball.png-e9f878804832731c007ff4a70bdddba4.ctex"
+uid="uid://bv0lra47lv40q"
+path="res://.godot/imported/Ball.png-019062273b0305bb7f8e005a38cb9c08.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Lockers/Programmers/BionicMango/Ball.png"
-dest_files=["res://.godot/imported/Ball.png-e9f878804832731c007ff4a70bdddba4.ctex"]
+source_file="res://Assets/Art/Game/PeggleBoard/Ball.png"
+dest_files=["res://.godot/imported/Ball.png-019062273b0305bb7f8e005a38cb9c08.ctex"]
 
 [params]
 
