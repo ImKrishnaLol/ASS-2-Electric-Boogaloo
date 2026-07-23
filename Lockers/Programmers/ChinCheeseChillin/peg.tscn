@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://dcu71e1y4vpjc"]
+
+[ext_resource type="Script" uid="uid://stn167elyguj" path="res://Lockers/Programmers/ChinCheeseChillin/peg.gd" id="1_lxqax"]
+[ext_resource type="Texture2D" uid="uid://ctqji8y2kmrom" path="res://Lockers/Programmers/ChinCheeseChillin/Red_Peg.png" id="1_prqqj"]
+[ext_resource type="Texture2D" uid="uid://bmshp68uh2f4r" path="res://Lockers/Programmers/ChinCheeseChillin/Green_Peg.png" id="2_lxqax"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fdm2o"]
+radius = 14.035668
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3c2fn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_prqqj")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_lxqax")
+}],
+"loop": 1,
+"name": &"hit",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_osicj"]
+radius = 15.0
+
+[node name="Peg" type="StaticBody2D" unique_id=425628496]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_lxqax")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=637964397]
+shape = SubResource("CircleShape2D_fdm2o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1966578367]
+position = Vector2(0, 1.9073486e-06)
+scale = Vector2(0.4375, 0.4375)
+sprite_frames = SubResource("SpriteFrames_3c2fn")
+autoplay = "default"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=164637598]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1090620121]
+shape = SubResource("CircleShape2D_osicj")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

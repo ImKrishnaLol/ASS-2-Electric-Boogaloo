@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://boxpm67q2p7xe"]
+
+[ext_resource type="Texture2D" uid="uid://bgf4qlube5ag2" path="res://Assets/Art/Wall/brick_90.png" id="1_e5xdl"]
+[ext_resource type="Script" uid="uid://bjfs4le6dafih" path="res://Scripts/Brick/brick.gd" id="1_q3tlh"]
+
+[node name="Brick90" type="Sprite2D" unique_id=408163996]
+texture = ExtResource("1_e5xdl")
+offset = Vector2(6, -4)
+script = ExtResource("1_q3tlh")
+end_point = Vector2(8, -8)
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1058426630]
+position = Vector2(8, -8)

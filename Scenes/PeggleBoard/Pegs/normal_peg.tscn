@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://kdyyhi2j2nne"]
 
 [ext_resource type="Script" uid="uid://downuu7kdkevo" path="res://Scripts/PeggleBoard/Pegs/normal_peg.gd" id="1_53qdc"]
-[ext_resource type="Texture2D" uid="uid://bj0bmdaxwttun" path="res://Lockers/Programmers/BionicMango/Ball.png" id="1_qyxuo"]
+[ext_resource type="Texture2D" uid="uid://bv0lra47lv40q" path="res://Assets/Art/Game/PeggleBoard/Ball.png" id="1_qyxuo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ddted"]
 radius = 122.016396
