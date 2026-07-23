@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://dolco1fwrh34t"]
+
+[ext_resource type="Script" uid="uid://1hjr0ow14k7l" path="res://Scripts/UI/Dialogue/dialogue_box.gd" id="1_v6lbk"]
+[ext_resource type="AudioStream" uid="uid://lwyl1nv45hvw" path="res://Placeholders/Audio/beep.mp3" id="2_tq37n"]
+[ext_resource type="AudioStream" uid="uid://bxn6t0fecbycr" path="res://Placeholders/Audio/alien_babble.mp3" id="3_ercv4"]
+[ext_resource type="Texture2D" uid="uid://byd3htnnpnylu" path="res://Assets/Art/UI/ASS_nine_slice_text_box.png" id="4_ercv4"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_v6lbk"]
+streams_count = 1
+stream_0/stream = ExtResource("2_tq37n")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xm3ya"]
+streams_count = 1
+stream_0/stream = ExtResource("3_ercv4")
+
+[sub_resource type="Animation" id="Animation_v6lbk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NinePatchRect/HBoxContainer/MarginContainer/DialogueLabel:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_nypex"]
+resource_name = "typing_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NinePatchRect/HBoxContainer/MarginContainer/DialogueLabel:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tq37n"]
+_data = {
+&"RESET": SubResource("Animation_v6lbk"),
+&"typing_anim": SubResource("Animation_nypex")
+}
+
+[node name="DialogueBox" type="Control" unique_id=1944555503 node_paths=PackedStringArray("dialogue_label", "animation_player")]
+custom_minimum_size = Vector2(160, 50)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -25.0
+offset_right = 80.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v6lbk")
+fade_in_time = 0.3
+fade_out_time = 0.3
+on_display_audio = SubResource("AudioStreamRandomizer_v6lbk")
+on_text_audio = SubResource("AudioStreamRandomizer_xm3ya")
+dialogue_label = NodePath("NinePatchRect/HBoxContainer/MarginContainer/DialogueLabel")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1346305480]
+libraries/ = SubResource("AnimationLibrary_tq37n")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1395181140]
+texture_filter = 1
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 159.0
+offset_bottom = 50.0
+texture = ExtResource("4_ercv4")
+region_rect = Rect2(0, 0, 84, 84)
+patch_margin_left = 30
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect" unique_id=2080815071]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/HBoxContainer" unique_id=508877511]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="DialogueLabel" type="Label" parent="NinePatchRect/HBoxContainer/MarginContainer" unique_id=244370270]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 8
+text = "Message blablabla shimmy shimmy ya"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+visible_characters = 0
+visible_ratio = 0.0

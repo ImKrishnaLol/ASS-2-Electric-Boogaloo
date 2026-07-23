@@ -2,29 +2,234 @@
 
 [ext_resource type="PackedScene" uid="uid://bw7tgya3h6tof" path="res://Scenes/Tools/spline_wall.tscn" id="1_s6dlv"]
 
-[sub_resource type="Curve2D" id="Curve2D_txlww"]
-bake_interval = 10.0
+[sub_resource type="Curve2D" id="Curve2D_s6dlv"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 189, -70, -123.14049, -119.8347, 123.14049, 119.8347, 413, -3, 242.21059, -111.86845, -242.21059, 111.86845, 417, 159, 0, 0, 0, 0, 417, 159, 0, 0, 0, 0, 274, 40)
+"points": PackedVector2Array(0, 0, 0, 0, -193, 33, -67.73686, -2.5657902, 67.73686, 2.5657902, -80, 87, -86.7025, 0.80578566, 86.7025, -0.80578566, 16, 25, -76.9737, 1.539474, 76.9737, -1.539474, 113, 84, 0, 0, 0, 0, 229, 36)
 }
 point_count = 5
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_w2dyt"]
+bounce = 0.51
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p0wvi"]
+
 [node name="DummySplineWall" type="Node2D" unique_id=990463010]
 
-[node name="SplineWall" parent="." unique_id=885016358 instance=ExtResource("1_s6dlv")]
-position = Vector2(573, 219)
-curve = SubResource("Curve2D_txlww")
-wall_color = Color(0.94794685, 0.61736965, 0.4537652, 1)
+[node name="SplineWall" parent="." unique_id=885016358 groups=["blue_blocks", "purple_blocks"] instance=ExtResource("1_s6dlv")]
+position = Vector2(220, 169)
+curve = SubResource("Curve2D_s6dlv")
+wall_physics_material = SubResource("PhysicsMaterial_w2dyt")
+block_spacing = 31.475
+block_types = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0])
 
-[node name="Line2D" type="Line2D" parent="SplineWall" unique_id=885914666]
-points = PackedVector2Array(189, -70, 193.57431, -72.03619, 199.11955, -74.08593, 206.68336, -76.383, 216.15067, -78.59708, 221.56213, -79.56976, 227.40631, -80.39782, 233.66881, -81.03997, 240.33524, -81.45491, 247.39119, -81.60136, 254.82231, -81.43801, 262.6142, -80.92359, 270.75244, -80.0168, 279.2227, -78.67635, 288.01053, -76.860954, 297.10156, -74.52931, 306.48145, -71.64014, 311.27518, -69.97357, 316.13574, -68.15213, 321.06134, -66.17067, 326.0501, -64.02402, 331.10028, -61.707005, 336.2101, -59.214493, 341.37775, -56.541298, 346.60138, -53.68227, 351.87927, -50.632244, 357.20953, -47.386063, 362.59045, -43.938557, 368.0202, -40.284573, 373.49698, -36.41894, 379.01898, -32.33651, 384.5844, -28.032116, 390.19144, -23.500591, 395.83832, -18.736778, 401.52325, -13.7355175, 407.2444, -8.491645, 413, -3, 418.77075, 2.4798455, 424.53308, 7.6905417, 430.27853, 12.640583, 435.99884, 17.338463, 441.68564, 21.792675, 447.33047, 26.011713, 452.9251, 30.004074, 458.4611, 33.778248, 463.93008, 37.34273, 469.3238, 40.70602, 474.63376, 43.876602, 479.85168, 46.86298, 484.96927, 49.673637, 489.978, 52.317078, 494.86963, 54.80179, 499.63574, 57.13627, 504.26807, 59.329002, 508.75812, 61.388496, 517.27826, 65.14172, 525.1293, 68.463905, 532.24426, 71.42299, 538.55634, 74.086914, 543.99866, 76.52365, 552.00665, 80.98734, 554.64325, 90.17828, 548.2019, 95.992775, 542.80725, 99.4426, 535.8742, 103.34476, 527.3358, 107.76719, 522.44366, 110.19474, 517.1251, 112.77785, 511.37183, 115.52501, 505.1754, 118.444695, 498.5275, 121.545425, 491.41974, 124.83568, 483.84375, 128.32396, 475.79123, 132.01875, 467.25375, 135.92854, 458.22302, 140.06186, 453.52002, 142.21498, 448.6906, 144.42717, 443.7337, 146.69946, 438.64822, 149.03296, 433.43317, 151.4287, 428.08746, 153.88774, 422.61008, 156.41115, 417, 159, 417, 159, 410.85547, 153.88672, 403.80322, 148.01807, 399.4654, 144.40826, 394.65625, 140.40625, 389.42816, 136.0556, 383.8335, 131.3999, 377.92462, 126.48273, 371.7539, 121.34766, 365.37372, 116.03827, 358.83643, 110.598145, 352.1944, 105.07086, 345.5, 99.5, 338.8056, 93.92914, 332.16357, 88.401855, 325.62628, 82.96173, 319.2461, 77.65234, 313.07538, 72.51727, 307.1665, 67.6001, 301.57184, 62.944397, 296.34375, 58.59375, 291.5346, 54.591736, 287.19678, 50.981934, 280.14453, 45.11328, 274, 40)
-default_color = Color(0.94794685, 0.61736965, 0.4537652, 1)
-joint_mode = 2
-begin_cap_mode = 2
-end_cap_mode = 2
+[node name="Blocks" type="Node2D" parent="SplineWall" unique_id=1939867404]
 
-[node name="AnimatableBody2D" type="AnimatableBody2D" parent="SplineWall" unique_id=424027468]
+[node name="Block_0" type="StaticBody2D" parent="SplineWall/Blocks" unique_id=1163092404]
+position = Vector2(-181.68008, 43.921284)
+physics_material_override = SubResource("PhysicsMaterial_w2dyt")
+metadata/block_type = 0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SplineWall/AnimatableBody2D" unique_id=793396876]
-build_mode = 1
-polygon = PackedVector2Array(247.50107, -86.60015, 254.93219, -86.4368, 255.15169, -86.42715, 262.94357, -85.91273, 263.16788, -85.89284, 271.30612, -84.98605, 271.53397, -84.95534, 280.00424, -83.61489, 280.23425, -83.57296, 289.0221, -81.75756, 289.25272, -81.70419, 298.34375, -79.37255, 298.5734, -79.30777, 307.9533, -76.4186, 308.12335, -76.36287, 312.91708, -74.6963, 313.02972, -74.65562, 317.8903, -72.83418, 318.0018, -72.79086, 322.9274, -70.8094, 323.03763, -70.76352, 328.0264, -68.61687, 328.13513, -68.56854, 333.1853, -66.25152, 333.29233, -66.20087, 338.40216, -63.70836, 338.50742, -63.65548, 343.67505, -60.98229, 343.77835, -60.92732, 349.00198, -58.06829, 349.10312, -58.01139, 354.381, -54.96136, 354.47998, -54.90264, 359.81024, -51.65646, 359.90686, -51.5961, 365.28778, -48.1486, 365.382, -48.08673, 370.81174, -44.43274, 370.90344, -44.36953, 376.38022, -40.5039, 376.4694, -40.43949, 381.9914, -36.35706, 382.0779, -36.29162, 387.64334, -31.98723, 387.72726, -31.92088, 393.3343, -27.38935, 393.4155, -27.3223, 399.06238, -22.55849, 399.1409, -22.49083, 404.82584, -17.48957, 404.9017, -17.42145, 410.62283, -12.17757, 410.69598, -12.10916, 416.44608, -6.62277, 422.1696, -1.18778, 427.842, 3.9416, 433.4976, 8.81419, 439.1274, 13.43777, 444.7244, 17.82165, 450.27963, 21.9737, 455.7859, 25.90299, 461.23465, 29.61772, 466.61823, 33.12651, 471.9283, 36.43767, 477.1574, 39.55996, 482.29745, 42.50178, 487.33997, 45.2712, 492.27676, 47.87667, 497.1019, 50.32761, 501.80484, 52.63114, 506.37985, 54.79675, 510.8088, 56.82823, 519.2602, 60.55115, 527.0635, 63.85315, 534.1643, 66.80634, 534.1884, 66.81643, 540.5005, 69.48035, 540.5996, 69.52345, 546.0419, 71.96019, 546.43304, 72.1563, 554.44104, 76.61999, 556.5574, 78.91588, 556.8128, 79.6086, 559.4494, 88.79954, 559.3302, 91.91976, 557.9936, 93.8898, 551.55225, 99.70429, 550.8956, 100.2051, 545.501, 103.65493, 545.25964, 103.79985, 538.32666, 107.70201, 538.17377, 107.78457, 529.6354, 112.207, 529.5583, 112.24609, 524.66614, 114.67364, 524.62805, 114.69234, 519.3095, 117.27545, 519.2796, 117.28987, 513.5263, 120.03703, 513.50305, 120.04806, 507.30664, 122.96774, 507.28894, 122.97603, 500.64102, 126.07677, 500.62793, 126.08286, 493.52017, 129.37311, 493.5109, 129.37738, 485.9349, 132.86566, 485.92892, 132.86842, 477.8764, 136.56322, 477.87308, 136.56471, 469.3356, 140.4745, 469.33463, 140.47496, 460.30435, 144.60806, 460.30435, 144.60806, 455.60135, 146.76118, 455.60135, 146.76118, 450.77417, 148.97235, 450.77417, 148.97237, 445.8189, 151.24388, 445.81894, 151.2439, 440.73346, 153.5774, 440.73343, 153.57738, 435.5227, 155.97115, 435.5227, 155.97115, 430.177, 158.43019, 424.70508, 160.95107, 424.70508, 160.95108, 419.095, 163.53993, 415.99307, 163.89755, 413.80173, 162.8433, 407.6572, 157.73003, 400.60495, 151.86137, 396.26712, 148.25157, 391.45798, 144.24956, 386.2299, 139.89891, 380.63522, 135.24321, 380.63522, 135.2432, 374.72635, 130.32603, 374.72635, 130.32603, 368.55563, 125.19097, 362.17545, 119.88158, 355.63815, 114.44145, 348.99612, 108.91417, 335.60733, 97.77245, 328.9653, 92.24517, 322.428, 86.80504, 316.04782, 81.49565, 309.8771, 76.36058, 309.8771, 76.36057, 303.96823, 71.44341, 303.96823, 71.44341, 298.37357, 66.78771, 293.14548, 62.43706, 288.33633, 58.43505, 283.9985, 54.82524, 276.94626, 48.95659, 270.80173, 43.84331, 269.14526, 41.19641, 269.38214, 38.0829, 271.41998, 35.71707, 274.46405, 35.02158, 277.19827, 36.15669, 283.3428, 41.26997, 290.39505, 47.13862, 294.73288, 50.74843, 299.54202, 54.75044, 304.7701, 59.10109, 310.36478, 63.75679, 310.36478, 63.75679, 316.27365, 68.67396, 316.27365, 68.67396, 322.44437, 73.80903, 328.82455, 79.11842, 335.36185, 84.55855, 342.00388, 90.08583, 355.39267, 101.22755, 362.0347, 106.75483, 368.572, 112.19496, 374.95218, 117.50435, 381.1229, 122.63942, 381.1229, 122.63942, 387.03177, 127.55659, 387.03177, 127.55659, 392.62643, 132.2123, 397.85452, 136.56294, 402.66367, 140.56496, 407.0015, 144.17476, 414.05374, 150.04341, 417.77155, 153.13725, 420.51508, 151.87122, 420.51794, 151.8699, 425.99533, 149.3465, 425.99792, 149.34529, 431.34363, 146.88625, 431.34592, 146.8852, 436.56097, 144.48946, 436.563, 144.48853, 441.64847, 142.15503, 441.65015, 142.15427, 446.60706, 139.88197, 446.60834, 139.8814, 451.43774, 137.6692, 451.4387, 137.66878, 456.1417, 135.51566, 456.14215, 135.51544, 465.17188, 131.38257, 473.7061, 127.47429, 481.75406, 123.78157, 489.32373, 120.2962, 496.42133, 117.01065, 503.05237, 113.91778, 509.22925, 111.00732, 514.9558, 108.2729, 520.2402, 105.70639, 525.07477, 103.30743, 533.49744, 98.94491, 540.2321, 95.15442, 545.1591, 92.00364, 548.9767, 88.55761, 547.7696, 84.34986, 541.7556, 80.99764, 536.56256, 78.67252, 530.3117, 76.03443, 523.2092, 73.08056, 523.1808, 73.06862, 515.3298, 69.74643, 515.26263, 69.71743, 506.74246, 65.96421, 506.67355, 65.93323, 502.1835, 63.87373, 502.12885, 63.84827, 497.49652, 61.65554, 497.43637, 61.62656, 492.67026, 59.29208, 492.60526, 59.25966, 487.71362, 56.77495, 487.64426, 56.73902, 482.63553, 54.09558, 482.56232, 54.05617, 477.44473, 51.24551, 477.36804, 51.20251, 472.15012, 48.21613, 472.07043, 48.16955, 466.76047, 44.99897, 466.6782, 44.94876, 461.2845, 41.58547, 461.19995, 41.53157, 455.73096, 37.96709, 455.6446, 37.90951, 450.1086, 34.13533, 450.02075, 34.07405, 444.42612, 30.08169, 444.3371, 30.01667, 438.69226, 25.79764, 438.6025, 25.72897, 432.9157, 21.27475, 432.82553, 21.2024, 427.10522, 16.50452, 427.01495, 16.42859, 421.2695, 11.47855, 421.17953, 11.39913, 415.41718, 6.18844, 415.3278, 6.10559, 409.55704, 0.62574, 409.5484, 0.61752, 403.82904, -4.83951, 398.18234, -10.01518, 392.57477, -14.94837, 387.0074, -19.64513, 381.48334, -24.10959, 376.00287, -28.34828, 370.56897, -32.36557, 365.18237, -36.16754, 359.84573, -39.75888, 354.5601, -43.14533, 349.3278, -46.33185, 344.14978, -49.32417, 339.02838, -52.12723, 333.965, -54.74649, 328.96167, -57.18706, 324.0191, -59.45471, 319.1399, -61.55421, 314.3252, -63.49106, 309.57663, -65.27053, 304.9242, -66.88798, 295.74368, -69.71574, 286.88312, -71.98827, 278.32556, -73.7561, 270.08453, -75.06027, 262.17242, -75.94187, 254.6025, -76.44163, 247.3881, -76.60022, 240.54253, -76.45813, 234.07936, -76.05585, 228.01218, -75.43372, 222.35562, -74.63225, 217.16283, -73.69887, 207.98048, -71.55144, 200.71423, -69.34473, 195.45964, -67.40243, 191.03333, -65.43212, 187.92682, -65.11653, 185.23885, -66.7055, 184.01773, -69.57932, 184.73969, -72.61721, 186.96667, -74.56788, 191.54099, -76.60407, 191.84074, -76.72605, 197.38599, -78.77579, 197.66661, -78.87017, 205.23042, -81.16724, 205.54475, -81.25163, 215.01205, -83.46571, 215.26611, -83.51822, 220.67758, -84.4909, 220.86069, -84.52031, 226.70486, -85.34837, 226.89629, -85.37174, 233.15878, -86.01389, 233.3582, -86.03031, 240.02463, -86.44525, 240.23148, -86.45383, 247.28743, -86.60028)
+[node name="@CollisionPolygon2D@27657" type="CollisionPolygon2D" parent="SplineWall/Blocks/Block_0" unique_id=1803013109]
+polygon = PackedVector2Array(-14.967148, -7.5010986, 9.30838, 13.873779, 15.233612, 5.8182373, -7.6726837, -14.341469)
+
+[node name="@Polygon2D@27658" type="Polygon2D" parent="SplineWall/Blocks/Block_0" unique_id=410582789]
+color = Color(0.2, 0.45, 0.95, 1)
+polygon = PackedVector2Array(-14.967148, -7.5010986, 9.30838, 13.873779, 15.233612, 5.8182373, -7.6726837, -14.341469)
+
+[node name="Block_1" type="StaticBody2D" parent="SplineWall/Blocks" unique_id=885923250]
+position = Vector2(-156.3695, 62.56976)
+physics_material_override = SubResource("PhysicsMaterial_w2dyt")
+metadata/block_type = 0
+
+[node name="@CollisionPolygon2D@27659" type="CollisionPolygon2D" parent="SplineWall/Blocks/Block_1" unique_id=895572335]
+polygon = PackedVector2Array(-16.002197, -4.7746964, 11.489044, 12.166599, 15.956604, 3.2200356, -10.076965, -12.830238)
+
+[node name="@Polygon2D@27660" type="Polygon2D" parent="SplineWall/Blocks/Block_1" unique_id=871600039]
+color = Color(0.2, 0.45, 0.95, 1)
+polygon = PackedVector2Array(-16.002197, -4.7746964, 11.489044, 12.166599, 15.956604, 3.2200356, -10.076965, -12.830238)
+
+[node name="Block_2" type="StaticBody2D" parent="SplineWall/Blocks" unique_id=981159036]
+position = Vector2(-128.28644, 76.687096)
+physics_material_override = SubResource("PhysicsMaterial_w2dyt")
+metadata/block_type = 0
+
+[node name="@CollisionPolygon2D@27661" type="CollisionPolygon2D" parent="SplineWall/Blocks/Block_2" unique_id=453727372]
+polygon = PackedVector2Array(-16.594025, -1.950737, 13.5731125, 9.826668, 16.250679, 0.19179535, -12.126465, -10.897301)
+
+[node name="@Polygon2D@27662" type="Polygon2D" parent="SplineWall/Blocks/Block_2" unique_id=690629615]
+color = Color(0.2, 0.45, 0.95, 1)
+polygon = PackedVector2Array(-16.594025, -1.950737, 13.5731125, 9.826668, 16.250679, 0.19179535, -12.126465, -10.897301)
+
+[node name="Block_3" type="StaticBody2D" parent="SplineWall/Blocks" unique_id=2041902364]
+position = Vector2(-98.026054, 85.138855)
+physics_material_override = SubResource("PhysicsMaterial_w2dyt")
+metadata/block_type = 0
+
+[node name="@CollisionPolygon2D@27663" type="CollisionPolygon2D" parent="SplineWall/Blocks/Block_3" unique_id=1739742933]
+polygon = PackedVector2Array(-16.687271, 1.3749084, 15.385994, 6.7370834, 15.878319, -3.2507858, -14.009705, -8.259964)
+
+[node name="@Polygon2D@27664" type="Polygon2D" parent="SplineWall/Blocks/Block_3" unique_id=1493910881]
+color = Color(0.2, 0.45, 0.95, 1)
+polygon = PackedVector2Array(-16.687271, 1.3749084, 15.385994, 6.7370834, 15.878319, -3.2507858, -14.009705, -8.259964)
+
+[node name="Block_4" type="StaticBody2D" parent="SplineWall/Blocks" unique_id=890557114]
+position = Vector2(-66.690414, 86.45078)
+physics_material_override = SubResource("PhysicsMaterial_w2dyt")
+metadata/block_type = 0
+
+[node name="@CollisionPolygon2D@27665" type="CollisionPolygon2D" parent="SplineWall/Blocks/Block_4" unique_id=1741278496]
+polygon = PackedVector2Array(-15.949646, 5.4251556, 17.535568, -1.0130692, 11.871353, -9.254219, -15.457321, -4.5627136)
+
+[node name="@Polygon2D@27666" type="Polygon2D" parent="SplineWall/Blocks/Block_4" unique_id=91811862]
+color = Color(0.2, 0.45, 0.95, 1)
+polygon = PackedVector2Array(-15.949646, 5.4251556, 17.535568, -1.0130692, 11.871353, -9.254219, -15.457321, -4.5627136)
+
+[node name="Block_5" type="StaticBody2D" parent="SplineWall/Blocks" unique_id=959829198]
+position = Vector2(-42.78005, 68.86637)
+physics_material_override = SubResource("PhysicsMaterial_w2dyt")
+metadata/block_type = 0
+
+[node name="@CollisionPolygon2D@27667" type="CollisionPolygon2D" parent="SplineWall/Blocks/Block_5" unique_id=517140043]
+polygon = PackedVector2Array(-6.374798, 16.571342, 9.463436, -13.357838, 0.019321442, -16.645504, -12.039013, 8.330193)
+
+[node name="@Polygon2D@27668" type="Polygon2D" parent="SplineWall/Blocks/Block_5" unique_id=2059134998]
+color = Color(0.2, 0.45, 0.95, 1)
+polygon = PackedVector2Array(-6.374798, 16.571342, 9.463436, -13.357838, 0.019321442, -16.645504, -12.039013, 8.330193)
+
+[node name="Block_6" type="StaticBody2D" parent="SplineWall/Blocks" unique_id=1954400684]
+position = Vector2(-30.807207, 39.99716)
+physics_material_override = SubResource("PhysicsMaterial_w2dyt")
+metadata/block_type = 0
+
+[node name="@CollisionPolygon2D@27669" type="CollisionPolygon2D" parent="SplineWall/Blocks/Block_6" unique_id=338253857]
+polygon = PackedVector2Array(-2.5094051, 15.511372, 14.514116, -4.5704536, 10.680178, -13.806303, -11.95352, 12.223705)
+
+[node name="@Polygon2D@27670" type="Polygon2D" parent="SplineWall/Blocks/Block_6" unique_id=523104062]
+color = Color(0.2, 0.45, 0.95, 1)
+polygon = PackedVector2Array(-2.5094051, 15.511372, 14.514116, -4.5704536, 10.680178, -13.806303, -11.95352, 12.223705)
+
+[node name="Block_7" type="StaticBody2D" parent="SplineWall/Blocks" unique_id=1085704318]
+position = Vector2(-3.1214933, 26.502268)
+physics_material_override = SubResource("PhysicsMaterial_w2dyt")
+metadata/block_type = 0
+
+[node name="@CollisionPolygon2D@27671" type="CollisionPolygon2D" parent="SplineWall/Blocks/Block_7" unique_id=114226134]
+polygon = PackedVector2Array(-13.1715975, 8.92444, 15.7653475, 3.5695324, 15.554776, -6.4282513, -17.005535, -0.311409)
+
+[node name="@Polygon2D@27672" type="Polygon2D" parent="SplineWall/Blocks/Block_7" unique_id=501150193]
+color = Color(0.2, 0.45, 0.95, 1)
+polygon = PackedVector2Array(-13.1715975, 8.92444, 15.7653475, 3.5695324, 15.554776, -6.4282513, -17.005535, -0.311409)
+
+[node name="Block_8" type="StaticBody2D" parent="SplineWall/Blocks" unique_id=1304581093]
+position = Vector2(28.26612, 25.36707)
+physics_material_override = SubResource("PhysicsMaterial_w2dyt")
+metadata/block_type = 0
+
+[node name="@CollisionPolygon2D@27673" type="CollisionPolygon2D" parent="SplineWall/Blocks/Block_8" unique_id=206119861]
+polygon = PackedVector2Array(-15.622267, 4.704731, 14.122444, 7.3406487, 16.88028, -2.2715492, -15.832838, -5.2930527)
+
+[node name="@Polygon2D@27674" type="Polygon2D" parent="SplineWall/Blocks/Block_8" unique_id=823132222]
+color = Color(0.2, 0.45, 0.95, 1)
+polygon = PackedVector2Array(-15.622267, 4.704731, 14.122444, 7.3406487, 16.88028, -2.2715492, -15.832838, -5.2930527)
+
+[node name="Block_9" type="StaticBody2D" parent="SplineWall/Blocks" unique_id=1954944449]
+position = Vector2(57.739357, 34.835835)
+physics_material_override = SubResource("PhysicsMaterial_w2dyt")
+metadata/block_type = 0
+
+[node name="@CollisionPolygon2D@27675" type="CollisionPolygon2D" parent="SplineWall/Blocks/Block_9" unique_id=648666557]
+polygon = PackedVector2Array(-15.350792, -2.1281166, 3.6923218, 14.688061, 13.1410675, 11.413738, -12.592957, -11.7403145)
+
+[node name="@Polygon2D@27676" type="Polygon2D" parent="SplineWall/Blocks/Block_9" unique_id=1614842788]
+color = Color(0.2, 0.45, 0.95, 1)
+polygon = PackedVector2Array(-15.350792, -2.1281166, 3.6923218, 14.688061, 13.1410675, 11.413738, -12.592957, -11.7403145)
+
+[node name="Block_10" type="StaticBody2D" parent="SplineWall/Blocks" unique_id=1265775054]
+position = Vector2(70.37308, 63.04362)
+physics_material_override = SubResource("PhysicsMaterial_w2dyt")
+metadata/block_type = 0
+
+[node name="@CollisionPolygon2D@27677" type="CollisionPolygon2D" parent="SplineWall/Blocks/Block_10" unique_id=52507943]
+polygon = PackedVector2Array(-8.941399, -13.519726, 5.0925293, 17.010044, 11.389725, 9.241825, 0.5073471, -16.794048)
+
+[node name="@Polygon2D@27678" type="Polygon2D" parent="SplineWall/Blocks/Block_10" unique_id=1780254409]
+color = Color(0.2, 0.45, 0.95, 1)
+polygon = PackedVector2Array(-8.941399, -13.519726, 5.0925293, 17.010044, 11.389725, 9.241825, 0.5073471, -16.794048)
+
+[node name="Block_11" type="StaticBody2D" parent="SplineWall/Blocks" unique_id=1403448209]
+position = Vector2(92.86705, 82.436)
+physics_material_override = SubResource("PhysicsMaterial_w2dyt")
+metadata/block_type = 0
+
+[node name="@CollisionPolygon2D@27679" type="CollisionPolygon2D" parent="SplineWall/Blocks/Block_11" unique_id=2031183222]
+polygon = PackedVector2Array(-17.401443, -2.3823318, 15.533997, 6.570694, 15.723892, -3.4275055, -11.104248, -10.150551)
+
+[node name="@Polygon2D@27680" type="Polygon2D" parent="SplineWall/Blocks/Block_11" unique_id=1380193288]
+color = Color(0.2, 0.45, 0.95, 1)
+polygon = PackedVector2Array(-17.401443, -2.3823318, 15.533997, 6.570694, 15.723892, -3.4275055, -11.104248, -10.150551)
+
+[node name="Block_12" type="StaticBody2D" parent="SplineWall/Blocks" unique_id=1842377549]
+position = Vector2(124.217735, 83.442215)
+physics_material_override = SubResource("PhysicsMaterial_w2dyt")
+metadata/block_type = 3
+
+[node name="@CollisionPolygon2D@27681" type="CollisionPolygon2D" parent="SplineWall/Blocks/Block_12" unique_id=1655135182]
+polygon = PackedVector2Array(-15.816689, 5.564476, 16.46708, 3.020111, 14.765968, -6.834137, -15.626793, -4.4337234)
+
+[node name="@Polygon2D@27682" type="Polygon2D" parent="SplineWall/Blocks/Block_12" unique_id=981461235]
+color = Color(0.7, 0.3, 0.9, 1)
+polygon = PackedVector2Array(-15.816689, 5.564476, 16.46708, 3.020111, 14.765968, -6.834137, -15.626793, -4.4337234)
+
+[node name="Block_13" type="StaticBody2D" parent="SplineWall/Blocks" unique_id=565531324]
+position = Vector2(155.2222, 78.261375)
+physics_material_override = SubResource("PhysicsMaterial_w2dyt")
+metadata/block_type = 0
+
+[node name="@CollisionPolygon2D@27683" type="CollisionPolygon2D" parent="SplineWall/Blocks/Block_13" unique_id=100279752]
+polygon = PackedVector2Array(-14.537384, 8.200951, 16.723969, 0.0342865, 13.322845, -9.369568, -16.238495, -1.6532974)
+
+[node name="@Polygon2D@27684" type="Polygon2D" parent="SplineWall/Blocks/Block_13" unique_id=1375574894]
+color = Color(0.2, 0.45, 0.95, 1)
+polygon = PackedVector2Array(-14.537384, 8.200951, 16.723969, 0.0342865, 13.322845, -9.369568, -16.238495, -1.6532974)
+
+[node name="Block_14" type="StaticBody2D" parent="SplineWall/Blocks" unique_id=681574462]
+position = Vector2(184.7656, 67.54145)
+physics_material_override = SubResource("PhysicsMaterial_w2dyt")
+metadata/block_type = 0
+
+[node name="@CollisionPolygon2D@27685" type="CollisionPolygon2D" parent="SplineWall/Blocks/Block_14" unique_id=2091283069]
+polygon = PackedVector2Array(-12.8194275, 10.754211, 16.425262, -3.094513, 11.338379, -11.704018, -16.22055, 1.350357)
+
+[node name="@Polygon2D@27686" type="Polygon2D" parent="SplineWall/Blocks/Block_14" unique_id=1640104727]
+color = Color(0.2, 0.45, 0.95, 1)
+polygon = PackedVector2Array(-12.8194275, 10.754211, 16.425262, -3.094513, 11.338379, -11.704018, -16.22055, 1.350357)
+
+[node name="Block_15" type="StaticBody2D" parent="SplineWall/Blocks" unique_id=175894002]
+position = Vector2(211.73404, 51.414318)
+physics_material_override = SubResource("PhysicsMaterial_w2dyt")
+metadata/block_type = 0
+
+[node name="@CollisionPolygon2D@27687" type="CollisionPolygon2D" parent="SplineWall/Blocks/Block_15" unique_id=195513331]
+polygon = PackedVector2Array(-10.543182, 13.032619, 15.477905, -6.4409294, 8.646301, -13.74361, -15.630066, 4.423115)
+
+[node name="@Polygon2D@27688" type="Polygon2D" parent="SplineWall/Blocks/Block_15" unique_id=1465009594]
+color = Color(0.2, 0.45, 0.95, 1)
+polygon = PackedVector2Array(-10.543182, 13.032619, 15.477905, -6.4409294, 8.646301, -13.74361, -15.630066, 4.423115)
+
+[node name="Block_16" type="StaticBody2D" parent="SplineWall/Blocks" unique_id=766701283]
+position = Vector2(226.45787, 38.71948)
+physics_material_override = SubResource("PhysicsMaterial_w2dyt")
+metadata/block_type = 0
+
+[node name="@CollisionPolygon2D@27689" type="CollisionPolygon2D" parent="SplineWall/Blocks/Block_16" unique_id=1062663300]
+polygon = PackedVector2Array(0.7540741, 6.25391, 2.5421295, 2.2805214, 2.5421295, -7.7194786, -6.07753, -1.0487709)
+
+[node name="@Polygon2D@27690" type="Polygon2D" parent="SplineWall/Blocks/Block_16" unique_id=788350650]
+color = Color(0.2, 0.45, 0.95, 1)
+polygon = PackedVector2Array(0.7540741, 6.25391, 2.5421295, 2.2805214, 2.5421295, -7.7194786, -6.07753, -1.0487709)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1430948265]
+position = Vector2(193.18533, 46.814526)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=2122613742]
+shape = SubResource("CircleShape2D_p0wvi")

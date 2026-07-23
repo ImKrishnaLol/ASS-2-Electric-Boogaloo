@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://d2yo3ypycjkqu"]
+
+[ext_resource type="Script" uid="uid://cna3ryn6ec0ms" path="res://Scripts/UI/Dialogue/level_dialogue_boxes.gd" id="1_wplp3"]
+[ext_resource type="PackedScene" uid="uid://dolco1fwrh34t" path="res://Scenes/UI/Dialogue/dialogue_box.tscn" id="2_rlpcs"]
+
+[node name="LevelDialogueBoxes" type="Control" unique_id=1661028365 node_paths=PackedStringArray("dialogue_boxes")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_wplp3")
+dialogue_boxes = [NodePath("DialogueVBox/DialogueBox1"), NodePath("DialogueVBox/DialogueBox2"), NodePath("DialogueVBox/DialogueBox3"), NodePath("DialogueVBox/DialogueBox4"), NodePath("DialogueVBox/DialogueBox5")]
+
+[node name="DialogueVBox" type="VBoxContainer" parent="." unique_id=1605336348]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -133.0
+offset_right = 80.0
+offset_bottom = 133.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogueBox1" parent="DialogueVBox" unique_id=1109237251 instance=ExtResource("2_rlpcs")]
+layout_mode = 2
+
+[node name="DialogueBox2" parent="DialogueVBox" unique_id=1795078119 instance=ExtResource("2_rlpcs")]
+layout_mode = 2
+
+[node name="DialogueBox3" parent="DialogueVBox" unique_id=668160046 instance=ExtResource("2_rlpcs")]
+layout_mode = 2
+
+[node name="DialogueBox4" parent="DialogueVBox" unique_id=315353193 instance=ExtResource("2_rlpcs")]
+layout_mode = 2
+
+[node name="DialogueBox5" parent="DialogueVBox" unique_id=508470700 instance=ExtResource("2_rlpcs")]
+layout_mode = 2

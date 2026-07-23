@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://7k7y3bw712vo"]
+
+[ext_resource type="PackedScene" uid="uid://dolco1fwrh34t" path="res://Scenes/UI/Dialogue/dialogue_box.tscn" id="1_4056e"]
+[ext_resource type="Script" uid="uid://d03m5lh7mgvqx" path="res://Scripts/UI/Dialogue/mood_dialogue_box.gd" id="1_h43p2"]
+
+[node name="MoodDialogueBox" type="Control" unique_id=1661028365]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_h43p2")
+
+[node name="DialogueBox" parent="." unique_id=1109237251 instance=ExtResource("1_4056e")]
+layout_mode = 1
