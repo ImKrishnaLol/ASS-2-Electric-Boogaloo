@@ -2,6 +2,10 @@ class_name DialogueBox extends Control
 
 @export var fade_in_time : float
 @export var fade_out_time : float
+
+@export var on_display_audio : AudioStreamRandomizer
+@export var on_text_audio : AudioStreamRandomizer
+
 @export_subgroup("Child Nodes")
 @export var dialogue_label: Label
 @export var mood_label: Label
@@ -14,6 +18,7 @@ func display_dialogue(dialogue: String) -> void:
 	dialogue_label.text = dialogue
 	animation_player.play("RESET")
 	await _fade_in(fade_in_time)
+	SfxPlayer.play(on_text_audio)
 	animation_player.play("typing_anim")
 
 func hide_dialogue() -> void:
@@ -25,6 +30,7 @@ func instant_hide_dialogue() -> void:
 	visible = false
 
 func _fade_in(duration := 0.3):
+	SfxPlayer.play(on_display_audio)
 	visible = true
 	modulate.a = 0.0
 	var tween = create_tween()
