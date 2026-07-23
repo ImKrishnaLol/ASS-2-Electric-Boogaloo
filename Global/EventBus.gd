@@ -6,3 +6,4 @@ extends Node
 
 signal dialogue_mood_triggered(mood: String, dialogue_level: int)
 signal dialogue_level_triggered(level: int)
+signal dialogue_next

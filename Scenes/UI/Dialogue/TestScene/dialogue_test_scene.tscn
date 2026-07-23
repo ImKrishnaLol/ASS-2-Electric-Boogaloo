@@ -1,70 +1,22 @@
 [gd_scene format=3 uid="uid://bhm2n7kl12prv"]
 
-[ext_resource type="PackedScene" uid="uid://dolco1fwrh34t" path="res://Scenes/UI/Dialogue/dialogue_box.tscn" id="1_33k7w"]
+[ext_resource type="PackedScene" uid="uid://d2yo3ypycjkqu" path="res://Scenes/UI/Dialogue/level_dialogue_boxes.tscn" id="2_exy4o"]
 [ext_resource type="Script" uid="uid://d0ppqc5ck3a31" path="res://Scripts/UI/Dialogue/buttons_mood_test.gd" id="2_xk30d"]
 [ext_resource type="PackedScene" uid="uid://7k7y3bw712vo" path="res://Scenes/UI/Dialogue/mood_dialogue_box.tscn" id="3_exy4o"]
 
 [node name="DialogueTestScene" type="Node2D" unique_id=811228987]
 
-[node name="DialogueBox1" parent="." unique_id=1109237251 instance=ExtResource("1_33k7w")]
-visible = false
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="MoodDialogueBox" parent="." unique_id=1661028365 instance=ExtResource("3_exy4o")]
 offset_left = 243.0
-offset_top = 28.0
+offset_top = 242.0
 offset_right = 243.0
-offset_bottom = 28.0
-grow_horizontal = 1
-grow_vertical = 1
+offset_bottom = 242.0
 
-[node name="DialogueBox2" parent="." unique_id=10391914 instance=ExtResource("1_33k7w")]
-visible = false
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="LevelDialogueBoxes" parent="." unique_id=1190864873 instance=ExtResource("2_exy4o")]
 offset_left = 243.0
-offset_top = 81.0
+offset_top = 136.0
 offset_right = 243.0
-offset_bottom = 81.0
-grow_horizontal = 1
-grow_vertical = 1
-
-[node name="DialogueBox3" parent="." unique_id=1102558879 instance=ExtResource("1_33k7w")]
-visible = false
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 243.0
-offset_top = 134.0
-offset_right = 243.0
-offset_bottom = 134.0
-grow_horizontal = 1
-grow_vertical = 1
-
-[node name="DialogueBox4" parent="." unique_id=1422541676 instance=ExtResource("1_33k7w")]
-visible = false
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 243.0
-offset_top = 187.0
-offset_right = 243.0
-offset_bottom = 187.0
-grow_horizontal = 1
-grow_vertical = 1
-
-[node name="DialogueBox5" parent="." unique_id=1015711830 instance=ExtResource("1_33k7w")]
-visible = false
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 243.0
-offset_top = 241.0
-offset_right = 243.0
-offset_bottom = 241.0
-grow_horizontal = 1
-grow_vertical = 1
+offset_bottom = 136.0
 
 [node name="ButtonsTest" type="VBoxContainer" parent="." unique_id=288035053]
 offset_top = 19.0
@@ -109,12 +61,6 @@ text = "Angry"
 [node name="DejectedButton" type="Button" parent="ButtonsTest" unique_id=595880747]
 layout_mode = 2
 text = "Dejected"
-
-[node name="MoodDialogueBox" parent="." unique_id=1661028365 instance=ExtResource("3_exy4o")]
-offset_left = 243.0
-offset_top = 242.0
-offset_right = 243.0
-offset_bottom = 242.0
 
 [connection signal="pressed" from="ButtonsTest/LevelButton1" to="ButtonsTest" method="_on_level_button_1_pressed"]
 [connection signal="pressed" from="ButtonsTest/LevelButton2" to="ButtonsTest" method="_on_level_button_2_pressed"]

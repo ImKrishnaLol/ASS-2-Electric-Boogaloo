@@ -31,6 +31,7 @@ SceneMusicManager="*uid://dv1plvrt7vbkr"
 SceneManager="*uid://b0vdhyf20u0ed"
 EventBus="*uid://il5fmhhrx06d"
 InputSettings="*uid://cxr1nueelnml5"
+DialogueManager="*uid://cvaw12cew253o"
 
 [display]
 

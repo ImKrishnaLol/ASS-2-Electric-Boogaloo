@@ -38,11 +38,18 @@ _data = {
 &"typing_anim": SubResource("Animation_nypex")
 }
 
-[node name="DialogueBox" type="Control" unique_id=1109237251 node_paths=PackedStringArray("dialogue_label", "mood_label", "animation_player")]
+[node name="DialogueBox" type="Control" unique_id=1944555503 node_paths=PackedStringArray("dialogue_label", "mood_label", "animation_player")]
+custom_minimum_size = Vector2(160, 50)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -25.0
+offset_right = 80.0
+offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_v6lbk")
@@ -51,16 +58,11 @@ mood_label = NodePath("Panel/HBoxContainer/MoodLabel")
 animation_player = NodePath("AnimationPlayer")
 
 [node name="Panel" type="Panel" parent="." unique_id=385880453]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -93.0
-offset_top = -26.0
-offset_right = 93.0
-offset_bottom = 26.0
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 158.0
+offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
 
