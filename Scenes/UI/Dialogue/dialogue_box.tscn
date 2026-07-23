@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://1hjr0ow14k7l" path="res://Scripts/UI/Dialogue/dialogue_box.gd" id="1_v6lbk"]
 [ext_resource type="AudioStream" uid="uid://lwyl1nv45hvw" path="res://Placeholders/Audio/beep.mp3" id="2_tq37n"]
-[ext_resource type="AudioStream" uid="uid://0k7utrvi4bf7" path="res://Placeholders/Audio/alien_babble.wav" id="3_tq37n"]
+[ext_resource type="AudioStream" uid="uid://bxn6t0fecbycr" path="res://Placeholders/Audio/alien_babble.mp3" id="3_ercv4"]
 [ext_resource type="Texture2D" uid="uid://byd3htnnpnylu" path="res://Assets/Art/UI/ASS_nine_slice_text_box.png" id="4_ercv4"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_v6lbk"]
@@ -11,7 +11,7 @@ stream_0/stream = ExtResource("2_tq37n")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xm3ya"]
 streams_count = 1
-stream_0/stream = ExtResource("3_tq37n")
+stream_0/stream = ExtResource("3_ercv4")
 
 [sub_resource type="Animation" id="Animation_v6lbk"]
 length = 0.001
