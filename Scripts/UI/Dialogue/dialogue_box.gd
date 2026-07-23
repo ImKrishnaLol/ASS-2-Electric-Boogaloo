@@ -16,7 +16,11 @@ func _input(event: InputEvent) -> void:
 
 func _on_dialogue_triggered(input_dialogue) -> void:
 	# Basic dialogue system
+	visible = true
+	
 	for message in input_dialogue:
 		dialogue_label.text = message
 		animation_player.play("typing_anim")
 		await nextDialogue
+	
+	visible = false
