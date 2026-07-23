@@ -17,6 +17,7 @@ signal overlay_cleared
 	"credits": "res://Scenes/UI/Credits/credits.tscn",
 	"lose_screen": "res://Scenes/UI/Lose/loss_screen.tscn",
 	"win_screen": "res://Scenes/UI/Win/win_screen.tscn",
+	"dialogue_box": "res://Scenes/UI/Dialogue/dialogue_box.tscn",
 }
 """
 
