@@ -1,6 +1,7 @@
 extends TextureButton
 
-@export var dialogue: Array[String]
+# Inputs for the dialogue
+@export var mood: String
 
 func _on_pressed() -> void:
-	EventBus.dialogue_triggered.emit(dialogue)
+	EventBus.dialogue_triggered.emit(mood)

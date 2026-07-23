@@ -4,9 +4,33 @@
 
 [sub_resource type="Animation" id="Animation_v6lbk"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/DialogueLabel:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_nypex"]
 resource_name = "typing_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/DialogueLabel:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tq37n"]
 _data = {
@@ -38,19 +62,25 @@ grow_vertical = 0
 
 [node name="MoodLabel" type="Label" parent="Panel" unique_id=1101967193]
 layout_mode = 0
-offset_left = 28.0
-offset_top = 42.0
-offset_right = 57.0
-offset_bottom = 56.0
+offset_left = 11.0
+offset_top = 19.0
+offset_right = 70.0
+offset_bottom = 79.0
 text = "Angy"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="DialogueLabel" type="Label" parent="Panel" unique_id=244370270]
 layout_mode = 0
-offset_left = 78.0
+offset_left = 84.0
 offset_top = 19.0
-offset_right = 302.0
+offset_right = 308.0
 offset_bottom = 81.0
-text = "Message blablabla"
+text = "Message blablabla shimmy shimmy ya"
+autowrap_mode = 2
+visible_characters = 0
+visible_ratio = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1346305480]
 libraries/ = SubResource("AnimationLibrary_tq37n")
