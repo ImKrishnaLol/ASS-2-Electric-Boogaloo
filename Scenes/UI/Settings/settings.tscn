@@ -74,8 +74,8 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="MainLayout" type="HBoxContainer" parent="MainMargin" unique_id=235468163]
-layout_direction = 2
 layout_mode = 2
+layout_direction = 2
 theme_override_constants/separation = 16
 
 [node name="LeftColumn" type="Control" parent="MainMargin/MainLayout" unique_id=198308936]
@@ -230,7 +230,6 @@ text = "Reset Audio Settings"
 
 [node name="DisplaySettingsPanel" type="PanelContainer" parent="MainMargin/MainLayout/ContentRoot" unique_id=409786948]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -264,6 +263,7 @@ text = "FullScreen"
 
 [node name="KeyConfigurationPanel" type="PanelContainer" parent="MainMargin/MainLayout/ContentRoot" unique_id=772705768]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

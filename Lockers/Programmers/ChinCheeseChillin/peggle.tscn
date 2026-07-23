@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://oet14l7v3uvk"]
+
+[ext_resource type="Script" uid="uid://ybvowe1qh8v0" path="res://Lockers/Programmers/ChinCheeseChillin/ball.gd" id="1_1xv3j"]
+[ext_resource type="Texture2D" uid="uid://df51pkib1u2g" path="res://Lockers/Programmers/ChinCheeseChillin/White_Ball.png" id="2_cujgp"]
+[ext_resource type="PackedScene" uid="uid://dcu71e1y4vpjc" path="res://Lockers/Programmers/ChinCheeseChillin/peg.tscn" id="3_edc6i"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_eym3r"]
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fdm2o"]
+
+[node name="Peggle" type="Node2D" unique_id=1972128114]
+
+[node name="Ball" type="RigidBody2D" parent="." unique_id=148940555]
+position = Vector2(244, 15)
+physics_material_override = SubResource("PhysicsMaterial_eym3r")
+contact_monitor = true
+max_contacts_reported = 50
+script = ExtResource("1_1xv3j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=614825966]
+shape = SubResource("CircleShape2D_fdm2o")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball" unique_id=1383454108]
+position = Vector2(7.4505806e-07, 0)
+scale = Vector2(0.62500006, 0.625)
+texture = ExtResource("2_cujgp")
+
+[node name="Peg" parent="." unique_id=425628496 instance=ExtResource("3_edc6i")]
+position = Vector2(74, 163)
+
+[node name="Peg2" parent="." unique_id=557319426 instance=ExtResource("3_edc6i")]
+position = Vector2(265, 159)
+
+[connection signal="body_entered" from="Ball" to="Ball" method="_on_body_entered"]
