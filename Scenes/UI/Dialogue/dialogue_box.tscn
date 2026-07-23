@@ -46,7 +46,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_v6lbk")
-dialogue_messages = Array[String](["I ate grass", "Yummiest thing in the world", "why r u here", "*speaks german*"])
 
 [node name="Panel" type="Panel" parent="." unique_id=385880453]
 layout_mode = 1
