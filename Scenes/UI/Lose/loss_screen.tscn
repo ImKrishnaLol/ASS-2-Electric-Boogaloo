@@ -3,6 +3,74 @@
 [ext_resource type="Script" uid="uid://cbtuc3tf5jhpx" path="res://Scripts/UI/Lose/loss_screen.gd" id="1_b2ddn"]
 [ext_resource type="FontFile" uid="uid://c0ti0iouqg1m2" path="res://Assets/Fonts/Ruler 9.ttf" id="4_fq71i"]
 
+[sub_resource type="Animation" id="Animation_b2ddn"]
+resource_name = "Die"
+length = 15.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Star:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0, 0.038620345, -0.0933328, -0.19999999, -1.148958, 0, 0, 0.6324095, -0.5333333, 1.2865431, 0, 0, 0.83033925, -0.73333335, -0.8247072, 0, 0, -0.3572391, -0.16666675, 0.72574234, 0, 0),
+"times": PackedFloat32Array(0, 0.5, 1.4333333, 2.5, 3.6666667)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/VBoxContainer/MainMenuButton:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-1.1345384, -0.25, 0, 0.2, -6, 1, -2.667, -0.1, 0, 0),
+"times": PackedFloat32Array(0, 14.4)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer/VBoxContainer/RetryButton:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1.135, -0.25, 0, 0.2, -6, 1, -2.667, -0.1, 0, 0),
+"times": PackedFloat32Array(0, 14.4)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MarginContainer/VBoxContainer/Label:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.9, -1.9722219, 1.2642496, -1.0333333, -0.0054564476, 0, 0),
+"times": PackedFloat32Array(0, 9.466666)
+}
+
+[sub_resource type="Animation" id="Animation_3gtk4"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Star:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vm4aj"]
+_data = {
+&"Die": SubResource("Animation_b2ddn"),
+&"RESET": SubResource("Animation_3gtk4")
+}
+
 [node name="LossScreen" type="Control" unique_id=890772856]
 z_index = 121
 layout_mode = 3
@@ -12,6 +80,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_b2ddn")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=670976092]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Star" type="ColorRect" parent="." unique_id=2109423725]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.5
+offset_top = -17.5
+offset_right = 17.5
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1183512054]
 layout_mode = 1
@@ -30,12 +123,13 @@ layout_mode = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=758215022]
+modulate = Color(1, 1, 1, 1.2642496)
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.29000002, 0.29000002, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("4_fq71i")
-text = "YOU LOSE"
+text = "And then, there were none......"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -46,6 +140,9 @@ text = " Retry "
 [node name="MainMenuButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1883874265]
 layout_mode = 2
 text = "Main Menu"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=926147867]
+libraries/ = SubResource("AnimationLibrary_vm4aj")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
