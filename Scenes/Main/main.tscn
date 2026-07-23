@@ -6,9 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://dcp81nxwcbiqy" path="res://Scenes/Misc/chinchilla/input_test_chinchilla.tscn" id="4_5yls4"]
 [ext_resource type="PackedScene" uid="uid://ohlfcjhf7852" path="res://Scenes/Misc/chinchilla/chinchilla_poop.tscn" id="5_2a143"]
 [ext_resource type="Script" uid="uid://b3c6sbox8dh3a" path="res://Scripts/Misc/Chinchilla/poop_label.gd" id="5_p6jpk"]
-[ext_resource type="PackedScene" uid="uid://dolco1fwrh34t" path="res://Scenes/UI/Dialogue/dialogue_box.tscn" id="7_xlvfx"]
-[ext_resource type="Script" uid="uid://biapp4rypruiq" path="res://Scripts/Misc/Placeholder/toilet_for_dialogue_test.gd" id="8_hryqi"]
-[ext_resource type="Texture2D" uid="uid://cmkjxnpm2ud0i" path="res://Assets/Art/Placeholder/toilet.png" id="9_imbg2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5yls4"]
 shader = ExtResource("2_qw60k")
@@ -79,19 +76,3 @@ offset_bottom = 14.0
 script = ExtResource("5_p6jpk")
 
 [node name="PoopContainer" type="Node2D" parent="." unique_id=1896438433]
-
-[node name="DialogueBox" parent="." unique_id=1109237251 instance=ExtResource("7_xlvfx")]
-visible = false
-
-[node name="ToiletForDialogueTest" type="TextureButton" parent="." unique_id=74370282]
-offset_left = 362.0
-offset_top = 178.0
-offset_right = 1362.0
-offset_bottom = 1824.0
-scale = Vector2(0.08272093, 0.04480549)
-texture_normal = ExtResource("9_imbg2")
-script = ExtResource("8_hryqi")
-mood = "SAD"
-metadata/_edit_group_ = true
-
-[connection signal="pressed" from="ToiletForDialogueTest" to="ToiletForDialogueTest" method="_on_pressed"]

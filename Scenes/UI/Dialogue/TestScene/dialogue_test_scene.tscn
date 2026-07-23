@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://bhm2n7kl12prv"]
+
+[ext_resource type="PackedScene" uid="uid://dolco1fwrh34t" path="res://Scenes/UI/Dialogue/dialogue_box.tscn" id="1_33k7w"]
+[ext_resource type="Script" uid="uid://d0ppqc5ck3a31" path="res://Scripts/UI/Dialogue/buttons_mood_test.gd" id="2_xk30d"]
+
+[node name="DialogueTestScene" type="Node2D" unique_id=811228987]
+
+[node name="DialogueBox" parent="." unique_id=1109237251 instance=ExtResource("1_33k7w")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 243.0
+offset_top = 36.0
+offset_right = 243.0
+offset_bottom = 36.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="ButtonsTest" type="VBoxContainer" parent="." unique_id=288035053]
+offset_top = 94.0
+offset_right = 62.0
+offset_bottom = 194.0
+script = ExtResource("2_xk30d")
+metadata/_edit_group_ = true
+
+[node name="HappyButton" type="Button" parent="ButtonsTest" unique_id=1018677165]
+layout_mode = 2
+text = "Happy"
+
+[node name="FlirtyButton" type="Button" parent="ButtonsTest" unique_id=1509598644]
+layout_mode = 2
+text = "Flirty"
+
+[node name="AngryButton" type="Button" parent="ButtonsTest" unique_id=37416233]
+layout_mode = 2
+text = "Angry"
+
+[node name="DejectedButton" type="Button" parent="ButtonsTest" unique_id=595880747]
+layout_mode = 2
+text = "Dejected"
+
+[connection signal="pressed" from="ButtonsTest/HappyButton" to="ButtonsTest" method="_on_happy_button_pressed"]
+[connection signal="pressed" from="ButtonsTest/FlirtyButton" to="ButtonsTest" method="_on_flirty_button_pressed"]
+[connection signal="pressed" from="ButtonsTest/AngryButton" to="ButtonsTest" method="_on_angry_button_pressed"]
+[connection signal="pressed" from="ButtonsTest/DejectedButton" to="ButtonsTest" method="_on_dejected_button_pressed"]
