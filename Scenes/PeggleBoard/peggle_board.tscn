@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://6u1m71svqmc6" path="res://Scenes/PeggleBoard/peggle_ball_shooter.tscn" id="3_s3sbd"]
 [ext_resource type="PackedScene" uid="uid://kdyyhi2j2nne" path="res://Scenes/PeggleBoard/Pegs/normal_peg.tscn" id="4_ryebi"]
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s3sbd"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ddted"]
 size = Vector2(19, 299)
 
@@ -19,9 +21,13 @@ editor_description = "A prototype peggleboard (with placeholder art)"
 script = ExtResource("1_g8rvb")
 ball = ExtResource("2_8lsjk")
 shoot_strength = 200.0
+left_turn_limit = 180
 
 [node name="PeggleBallShooter" parent="." unique_id=345197782 instance=ExtResource("3_s3sbd")]
 position = Vector2(242, 52)
+
+[node name="PeggleBallAnimationPlayer" parent="PeggleBallShooter" index="2" unique_id=336605750]
+libraries/PEGGLE_CANNON = SubResource("AnimationLibrary_s3sbd")
 
 [node name="Pegs" type="Node2D" parent="." unique_id=200026943]
 
@@ -92,5 +98,7 @@ collision_mask = 4
 position = Vector2(242, 310)
 shape = SubResource("RectangleShape2D_36fd3")
 debug_color = Color(0.9649028, 0.17603526, 0.18158463, 0.41960785)
+
+[connection signal="timeout" from="PeggleBallShooter/FlashCooldown" to="." method="_on_flash_cooldown_timeout"]
 
 [editable path="PeggleBallShooter"]
