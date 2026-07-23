@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://1hjr0ow14k7l" path="res://Scripts/UI/Dialogue/dialogue_box.gd" id="1_v6lbk"]
 [ext_resource type="AudioStream" uid="uid://lwyl1nv45hvw" path="res://Placeholders/Audio/beep.mp3" id="2_tq37n"]
 [ext_resource type="AudioStream" uid="uid://0k7utrvi4bf7" path="res://Placeholders/Audio/alien_babble.wav" id="3_tq37n"]
+[ext_resource type="Texture2D" uid="uid://byd3htnnpnylu" path="res://Assets/Art/UI/ASS_nine_slice_text_box.png" id="4_ercv4"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_v6lbk"]
 streams_count = 1
@@ -17,7 +18,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Panel/HBoxContainer/MarginContainer/DialogueLabel:visible_ratio")
+tracks/0/path = NodePath("NinePatchRect/HBoxContainer/MarginContainer/DialogueLabel:visible_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -32,7 +33,7 @@ resource_name = "typing_anim"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Panel/HBoxContainer/MarginContainer/DialogueLabel:visible_ratio")
+tracks/0/path = NodePath("NinePatchRect/HBoxContainer/MarginContainer/DialogueLabel:visible_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -67,20 +68,28 @@ fade_in_time = 0.3
 fade_out_time = 0.3
 on_display_audio = SubResource("AudioStreamRandomizer_v6lbk")
 on_text_audio = SubResource("AudioStreamRandomizer_xm3ya")
-dialogue_label = NodePath("Panel/HBoxContainer/MarginContainer/DialogueLabel")
-mood_label = NodePath("Panel/HBoxContainer/MoodLabel")
+dialogue_label = NodePath("NinePatchRect/HBoxContainer/MarginContainer/DialogueLabel")
+mood_label = NodePath("NinePatchRect/HBoxContainer/MoodLabel")
 animation_player = NodePath("AnimationPlayer")
 
-[node name="Panel" type="Panel" parent="." unique_id=385880453]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1346305480]
+libraries/ = SubResource("AnimationLibrary_tq37n")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1395181140]
+texture_filter = 1
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
-offset_right = 158.0
-offset_bottom = 48.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 159.0
+offset_bottom = 50.0
+texture = ExtResource("4_ercv4")
+region_rect = Rect2(0, 0, 84, 84)
+patch_margin_left = 30
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel" unique_id=2080815071]
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect" unique_id=2080815071]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -88,7 +97,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MoodLabel" type="Label" parent="Panel/HBoxContainer" unique_id=1101967193]
+[node name="MoodLabel" type="Label" parent="NinePatchRect/HBoxContainer" unique_id=1101967193]
 visible = false
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
@@ -97,7 +106,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel/HBoxContainer" unique_id=508877511]
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/HBoxContainer" unique_id=508877511]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 2
@@ -105,7 +114,7 @@ theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="DialogueLabel" type="Label" parent="Panel/HBoxContainer/MarginContainer" unique_id=244370270]
+[node name="DialogueLabel" type="Label" parent="NinePatchRect/HBoxContainer/MarginContainer" unique_id=244370270]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -117,6 +126,3 @@ vertical_alignment = 1
 autowrap_mode = 2
 visible_characters = 0
 visible_ratio = 0.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1346305480]
-libraries/ = SubResource("AnimationLibrary_tq37n")
