@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://6u1m71svqmc6"]
+
+[ext_resource type="Texture2D" uid="uid://blyqjy2v1o80x" path="res://Assets/Art/Game/PeggleBoard/Cannon rim.png" id="1_hqqx0"]
+[ext_resource type="Texture2D" uid="uid://dk4xq22h4saw1" path="res://Assets/Art/Game/PeggleBoard/Cannon barrel.png" id="2_y8aek"]
+
+[node name="PeggleBallShooter" type="Node2D" unique_id=1839521812]
+
+[node name="PeggleBallBase" type="Sprite2D" parent="." unique_id=345197782]
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("1_hqqx0")
+
+[node name="PeggleBallBarrel" type="Sprite2D" parent="." unique_id=1449746995]
+position = Vector2(0, -1)
+rotation = 4.712389
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_y8aek")
+
+[node name="PeggleBallFiringPoint" type="Node2D" parent="PeggleBallBarrel" unique_id=1606232759]
+position = Vector2(1.0489944e-06, 88)
