@@ -81,7 +81,7 @@ func _input(event: InputEvent) -> void:
 
 func _on_dialogue_level_triggered(level: int):
 	# Dialogue system for level mode
-	if level == int(level_dialogue)+1: # I have no idea why it needs to add 1
+	if level == level_dialogue+1: # Enum returns int starts from 0, that's why add 1
 		visible = true
 		
 		for message in dialogue_levels[level]:
@@ -93,7 +93,7 @@ func _on_dialogue_level_triggered(level: int):
 
 func _on_dialogue_mood_triggered(mood: String, level: int) -> void:
 	# Dialogue system for mood mode
-	if level == int(level_dialogue):
+	if level == level_dialogue+1: # Enum returns int starts from 0, that's why add 1
 		visible = true
 		
 		mood_label.text = mood
