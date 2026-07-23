@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://be5jihubr2jww" path="res://Shaders/Transition/texture_sample_transition.gdshader" id="1_fone4"]
 [ext_resource type="Script" uid="uid://ce0pug88p0qo0" path="res://Scripts/UI/Loading Screen/loading.gd" id="1_gbqax"]
-[ext_resource type="Texture2D" uid="uid://b5tup536kmsls" path="res://Placeholders/clipart278522.png" id="2_b8nro"]
+[ext_resource type="Texture2D" uid="uid://bl1j6sa7qwpkb" path="res://Placeholders/Transition galaxy (1).png" id="2_b8nro"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gbqax"]
 shader = ExtResource("1_fone4")
