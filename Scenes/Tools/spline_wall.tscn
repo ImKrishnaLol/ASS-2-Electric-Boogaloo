@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://bw7tgya3h6tof"]
-
-[ext_resource type="Script" uid="uid://lidblx52ul6" path="res://Scripts/Tools/spline_wall.gd" id="1_3jus1"]
-
-[node name="SplineWall" type="Path2D" unique_id=885016358]
-script = ExtResource("1_3jus1")
-bake_interval = 10.0
