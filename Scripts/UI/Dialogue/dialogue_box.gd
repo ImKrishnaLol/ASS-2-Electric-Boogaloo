@@ -3,8 +3,8 @@ class_name DialogueBox extends Control
 @export var fade_in_time : float
 @export var fade_out_time : float
 
-@export var on_display_audio : AudioStreamRandomizer
-@export var on_text_audio : AudioStreamRandomizer
+@export var on_display_audio : AudioStream
+@export var on_text_audio : AudioStream
 
 @export_subgroup("Child Nodes")
 @export var dialogue_label: Label
