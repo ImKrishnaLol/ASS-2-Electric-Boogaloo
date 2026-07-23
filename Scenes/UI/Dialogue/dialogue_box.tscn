@@ -49,7 +49,7 @@ _data = {
 &"typing_anim": SubResource("Animation_nypex")
 }
 
-[node name="DialogueBox" type="Control" unique_id=1944555503 node_paths=PackedStringArray("dialogue_label", "mood_label", "animation_player")]
+[node name="DialogueBox" type="Control" unique_id=1944555503 node_paths=PackedStringArray("dialogue_label", "animation_player")]
 custom_minimum_size = Vector2(160, 50)
 layout_mode = 3
 anchors_preset = 8
@@ -69,7 +69,6 @@ fade_out_time = 0.3
 on_display_audio = SubResource("AudioStreamRandomizer_v6lbk")
 on_text_audio = SubResource("AudioStreamRandomizer_xm3ya")
 dialogue_label = NodePath("NinePatchRect/HBoxContainer/MarginContainer/DialogueLabel")
-mood_label = NodePath("NinePatchRect/HBoxContainer/MoodLabel")
 animation_player = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1346305480]
@@ -96,15 +95,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="MoodLabel" type="Label" parent="NinePatchRect/HBoxContainer" unique_id=1101967193]
-visible = false
-custom_minimum_size = Vector2(60, 0)
-layout_mode = 2
-text = "Angy"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/HBoxContainer" unique_id=508877511]
 layout_mode = 2

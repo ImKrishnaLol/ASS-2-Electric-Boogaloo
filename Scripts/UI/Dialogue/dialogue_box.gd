@@ -8,7 +8,6 @@ class_name DialogueBox extends Control
 
 @export_subgroup("Child Nodes")
 @export var dialogue_label: Label
-@export var mood_label: Label
 @export var animation_player: AnimationPlayer
 
 
