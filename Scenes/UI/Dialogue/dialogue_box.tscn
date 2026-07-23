@@ -7,7 +7,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Panel/DialogueLabel:visible_ratio")
+tracks/0/path = NodePath("Panel/HBoxContainer/MarginContainer/DialogueLabel:visible_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -22,7 +22,7 @@ resource_name = "typing_anim"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Panel/DialogueLabel:visible_ratio")
+tracks/0/path = NodePath("Panel/HBoxContainer/MarginContainer/DialogueLabel:visible_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -38,7 +38,7 @@ _data = {
 &"typing_anim": SubResource("Animation_nypex")
 }
 
-[node name="DialogueBox" type="Control" unique_id=1109237251]
+[node name="DialogueBox" type="Control" unique_id=1109237251 node_paths=PackedStringArray("dialogue_label", "mood_label", "animation_player")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -46,6 +46,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_v6lbk")
+dialogue_label = NodePath("Panel/HBoxContainer/MarginContainer/DialogueLabel")
+mood_label = NodePath("Panel/HBoxContainer/MoodLabel")
+animation_player = NodePath("AnimationPlayer")
 
 [node name="Panel" type="Panel" parent="." unique_id=385880453]
 layout_mode = 1
@@ -61,25 +64,40 @@ offset_bottom = 26.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MoodLabel" type="Label" parent="Panel" unique_id=1101967193]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 62.0
-offset_bottom = 48.0
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel" unique_id=2080815071]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MoodLabel" type="Label" parent="Panel/HBoxContainer" unique_id=1101967193]
+visible = false
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
 text = "Angy"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="DialogueLabel" type="Label" parent="Panel" unique_id=244370270]
-layout_mode = 0
-offset_left = 66.0
-offset_top = 3.5
-offset_right = 180.0
-offset_bottom = 48.0
+[node name="MarginContainer" type="MarginContainer" parent="Panel/HBoxContainer" unique_id=508877511]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="DialogueLabel" type="Label" parent="Panel/HBoxContainer/MarginContainer" unique_id=244370270]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
 theme_override_font_sizes/font_size = 8
 text = "Message blablabla shimmy shimmy ya"
+horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 visible_characters = 0
 visible_ratio = 0.0
