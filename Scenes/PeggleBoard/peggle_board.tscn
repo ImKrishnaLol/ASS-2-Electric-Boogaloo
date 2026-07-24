@@ -111,6 +111,7 @@ shape = SubResource("RectangleShape2D_oy24c")
 [node name="Bins" type="Node2D" parent="." unique_id=1386732025]
 
 [node name="Bin" parent="Bins" unique_id=212364139 instance=ExtResource("6_sxo5r")]
+unique_name_in_owner = true
 position = Vector2(234, 191)
 
 [node name="Endzone" type="Area2D" parent="." unique_id=157617057]
@@ -124,9 +125,9 @@ shape = SubResource("RectangleShape2D_36fd3")
 debug_color = Color(0.9649028, 0.17603526, 0.18158463, 0.41960785)
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=726472209]
-offset_left = 124.0
+offset_left = 144.0
 offset_top = 21.0
-offset_right = 324.0
+offset_right = 344.0
 offset_bottom = 39.0
 rotation = 1.5707964
 theme_override_styles/fill = SubResource("StyleBoxFlat_42h65")
@@ -134,9 +135,9 @@ fill_mode = 1
 show_percentage = false
 
 [node name="ProgressBar2" type="ProgressBar" parent="." unique_id=1828367252]
-offset_left = 383.0
+offset_left = 363.0
 offset_top = 20.0
-offset_right = 583.0
+offset_right = 563.0
 offset_bottom = 38.0
 rotation = 1.5707964
 theme_override_styles/fill = SubResource("StyleBoxFlat_sxo5r")

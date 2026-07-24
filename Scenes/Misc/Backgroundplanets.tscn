@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://d1fkqclr2m3qq"]
+
+[ext_resource type="PackedScene" uid="uid://cgsbjachseblr" path="res://Lockers/Programmers/BionicMango/sun.tscn" id="1_3d5lx"]
+[ext_resource type="Texture2D" uid="uid://cmikcgtfv8alk" path="res://Assets/Art/Background/Sun/sun_placeholder.png" id="2_lfmav"]
+[ext_resource type="PackedScene" uid="uid://ca4n68a5tc3vo" path="res://Lockers/Programmers/BionicMango/planet.tscn" id="3_8fhnq"]
+[ext_resource type="Texture2D" uid="uid://6nowch8l0g5w" path="res://Assets/Art/Background/Planets/blue_planet_placeholder.png" id="4_e6l7f"]
+[ext_resource type="Texture2D" uid="uid://dr3yhim2shbli" path="res://Assets/Art/Background/Planets/ring_planet_placeholder.png" id="5_ilpvj"]
+[ext_resource type="PackedScene" uid="uid://c3jftkmb744ki" path="res://Lockers/Programmers/BionicMango/moon.tscn" id="6_kw3lf"]
+[ext_resource type="Texture2D" uid="uid://j4n40yfghngq" path="res://Assets/Art/Background/Moons/purple_moon_placeholder.png" id="7_whwu8"]
+[ext_resource type="Texture2D" uid="uid://c5lns8a67s8hj" path="res://Assets/Art/Background/Moons/grey_moon_placeholder.png" id="8_tx75c"]
+
+[node name="BGplanets" type="Node2D" unique_id=659573808]
+
+[node name="Sun" parent="." unique_id=266722425 instance=ExtResource("1_3d5lx")]
+position = Vector2(133, 104)
+body_id = &"sun"
+sprite_texture = ExtResource("2_lfmav")
+
+[node name="BluePlanet" parent="." unique_id=1893150974 instance=ExtResource("3_8fhnq")]
+position = Vector2(69, 35)
+scale = Vector2(0.5, 0.5)
+body_id = &"blue_planet"
+sprite_texture = ExtResource("4_e6l7f")
+
+[node name="RingPlanet" parent="." unique_id=781509674 instance=ExtResource("3_8fhnq")]
+position = Vector2(382, 52)
+scale = Vector2(0.5, 0.5)
+body_id = &"ring_planet"
+sprite_texture = ExtResource("5_ilpvj")
+
+[node name="PurpleMoon" parent="." unique_id=821745829 instance=ExtResource("6_kw3lf")]
+position = Vector2(354, 70)
+body_id = &"purple_moon"
+sprite_texture = ExtResource("7_whwu8")
+
+[node name="Greymoon" parent="." unique_id=676294057 instance=ExtResource("6_kw3lf")]
+position = Vector2(51, 55)
+body_id = &"grey_moon"
+sprite_texture = ExtResource("8_tx75c")

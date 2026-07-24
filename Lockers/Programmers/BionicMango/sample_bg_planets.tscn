@@ -2,18 +2,38 @@
 
 [ext_resource type="PackedScene" uid="uid://cgsbjachseblr" path="res://Lockers/Programmers/BionicMango/sun.tscn" id="1_0ykkq"]
 [ext_resource type="PackedScene" uid="uid://ca4n68a5tc3vo" path="res://Lockers/Programmers/BionicMango/planet.tscn" id="2_8aitv"]
+[ext_resource type="Texture2D" uid="uid://cmikcgtfv8alk" path="res://Assets/Art/Background/Sun/sun_placeholder.png" id="2_17p2f"]
 [ext_resource type="PackedScene" uid="uid://c3jftkmb744ki" path="res://Lockers/Programmers/BionicMango/moon.tscn" id="3_nnnk6"]
+[ext_resource type="Texture2D" uid="uid://6nowch8l0g5w" path="res://Assets/Art/Background/Planets/blue_planet_placeholder.png" id="4_6767a"]
+[ext_resource type="Texture2D" uid="uid://dr3yhim2shbli" path="res://Assets/Art/Background/Planets/ring_planet_placeholder.png" id="5_gbs5g"]
+[ext_resource type="Texture2D" uid="uid://j4n40yfghngq" path="res://Assets/Art/Background/Moons/purple_moon_placeholder.png" id="7_xicx6"]
+[ext_resource type="Texture2D" uid="uid://c5lns8a67s8hj" path="res://Assets/Art/Background/Moons/grey_moon_placeholder.png" id="8_jq2c8"]
 
-[node name="SampleBgPlanets" type="Node2D" unique_id=659573808]
+[node name="BGplanets" type="Node2D" unique_id=659573808]
 
 [node name="Sun" parent="." unique_id=266722425 instance=ExtResource("1_0ykkq")]
 position = Vector2(133, 104)
+body_id = &"sun"
+sprite_texture = ExtResource("2_17p2f")
 
-[node name="Planet" parent="." unique_id=1893150974 instance=ExtResource("2_8aitv")]
+[node name="BluePlanet" parent="." unique_id=1893150974 instance=ExtResource("2_8aitv")]
 position = Vector2(264, 110)
 scale = Vector2(0.5, 0.5)
-time_countdown = 3.0
+body_id = &"blue_planet"
+sprite_texture = ExtResource("4_6767a")
 
-[node name="Moon" parent="." unique_id=821745829 instance=ExtResource("3_nnnk6")]
-position = Vector2(295, 109)
-time_countdown = 1.0
+[node name="RingPlanet" parent="." unique_id=781509674 instance=ExtResource("2_8aitv")]
+position = Vector2(376, 75)
+scale = Vector2(0.5, 0.5)
+body_id = &"ring_planet"
+sprite_texture = ExtResource("5_gbs5g")
+
+[node name="PurpleMoon" parent="." unique_id=821745829 instance=ExtResource("3_nnnk6")]
+position = Vector2(339, 97)
+body_id = &"purple_moon"
+sprite_texture = ExtResource("7_xicx6")
+
+[node name="Greymoon" parent="." unique_id=676294057 instance=ExtResource("3_nnnk6")]
+position = Vector2(294, 111)
+body_id = &"grey_moon"
+sprite_texture = ExtResource("8_jq2c8")

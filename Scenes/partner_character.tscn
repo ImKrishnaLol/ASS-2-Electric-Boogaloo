@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://0v5yeo36exk8"]
+
+[ext_resource type="Texture2D" uid="uid://dl2f6t3upe71n" path="res://Assets/Art/Characters/时间轴 1_0000.png" id="1_djqut"]
+
+[node name="PartnerCharacter" type="Node2D" unique_id=1055636776]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1271115990]
+position = Vector2(241.99998, 140.00002)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_djqut")
