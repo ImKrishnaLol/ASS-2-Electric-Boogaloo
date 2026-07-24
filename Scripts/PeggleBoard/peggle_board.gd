@@ -15,6 +15,12 @@ extends Node2D
 @export var shoot_strength: float; # shooting momentum
 @onready var endzone: Area2D = $Endzone
 
+#VARIABLES(for power ups)
+var is_ghost_ball=0
+var is_split_ball=1
+var new_ball
+var split_ball
+
 func _ready() -> void:
 	endzone.body_entered.connect(destroy_ball)
 	peggle_ball_shooter.rotation = 90
@@ -31,11 +37,24 @@ func _input(event: InputEvent) -> void:
 		shoot_ball()
 
 func shoot_ball() -> void:
-	var new_ball = ball.instantiate()
+
+	new_ball = ball.instantiate()
 	get_tree().current_scene.add_child(new_ball)
+	new_ball.body_entered.connect(
+	func(body):
+		_on_ball_body_entered(new_ball, body)
+)
+	
+	#Checking for powerups
+	if is_ghost_ball == 1:
+		new_ball.ghost_ball()
+		
 	new_ball.global_position = peggle_ball_firing_point.global_position + shoot_offset
 	# make it move in a direction
 	new_ball.apply_central_impulse(shoot_strength * get_direction_to_mouse())
+	
+	#FOR SPLIT BALL
+		
 
 func get_direction_to_mouse() -> Vector2:
 	var mouse_position = get_global_mouse_position()
@@ -47,3 +66,11 @@ func destroy_ball(body: Node2D) -> void:
 	if body is not RigidBody2D: return # not a ball
 	print("ball destroyed")
 	body.queue_free()
+	
+func _on_ball_body_entered(current_ball,body):
+	if is_split_ball==1:
+		is_split_ball=0
+		split_ball = ball.instantiate()
+		get_tree().current_scene.add_child(split_ball)
+		split_ball.global_position=new_ball.global_position + shoot_offset
+		split_ball.apply_central_impulse(shoot_strength * get_direction_to_mouse())
