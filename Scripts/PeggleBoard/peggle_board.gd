@@ -30,6 +30,7 @@ const END_SCREEN_TRANSITION_DURATION: float = 1.0
 
 @onready var endzone: Area2D = $Endzone
 @onready var ball_bin: PeggleBallBin = %Bin
+@onready var bins: Node2D = $Bins
 
 @onready var player_progress_bar: ProgressBar = $ProgressBar
 @onready var ai_progress_bar: ProgressBar = $ProgressBar2
@@ -41,10 +42,9 @@ const END_SCREEN_TRANSITION_DURATION: float = 1.0
 @export var shoot_strength: float = 100.0
 @export_range(0, 180, 1) var left_turn_limit: int = 165
 @export_range(0, 180, 1) var right_turn_limit: int = 15
+var shoot_direction
 
 # TURN SYSTEM
-@export var player_hit_colour: Color = Color("#54cea7")
-@export var ai_hit_colour: Color = Color("#ff82bd")
 @export var ai_aim_time: float = 0.75
 
 # PROGRESS BARS
@@ -62,10 +62,19 @@ var total_peg_count: int = 0
 
 var progress_tween: Tween
 
+#VARIABLES(for power ups)
+var is_ghost_ball=1
+var is_split_ball=0
+var new_ball
+var split_ball
 
 func _ready() -> void:
 	endzone.body_entered.connect(destroy_ball)
-	ball_bin.ball_caught.connect(catch_ball)
+	
+	for child in bins.get_children():
+		child.ball_caught.connect(catch_ball)
+	
+	#ball_bin.ball_caught.connect(catch_ball)
 	
 	peggle_ball_shooter.rotation = deg_to_rad(90)
 
@@ -267,7 +276,7 @@ func fire_ball(target_position: Vector2) -> void:
 		end_game(LOSS_SCENE_KEY)
 		return
 
-	var new_ball := ball.instantiate() as RigidBody2D
+	new_ball = ball.instantiate() as RigidBody2D
 
 	if new_ball == null:
 		push_error(
@@ -276,6 +285,12 @@ func fire_ball(target_position: Vector2) -> void:
 		return
 
 	get_tree().current_scene.add_child(new_ball)
+	new_ball.body_entered.connect(func(body):_on_ball_body_entered(new_ball, body))
+	
+	 #Checking for powerups
+	if is_ghost_ball == 1:
+		is_ghost_ball=0
+		new_ball.ghost_ball()
 
 	new_ball.global_position = (
 		peggle_ball_firing_point.global_position
@@ -285,12 +300,12 @@ func fire_ball(target_position: Vector2) -> void:
 	new_ball.set_meta("is_peggle_ball", true)
 	new_ball.set_meta("ball_resolved", false)
 	new_ball.set_meta(
-		"hit_colour",
-		get_current_hit_colour()
+		"ball_owner",
+		get_current_ball_owner()
 	)
 	new_ball.set_meta("turn_owner", current_turn)
 
-	var shoot_direction := (
+	shoot_direction = (
 		peggle_ball_firing_point.global_position
 		.direction_to(target_position)
 	)
@@ -305,11 +320,11 @@ func fire_ball(target_position: Vector2) -> void:
 	game_feel()
 
 
-func get_current_hit_colour() -> Color:
+func get_current_ball_owner() -> String:
 	if current_turn == Turn.PLAYER:
-		return player_hit_colour
+		return "player"
 
-	return ai_hit_colour
+	return "ai"
 
 
 func game_feel() -> void:
@@ -322,7 +337,7 @@ func game_feel() -> void:
 	flash_cooldown.start()
 
 
-func catch_ball(body: Node2D) -> void:
+func catch_ball(body: Node2D, bin_emotion: int) -> void:
 	resolve_ball(body, true)
 
 
@@ -422,3 +437,13 @@ func start_ai_turn() -> void:
 func _on_flash_cooldown_timeout() -> void:
 	peggle_ball_barrel.modulate = Color.WHITE
 	peggle_ball_animation_player.play("RESET")
+	
+func _on_ball_body_entered(current_ball,body):
+	if is_split_ball==1:
+		is_split_ball=0
+		split_ball = ball.instantiate()
+		get_tree().current_scene.add_child(split_ball)  
+		split_ball.global_position = (new_ball.global_position + shoot_offset)
+		split_ball.apply_central_impulse(shoot_strength * shoot_direction)
+		
+		

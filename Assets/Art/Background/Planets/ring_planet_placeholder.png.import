@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://eowantesoctg"
-path="res://.godot/imported/BIN.png-9efdac1a53e446070a2e85815ea4ef33.ctex"
+uid="uid://dr3yhim2shbli"
+path="res://.godot/imported/ring_planet_placeholder.png-f502326ddc8edd8f7f37007899c45558.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Game/BIN.png"
-dest_files=["res://.godot/imported/BIN.png-9efdac1a53e446070a2e85815ea4ef33.ctex"]
+source_file="res://Assets/Art/Background/Planets/ring_planet_placeholder.png"
+dest_files=["res://.godot/imported/ring_planet_placeholder.png-f502326ddc8edd8f7f37007899c45558.ctex"]
 
 [params]
 

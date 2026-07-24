@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://clmgsa02ja0su"]
+
+[ext_resource type="PackedScene" uid="uid://cgsbjachseblr" path="res://Lockers/Programmers/BionicMango/sun.tscn" id="1_0ykkq"]
+[ext_resource type="PackedScene" uid="uid://ca4n68a5tc3vo" path="res://Lockers/Programmers/BionicMango/planet.tscn" id="2_8aitv"]
+[ext_resource type="PackedScene" uid="uid://c3jftkmb744ki" path="res://Lockers/Programmers/BionicMango/moon.tscn" id="3_nnnk6"]
+
+[node name="SampleBgPlanets" type="Node2D" unique_id=659573808]
+
+[node name="Sun" parent="." unique_id=266722425 instance=ExtResource("1_0ykkq")]
+position = Vector2(133, 104)
+
+[node name="Planet" parent="." unique_id=1893150974 instance=ExtResource("2_8aitv")]
+position = Vector2(264, 110)
+scale = Vector2(0.5, 0.5)
+time_countdown = 3.0
+
+[node name="Moon" parent="." unique_id=821745829 instance=ExtResource("3_nnnk6")]
+position = Vector2(295, 109)
+time_countdown = 1.0
