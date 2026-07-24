@@ -41,6 +41,7 @@ const END_SCREEN_TRANSITION_DURATION: float = 1.0
 @export var shoot_strength: float = 100.0
 @export_range(0, 180, 1) var left_turn_limit: int = 165
 @export_range(0, 180, 1) var right_turn_limit: int = 15
+var shoot_direction
 
 # TURN SYSTEM
 @export var player_hit_colour: Color = Color("#54cea7")
@@ -272,7 +273,7 @@ func fire_ball(target_position: Vector2) -> void:
 		end_game(LOSS_SCENE_KEY)
 		return
 
-	var new_ball := ball.instantiate() as RigidBody2D
+	new_ball = ball.instantiate() as RigidBody2D
 
 	if new_ball == null:
 		push_error(
@@ -281,6 +282,11 @@ func fire_ball(target_position: Vector2) -> void:
 		return
 
 	get_tree().current_scene.add_child(new_ball)
+	new_ball.body_entered.connect(func(body):_on_ball_body_entered(new_ball, body))
+	
+	 #Checking for powerups
+	if is_ghost_ball == 1:
+		new_ball.ghost_ball()
 
 	new_ball.global_position = (
 		peggle_ball_firing_point.global_position
@@ -295,7 +301,7 @@ func fire_ball(target_position: Vector2) -> void:
 	)
 	new_ball.set_meta("turn_owner", current_turn)
 
-	var shoot_direction := (
+	shoot_direction = (
 		peggle_ball_firing_point.global_position
 		.direction_to(target_position)
 	)
@@ -427,3 +433,13 @@ func start_ai_turn() -> void:
 func _on_flash_cooldown_timeout() -> void:
 	peggle_ball_barrel.modulate = Color.WHITE
 	peggle_ball_animation_player.play("RESET")
+	
+func _on_ball_body_entered(current_ball,body):
+	if is_split_ball==1:
+		is_split_ball=0
+		split_ball = ball.instantiate()
+		get_tree().current_scene.add_child(split_ball)  
+		split_ball.global_position = (new_ball.global_position + shoot_offset)
+		split_ball.apply_central_impulse(shoot_strength * shoot_direction)
+		
+		
