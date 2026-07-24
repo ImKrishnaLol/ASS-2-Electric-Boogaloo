@@ -1,11 +1,14 @@
-[gd_scene format=3 uid="uid://c3jftkmb744ki"]
+[gd_scene format=3 uid="uid://ca4n68a5tc3vo"]
 
-[ext_resource type="Script" uid="uid://bm5tiqnqhboh" path="res://Lockers/Programmers/BionicMango/celestial_body.gd" id="1_16duq"]
-[ext_resource type="Texture2D" uid="uid://c5lns8a67s8hj" path="res://Assets/Art/Background/Moons/grey_moon_placeholder.png" id="2_n3vpe"]
+[ext_resource type="Script" uid="uid://bm5tiqnqhboh" path="res://Lockers/Programmers/BionicMango/celestial_body.gd" id="1_n5jxk"]
+[ext_resource type="Texture2D" uid="uid://6nowch8l0g5w" path="res://Assets/Art/Background/Planets/blue_planet_placeholder.png" id="2_84icn"]
 
-[sub_resource type="Curve" id="Curve_ddted"]
+[sub_resource type="Curve" id="Curve_84icn"]
 _data = [Vector2(0.049645394, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.26436788), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_84icn"]
+colors = PackedColorArray(0.98, 0.42434004, 0.3626, 1, 0.99, 0.58410007, 0.1782, 1)
 
 [sub_resource type="Animation" id="Animation_mirdo"]
 length = 0.001
@@ -87,20 +90,24 @@ tracks/2/keys = {
 "values": [false, true]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_w3418"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1jx1y"]
 _data = {
 &"RESET": SubResource("Animation_mirdo"),
 &"explode": SubResource("Animation_eo3mc")
 }
 
-[node name="Moon" type="Node2D" unique_id=821745829]
-script = ExtResource("1_16duq")
+[node name="Planet" type="Node2D" unique_id=266722425]
+script = ExtResource("1_n5jxk")
+particle_speed = 0.7
+explosion_lifetime = 1.0
+particle_count = 300
+particle_scale_size = Array[float]([1.0, 5.0])
 metadata/_custom_type_script = "uid://bm5tiqnqhboh"
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1447653575]
-texture = ExtResource("2_n3vpe")
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=254014665]
+texture = ExtResource("2_84icn")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1762861660]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=159994209]
 emitting = false
 amount = 100
 lifetime = 0.7
@@ -111,8 +118,8 @@ gravity = Vector2(0, 0)
 initial_velocity_min = 50.0
 initial_velocity_max = 100.0
 scale_amount_max = 2.0
-scale_amount_curve = SubResource("Curve_ddted")
-color = Color(1, 0.5503334, 0.29000002, 1)
+scale_amount_curve = SubResource("Curve_84icn")
+color_initial_ramp = SubResource("Gradient_84icn")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1150536743]
-libraries/ = SubResource("AnimationLibrary_w3418")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2073735971]
+libraries/ = SubResource("AnimationLibrary_1jx1y")
