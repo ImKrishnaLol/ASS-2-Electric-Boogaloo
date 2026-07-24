@@ -16,9 +16,10 @@ script = ExtResource("1_lixft")
 script = ExtResource("2_2a143")
 
 [node name="Background" parent="World2D" unique_id=179009874 instance=ExtResource("2_5yls4")]
+z_index = -2
 
-[node name="PeggleBoard" parent="World2D/Background" unique_id=1037463456 instance=ExtResource("2_qw60k")]
-NEXT_LEVEL_SCENE_KEY = "main"
+[node name="PeggleBoard" parent="World2D" unique_id=1037463456 instance=ExtResource("2_qw60k")]
+unique_name_in_owner = true
 
 [node name="PartnerCharacter" parent="World2D" unique_id=1055636776 instance=ExtResource("4_p6jpk")]
 position = Vector2(40, 0)
@@ -26,8 +27,10 @@ position = Vector2(40, 0)
 [node name="UIlayer" type="CanvasLayer" parent="." unique_id=2058014531]
 
 [node name="MoodDialogueBox" parent="UIlayer" unique_id=1661028365 instance=ExtResource("3_p6jpk")]
+visible = false
 
 [node name="LevelDialogueBoxes" parent="UIlayer" unique_id=397841832 instance=ExtResource("4_2a143")]
+visible = false
 
 [node name="PauseMenu" parent="UIlayer" unique_id=624797746 instance=ExtResource("2_76geb")]
 visible = false
