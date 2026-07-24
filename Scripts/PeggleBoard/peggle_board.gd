@@ -64,8 +64,8 @@ var total_peg_count: int = 0
 var progress_tween: Tween
 
 #VARIABLES(for power ups)
-var is_ghost_ball=0
-var is_split_ball=1
+var is_ghost_ball=1
+var is_split_ball=0
 var new_ball
 var split_ball
 
@@ -286,6 +286,7 @@ func fire_ball(target_position: Vector2) -> void:
 	
 	 #Checking for powerups
 	if is_ghost_ball == 1:
+		is_ghost_ball=0
 		new_ball.ghost_ball()
 
 	new_ball.global_position = (

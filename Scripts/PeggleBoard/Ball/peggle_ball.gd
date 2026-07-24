@@ -7,8 +7,6 @@ extends RigidBody2D
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
-#Variables for different powerups
-var is_ghost_ball = 0
 
 func _ready() -> void:
 	pass
@@ -21,7 +19,6 @@ func _process(delta: float) -> void:
 	sprite_2d.texture = ball_textures.pick_random()
 	
 func ghost_ball():
-	collision_shape_2d.disabled=true
-	await get_tree().create_timer(3).timeout
-	collision_shape_2d.disabled=false
-	
+	collision_mask=1+3
+	await get_tree().create_timer(1).timeout
+	collision_mask=1+2+3
