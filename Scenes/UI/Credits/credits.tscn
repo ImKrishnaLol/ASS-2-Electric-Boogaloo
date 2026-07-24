@@ -1,36 +1,23 @@
 [gd_scene format=3 uid="uid://dakr5hllkrg23"]
 
 [ext_resource type="Script" uid="uid://cddsmdy1w5yk" path="res://Scripts/UI/Credits/CreditsSceneScript.gd" id="1_nrxth"]
-[ext_resource type="Shader" uid="uid://d3p53i3yjaoyb" path="res://Shaders/Credits/creditsbg.gdshader" id="2_68nu0"]
+[ext_resource type="Shader" uid="uid://n2fodqwdxyf2" path="res://Shaders/Credits/starry_credits.gdshader" id="2_4lu3d"]
 [ext_resource type="PackedScene" uid="uid://6ygx4fc342gq" path="res://Scenes/UI/Credits/credits_person.tscn" id="2_nrxth"]
 
-[sub_resource type="Gradient" id="Gradient_t355c"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.31188118, 0.45544556, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.47657818, 0.47657818, 0.47657818, 1, 1, 1, 1, 1, 1, 1, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_brckq"]
-noise_type = 2
-frequency = 0.0891
-fractal_octaves = 1
-
-[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_cgxf6"]
-width = 128
-height = 128
-depth = 128
-noise = SubResource("FastNoiseLite_brckq")
-color_ramp = SubResource("Gradient_t355c")
-seamless = true
-seamless_blend_skirt = 0.05
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c8hcs"]
-shader = ExtResource("2_68nu0")
-shader_parameter/noise_texture = SubResource("NoiseTexture3D_cgxf6")
-shader_parameter/color_one = Color(0.12156863, 0.0627451, 0.16470589, 1)
-shader_parameter/color_two = Color(0.22352941, 0.03529412, 0.2784314, 1)
-shader_parameter/noise_scale = 0.60000002524012
-shader_parameter/seethe_speed = 0.030000001425
-shader_parameter/target_height = 180.0
+shader = ExtResource("2_4lu3d")
+shader_parameter/animation_speed = 0.010000000475
+shader_parameter/swirl_strength = 0.0
+shader_parameter/swirl_scale = 1.2030000333925
+shader_parameter/nebula_strength = 0.75
+shader_parameter/star_amount = 0.30800001463
+shader_parameter/star_brightness = 1.15
+shader_parameter/swirl_centre = Vector2(0.5, 0.5)
+shader_parameter/background_colour = Color(0.05098, 0.12941, 0.27843, 1)
+shader_parameter/colour_1 = Color(0.80784, 0.47451, 0.82353, 1)
+shader_parameter/colour_2 = Color(0.95686, 0.87451, 0.7451, 1)
+shader_parameter/colour_3 = Color(1, 0.5098, 0.74118, 1)
+shader_parameter/colour_4 = Color(0.7451, 0.79608, 0.92157, 1)
 
 [sub_resource type="Animation" id="Animation_nrxth"]
 length = 0.001
@@ -113,24 +100,24 @@ offset_left = -46.0
 offset_top = 78.0
 offset_right = -46.0
 offset_bottom = 78.0
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Person12" parent="scroll" unique_id=802270838 instance=ExtResource("2_nrxth")]
 offset_left = 45.0
 offset_top = 78.0
 offset_right = 45.0
 offset_bottom = 78.0
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Header2" type="Label" parent="scroll" unique_id=1671172463]
 anchors_preset = 5
@@ -150,58 +137,58 @@ offset_left = -91.0
 offset_top = 225.0
 offset_right = -91.0
 offset_bottom = 225.0
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Person5" parent="scroll" unique_id=1586122642 instance=ExtResource("2_nrxth")]
 offset_top = 225.0
 offset_bottom = 225.0
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Person3" parent="scroll" unique_id=1039538349 instance=ExtResource("2_nrxth")]
 offset_left = 92.0
 offset_top = 225.0
 offset_right = 92.0
 offset_bottom = 225.0
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Person6" parent="scroll" unique_id=1015541011 instance=ExtResource("2_nrxth")]
 offset_left = -91.0
 offset_top = 338.0
 offset_right = -91.0
 offset_bottom = 338.0
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Person7" parent="scroll" unique_id=1501877046 instance=ExtResource("2_nrxth")]
 offset_left = 92.0
 offset_top = 338.0
 offset_right = 92.0
 offset_bottom = 338.0
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Person8" parent="scroll" unique_id=1964564914 instance=ExtResource("2_nrxth")]
 offset_left = 106.0
@@ -209,56 +196,56 @@ offset_top = 879.0
 offset_right = 106.0
 offset_bottom = 879.0
 scale = Vector2(0.737383, 0.73061717)
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Person9" parent="scroll" unique_id=1858496460 instance=ExtResource("2_nrxth")]
 offset_left = -56.0
 offset_top = 451.0
 offset_right = -56.0
 offset_bottom = 451.0
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Person10" parent="scroll" unique_id=9759821 instance=ExtResource("2_nrxth")]
 offset_left = 62.0
 offset_top = 450.0
 offset_right = 62.0
 offset_bottom = 450.0
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Person2" parent="scroll" unique_id=2128764956 instance=ExtResource("2_nrxth")]
 offset_top = 338.0
 offset_bottom = 338.0
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Person13" parent="scroll" unique_id=43166999 instance=ExtResource("2_nrxth")]
 offset_top = 562.0
 offset_bottom = 562.0
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Header3" type="Label" parent="scroll" unique_id=830466436]
 anchors_preset = 5
@@ -282,12 +269,12 @@ offset_left = 52.770447
 offset_top = 1.5258789e-05
 offset_right = 52.770447
 offset_bottom = 1.5258789e-05
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Person13" parent="scroll/smallgroup" unique_id=1463776512 instance=ExtResource("2_nrxth")]
@@ -295,12 +282,12 @@ offset_left = 143.77045
 offset_top = 1.5258789e-05
 offset_right = 143.77045
 offset_bottom = 1.5258789e-05
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Person14" parent="scroll/smallgroup" unique_id=1043576054 instance=ExtResource("2_nrxth")]
@@ -308,12 +295,12 @@ offset_left = 235.77045
 offset_top = 1.5258789e-05
 offset_right = 235.77045
 offset_bottom = 1.5258789e-05
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Person15" parent="scroll/smallgroup" unique_id=857997428 instance=ExtResource("2_nrxth")]
@@ -321,12 +308,12 @@ offset_left = 327.77045
 offset_top = 1.5258789e-05
 offset_right = 327.77045
 offset_bottom = 1.5258789e-05
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Person5" parent="scroll/smallgroup" unique_id=1543798135 instance=ExtResource("2_nrxth")]
@@ -334,12 +321,12 @@ offset_left = 52.770447
 offset_top = 110.81796
 offset_right = 52.770447
 offset_bottom = 110.81796
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Person16" parent="scroll/smallgroup" unique_id=83982525 instance=ExtResource("2_nrxth")]
@@ -347,12 +334,12 @@ offset_left = 143.77045
 offset_top = 110.81796
 offset_right = 143.77045
 offset_bottom = 110.81796
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Person17" parent="scroll/smallgroup" unique_id=672805195 instance=ExtResource("2_nrxth")]
@@ -360,12 +347,12 @@ offset_left = 235.77045
 offset_top = 110.81796
 offset_right = 235.77045
 offset_bottom = 110.81796
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Person18" parent="scroll/smallgroup" unique_id=725999304 instance=ExtResource("2_nrxth")]
@@ -373,12 +360,12 @@ offset_left = 327.77045
 offset_top = 110.81796
 offset_right = 327.77045
 offset_bottom = 110.81796
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Person6" parent="scroll/smallgroup" unique_id=1699491492 instance=ExtResource("2_nrxth")]
@@ -386,12 +373,12 @@ offset_left = 52.770447
 offset_top = 221.6359
 offset_right = 52.770447
 offset_bottom = 221.6359
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Person19" parent="scroll/smallgroup" unique_id=190199873 instance=ExtResource("2_nrxth")]
@@ -399,12 +386,12 @@ offset_left = 143.77045
 offset_top = 221.6359
 offset_right = 143.77045
 offset_bottom = 221.6359
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Person20" parent="scroll/smallgroup" unique_id=1450042017 instance=ExtResource("2_nrxth")]
@@ -412,12 +399,12 @@ offset_left = 235.77045
 offset_top = 221.6359
 offset_right = 235.77045
 offset_bottom = 221.6359
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Justtext" parent="scroll/smallgroup" unique_id=1807868889 instance=ExtResource("2_nrxth")]
@@ -425,360 +412,360 @@ offset_left = 52.770447
 offset_top = 360.1583
 offset_right = 52.770447
 offset_bottom = 360.1583
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext2" parent="scroll/smallgroup" unique_id=971335198 instance=ExtResource("2_nrxth")]
 offset_left = 143.77045
 offset_top = 360.1583
 offset_right = 143.77045
 offset_bottom = 360.1583
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext3" parent="scroll/smallgroup" unique_id=1306248538 instance=ExtResource("2_nrxth")]
 offset_left = 235.77045
 offset_top = 360.1583
 offset_right = 235.77045
 offset_bottom = 360.1583
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext4" parent="scroll/smallgroup" unique_id=483914979 instance=ExtResource("2_nrxth")]
 offset_left = 327.77042
 offset_top = 360.1583
 offset_right = 327.77042
 offset_bottom = 360.1583
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext5" parent="scroll/smallgroup" unique_id=1553913865 instance=ExtResource("2_nrxth")]
 offset_left = 84.43272
 offset_top = 414.248
 offset_right = 84.43272
 offset_bottom = 414.248
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext6" parent="scroll/smallgroup" unique_id=722469544 instance=ExtResource("2_nrxth")]
 offset_left = 192.61214
 offset_top = 414.248
 offset_right = 192.61214
 offset_bottom = 414.248
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext8" parent="scroll/smallgroup" unique_id=2088205422 instance=ExtResource("2_nrxth")]
 offset_left = 302.1108
 offset_top = 414.248
 offset_right = 302.1108
 offset_bottom = 414.248
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext9" parent="scroll/smallgroup" unique_id=563062951 instance=ExtResource("2_nrxth")]
 offset_left = 52.770447
 offset_top = 469.65704
 offset_right = 52.770447
 offset_bottom = 469.65704
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext10" parent="scroll/smallgroup" unique_id=2089653020 instance=ExtResource("2_nrxth")]
 offset_left = 143.77045
 offset_top = 469.65704
 offset_right = 143.77045
 offset_bottom = 469.65704
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext11" parent="scroll/smallgroup" unique_id=1350770691 instance=ExtResource("2_nrxth")]
 offset_left = 235.77045
 offset_top = 469.65704
 offset_right = 235.77045
 offset_bottom = 469.65704
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext12" parent="scroll/smallgroup" unique_id=2110441222 instance=ExtResource("2_nrxth")]
 offset_left = 327.77042
 offset_top = 469.65704
 offset_right = 327.77042
 offset_bottom = 469.65704
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext13" parent="scroll/smallgroup" unique_id=30337429 instance=ExtResource("2_nrxth")]
 offset_left = 80.47493
 offset_top = 525.0659
 offset_right = 80.47493
 offset_bottom = 525.0659
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext15" parent="scroll/smallgroup" unique_id=1116762191 instance=ExtResource("2_nrxth")]
 offset_left = 196.5699
 offset_top = 525.0659
 offset_right = 196.5699
 offset_bottom = 525.0659
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext16" parent="scroll/smallgroup" unique_id=499703431 instance=ExtResource("2_nrxth")]
 offset_left = 308.70712
 offset_top = 525.0659
 offset_right = 308.70712
 offset_bottom = 525.0659
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext17" parent="scroll/smallgroup" unique_id=1245972621 instance=ExtResource("2_nrxth")]
 offset_left = 52.770447
 offset_top = 579.15564
 offset_right = 52.770447
 offset_bottom = 579.15564
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext18" parent="scroll/smallgroup" unique_id=231796771 instance=ExtResource("2_nrxth")]
 offset_left = 143.77045
 offset_top = 579.15564
 offset_right = 143.77045
 offset_bottom = 579.15564
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext19" parent="scroll/smallgroup" unique_id=73345354 instance=ExtResource("2_nrxth")]
 offset_left = 235.77045
 offset_top = 579.15564
 offset_right = 235.77045
 offset_bottom = 579.15564
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext20" parent="scroll/smallgroup" unique_id=1963719227 instance=ExtResource("2_nrxth")]
 offset_left = 327.77042
 offset_top = 579.15564
 offset_right = 327.77042
 offset_bottom = 579.15564
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext21" parent="scroll/smallgroup" unique_id=1833126288 instance=ExtResource("2_nrxth")]
 offset_left = 52.770447
 offset_top = 638.5224
 offset_right = 52.770447
 offset_bottom = 638.5224
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext22" parent="scroll/smallgroup" unique_id=301518211 instance=ExtResource("2_nrxth")]
 offset_left = 143.77045
 offset_top = 638.5224
 offset_right = 143.77045
 offset_bottom = 638.5224
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext23" parent="scroll/smallgroup" unique_id=2139035989 instance=ExtResource("2_nrxth")]
 offset_left = 235.77045
 offset_top = 638.5224
 offset_right = 235.77045
 offset_bottom = 638.5224
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext24" parent="scroll/smallgroup" unique_id=700934219 instance=ExtResource("2_nrxth")]
 offset_left = 327.77042
 offset_top = 638.5224
 offset_right = 327.77042
 offset_bottom = 638.5224
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext25" parent="scroll/smallgroup" unique_id=296623134 instance=ExtResource("2_nrxth")]
 offset_left = 52.770447
 offset_top = 697.88916
 offset_right = 52.770447
 offset_bottom = 697.88916
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext26" parent="scroll/smallgroup" unique_id=171944199 instance=ExtResource("2_nrxth")]
 offset_left = 245.38257
 offset_top = 697.88916
 offset_right = 245.38257
 offset_bottom = 697.88916
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext27" parent="scroll/smallgroup" unique_id=1213528987 instance=ExtResource("2_nrxth")]
 offset_left = 337.38257
 offset_top = 697.88916
 offset_right = 337.38257
 offset_bottom = 697.88916
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext28" parent="scroll/smallgroup" unique_id=1286647444 instance=ExtResource("2_nrxth")]
 offset_left = 146.43799
 offset_top = 697.88916
 offset_right = 146.43799
 offset_bottom = 697.88916
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext29" parent="scroll/smallgroup" unique_id=1823644813 instance=ExtResource("2_nrxth")]
 offset_left = 52.770447
 offset_top = 758.5752
 offset_right = 52.770447
 offset_bottom = 758.5752
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext30" parent="scroll/smallgroup" unique_id=358631129 instance=ExtResource("2_nrxth")]
 offset_left = 143.77045
 offset_top = 758.5752
 offset_right = 143.77045
 offset_bottom = 758.5752
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext31" parent="scroll/smallgroup" unique_id=865677676 instance=ExtResource("2_nrxth")]
 offset_left = 235.77045
 offset_top = 758.5752
 offset_right = 235.77045
 offset_bottom = 758.5752
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="Justtext32" parent="scroll/smallgroup" unique_id=109582101 instance=ExtResource("2_nrxth")]
 offset_left = 327.77042
 offset_top = 758.5752
 offset_right = 327.77042
 offset_bottom = 758.5752
-card_title = null
-card_description = null
-title_font_size = null
-description_font_size = null
-picture_y_offset = null
-show_picture = null
+card_title = "insert name"
+card_description = "insert description"
+title_font_size = 24
+description_font_size = 8
+picture_y_offset = 27.0
+show_picture = true
 
 [node name="anim" type="AnimationPlayer" parent="." unique_id=1687892299]
 libraries/ = SubResource("AnimationLibrary_ylkhe")
