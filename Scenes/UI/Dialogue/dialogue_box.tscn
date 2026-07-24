@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://1hjr0ow14k7l" path="res://Scripts/UI/Dialogue/dialogue_box.gd" id="1_v6lbk"]
 [ext_resource type="AudioStream" uid="uid://lwyl1nv45hvw" path="res://Placeholders/Audio/beep.mp3" id="2_tq37n"]
 [ext_resource type="AudioStream" uid="uid://bxn6t0fecbycr" path="res://Placeholders/Audio/alien_babble.mp3" id="3_ercv4"]
-[ext_resource type="Texture2D" uid="uid://byd3htnnpnylu" path="res://Assets/Art/UI/ASS_nine_slice_text_box.png" id="4_ercv4"]
+[ext_resource type="Texture2D" uid="uid://cms8fnmfby305" path="res://Assets/Art/UI/ASS_nine_slice_text_box_alternative_colour.png" id="4_ercv4"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_v6lbk"]
 streams_count = 1
