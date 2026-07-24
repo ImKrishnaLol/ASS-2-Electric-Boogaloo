@@ -113,6 +113,8 @@ func go(
 	duration: float = -1.0,
 	force_reload: bool = false
 ) -> void:
+	# always register dialogue as closed on scene transition
+	DialogueManager.close_dialogue()
 	load_scene(scene_id_or_path, duration, force_reload)
 
 

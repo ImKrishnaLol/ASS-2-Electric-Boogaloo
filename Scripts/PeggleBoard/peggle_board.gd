@@ -20,6 +20,7 @@ const END_SCREEN_TRANSITION_DURATION: float = 1.0
 
 # SCENES
 @export var ball: PackedScene
+@export var NEXT_LEVEL_SCENE_KEY: String
 
 # NODES
 @onready var peggle_ball_shooter: Node2D = $PeggleBallShooter
@@ -107,7 +108,8 @@ func _input(event: InputEvent) -> void:
 		return
 
 	if event.is_action_pressed("action_primary"):
-		fire_ball(get_global_mouse_position())
+		if not DialogueManager._dialogue_box_displayed:
+			fire_ball(get_global_mouse_position())
 
 
 func setup_ball_counter() -> void:
@@ -170,6 +172,7 @@ func get_progress_values() -> Vector2:
 		var claimed_turn: int = int(
 			peg.call("get_claimed_turn")
 		)
+		
 
 		if claimed_turn == Turn.PLAYER:
 			player_peg_count += 1
@@ -238,7 +241,10 @@ func get_progress_percentage(
 
 func check_for_winner() -> void:
 	if player_progress_bar.value >= player_progress_bar.max_value:
-		end_game(WIN_SCENE_KEY)
+		if LevelManager.level < LevelManager.MAX_LEVEL - 1:
+			end_game(NEXT_LEVEL_SCENE_KEY)
+		else:
+			end_game(WIN_SCENE_KEY)
 	elif ai_progress_bar.value >= ai_progress_bar.max_value:
 		end_game(LOSS_SCENE_KEY)
 
@@ -248,11 +254,28 @@ func end_game(scene_key: String) -> void:
 		return
 
 	game_ended = true
-
-	SceneManager.go(
-		scene_key,
-		END_SCREEN_TRANSITION_DURATION
-	)
+	
+	if scene_key == WIN_SCENE_KEY or scene_key == NEXT_LEVEL_SCENE_KEY:
+		if NEXT_LEVEL_SCENE_KEY:
+			# increment to the next level
+			LevelManager.set_level(LevelManager.level + 1)
+		# trigger next level dialogue
+		# register scene transition as a callback when dialogue closes
+		DialogueManager.dialogue_closed.connect(
+			func() -> void:
+				SceneManager.go(
+				scene_key,
+				END_SCREEN_TRANSITION_DURATION,
+				true),
+			CONNECT_ONE_SHOT
+		)
+		EventBus.dialogue_level_triggered.emit(LevelManager.level)
+	if scene_key == LOSS_SCENE_KEY:
+		SceneManager.go(
+			scene_key,
+			END_SCREEN_TRANSITION_DURATION
+		)
+	
 
 
 func aim_shooter_at(target_position: Vector2) -> void:
