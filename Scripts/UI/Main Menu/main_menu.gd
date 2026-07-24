@@ -48,6 +48,8 @@ func _ready() -> void:
 func _on_new_game_button_pressed() -> void:
 	play_sfx(new_game_sound)
 	SceneManager.go(new_game_scene, new_game_transition_duration)
+	GameData.start_new_game(20)
+	LevelManager.set_level(0)
 
 
 func _on_settings_button_pressed() -> void:

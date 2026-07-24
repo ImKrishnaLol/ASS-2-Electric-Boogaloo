@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bpxl0aa8h0m5b"
+path="res://.godot/imported/Ball Hit Peg (1).mp3-2cc49504e2613d9717c1ba123115a232.mp3str"
+
+[deps]
+
+source_file="res://Scenes/UI/Lose/Ball Hit Peg (1).mp3"
+dest_files=["res://.godot/imported/Ball Hit Peg (1).mp3-2cc49504e2613d9717c1ba123115a232.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

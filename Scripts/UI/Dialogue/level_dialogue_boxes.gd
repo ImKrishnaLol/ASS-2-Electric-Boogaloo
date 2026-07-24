@@ -1,12 +1,15 @@
 extends Control
 
-@export var on_display_audio : AudioStream
-@export var on_text_audio : AudioStream
+
+@export var on_display_audio: AudioStream
+@export var on_text_audio: AudioStream
 
 @export_subgroup("Child Nodes")
 @export var dialogue_boxes: Array[DialogueBox]
 
-var in_level_dialogue : bool = false
+
+var in_level_dialogue: bool = false
+
 
 var dialogue_levels: Dictionary = {
 	1: [
@@ -46,30 +49,56 @@ var dialogue_levels: Dictionary = {
 	],
 }
 
+
 func _ready() -> void:
 	self.visible = true
-	EventBus.dialogue_level_triggered.connect(_on_dialogue_level_triggered)
-	# hide dialogue boxes on ready
+
+	EventBus.dialogue_level_triggered.connect(
+		_on_dialogue_level_triggered
+	)
+
 	for dialogue_box: DialogueBox in dialogue_boxes:
 		dialogue_box.instant_hide_dialogue()
+
 		if on_display_audio:
 			dialogue_box.on_display_audio = on_display_audio
+
 		if on_text_audio:
 			dialogue_box.on_text_audio = on_text_audio
 
-func _on_dialogue_level_triggered(level: int):
-	if not in_level_dialogue:
-		in_level_dialogue = true
-		# Dialogue system for level mode
-		DialogueManager.open_dialogue()
-		for index: int in range(len(dialogue_levels[level])):
-			var message : String = dialogue_levels[level][index]
-			if len(dialogue_boxes) >= index:
-				dialogue_boxes[index].display_dialogue(message)
-			else:
-				printerr("Error in level_dialogue_boxes: length of dialogue_levels for this level is too long")
-			await EventBus.dialogue_next
-		for box: DialogueBox in dialogue_boxes:
-			box.hide_dialogue()
-		DialogueManager.close_dialogue()
-		in_level_dialogue = false
+
+func _on_dialogue_level_triggered(level: int) -> void:
+	if in_level_dialogue:
+		return
+
+	if not dialogue_levels.has(level):
+		push_error(
+			"No level dialogue exists for level %s." % level
+		)
+		DialogueManager.open_level_dialogue()
+		DialogueManager.close_level_dialogue()
+		return
+
+	in_level_dialogue = true
+	DialogueManager.open_level_dialogue()
+
+	var messages: Array = dialogue_levels[level]
+
+	for index: int in range(messages.size()):
+		if index >= dialogue_boxes.size():
+			printerr(
+				"Not enough dialogue boxes for level dialogue."
+			)
+			break
+
+		var message: String = messages[index]
+
+		dialogue_boxes[index].display_dialogue(message)
+
+		await EventBus.dialogue_next
+
+	for dialogue_box: DialogueBox in dialogue_boxes:
+		dialogue_box.hide_dialogue()
+
+	DialogueManager.close_level_dialogue()
+	in_level_dialogue = false
