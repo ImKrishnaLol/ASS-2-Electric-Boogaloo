@@ -14,6 +14,12 @@ extends Control
 # Loading duration when returning to the main menu.
 @export var menu_loading_duration: float = 1.0
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+
+func _ready() -> void:
+	animation_player.play("Die")
+
 
 func _on_retry_button_pressed() -> void:
 	SceneManager.go(get_retry_level_scene(), retry_loading_duration)

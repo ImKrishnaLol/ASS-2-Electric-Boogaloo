@@ -51,24 +51,9 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 9.466666)
 }
 
-[sub_resource type="Animation" id="Animation_3gtk4"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Star:modulate:a")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vm4aj"]
 _data = {
-&"Die": SubResource("Animation_b2ddn"),
-&"RESET": SubResource("Animation_3gtk4")
+&"Die": SubResource("Animation_b2ddn")
 }
 
 [node name="LossScreen" type="Control" unique_id=890772856]
@@ -123,7 +108,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=758215022]
-modulate = Color(1, 1, 1, 1.2642496)
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.29000002, 0.29000002, 1)
@@ -134,10 +119,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RetryButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1668103217]
+modulate = Color(1, 1, 1, -1.135)
 layout_mode = 2
 text = " Retry "
 
 [node name="MainMenuButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1883874265]
+modulate = Color(1, 1, 1, -1.1345384)
 layout_mode = 2
 text = "Main Menu"
 

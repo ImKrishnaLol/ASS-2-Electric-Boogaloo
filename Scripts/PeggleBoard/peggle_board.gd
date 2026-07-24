@@ -11,7 +11,7 @@ const FULL_BAR_FRACTION: float = 0.75
 
 const WIN_SCENE_KEY: String = "win_screen"
 const LOSS_SCENE_KEY: String = "loss_screen"
-const END_SCREEN_TRANSITION_DURATION: float = 1.0
+const END_SCREEN_TRANSITION_DURATION: float = 0.2
 
 # COLLISION INFORMATION
 # Layer 1: Walls
