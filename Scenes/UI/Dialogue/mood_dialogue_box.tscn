@@ -14,5 +14,19 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_h43p2")
 
-[node name="DialogueBox" parent="." unique_id=1109237251 instance=ExtResource("1_4056e")]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2039870258]
 layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -50.0
+offset_right = 80.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 3
+
+[node name="DialogueBox" parent="MarginContainer" unique_id=1109237251 instance=ExtResource("1_4056e")]
+layout_mode = 2

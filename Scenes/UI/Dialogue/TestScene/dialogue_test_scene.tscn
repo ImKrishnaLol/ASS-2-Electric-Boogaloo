@@ -13,6 +13,7 @@ offset_right = 243.0
 offset_bottom = 242.0
 
 [node name="LevelDialogueBoxes" parent="." unique_id=1190864873 instance=ExtResource("2_exy4o")]
+visible = false
 offset_left = 243.0
 offset_top = 136.0
 offset_right = 243.0
