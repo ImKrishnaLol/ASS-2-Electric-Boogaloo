@@ -13,7 +13,7 @@ extends Control
 @export_group("Game")
 
 # Used if GameData does not have a valid maximum.
-@export var default_max_ball_count: int = 10
+@export var default_max_ball_count: int = 20
 
 
 @export_group("Scene Transitions")
