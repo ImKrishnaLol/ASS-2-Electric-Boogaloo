@@ -29,7 +29,6 @@ const END_SCREEN_TRANSITION_DURATION: float = 1.0
 @onready var peggle_ball_animation_player: AnimationPlayer = $PeggleBallShooter/PeggleBallAnimationPlayer
 
 @onready var endzone: Area2D = $Endzone
-@onready var ball_bin: PeggleBallBin = %Bin
 @onready var bins: Node2D = $Bins
 
 @onready var player_progress_bar: ProgressBar = $ProgressBar
@@ -151,21 +150,29 @@ func setup_progress_bars() -> void:
 
 
 func get_progress_values() -> Vector2:
+	print("test?")
 	var player_peg_count: int = 0
 	var ai_peg_count: int = 0
 
 	for peg: Node in all_pegs:
+		print("test1")
 		if not is_instance_valid(peg):
 			continue
+		
+		print("test2")
 
 		if not peg.has_method("get_claimed_turn"):
 			continue
-
+		print("test3")
 		var claimed_turn: int = int(
 			peg.call("get_claimed_turn")
 		)
+		
+		print("player ballz")
+		
 
 		if claimed_turn == Turn.PLAYER:
+			print("player")
 			player_peg_count += 1
 		elif claimed_turn == Turn.AI:
 			ai_peg_count += 1
@@ -347,8 +354,9 @@ func resolve_ball(
 
 	var finished_turn: int = int(
 		body.get_meta("turn_owner", current_turn)
+		
 	)
-
+	#print(body.get_meta("turn_owner", current_turn))
 	body.queue_free()
 
 	ball_in_play = false

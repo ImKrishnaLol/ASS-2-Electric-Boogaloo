@@ -25,6 +25,8 @@ func change_peg_colour(body: Node2D) -> void:
 	var new_claimed_turn: int = int(
 		body.get_meta("turn_owner", -1)
 	)
+	
+
 
 	if new_claimed_turn == -1:
 		return
@@ -41,6 +43,7 @@ func change_peg_colour(body: Node2D) -> void:
 		return
 
 	claimed_turn = new_claimed_turn
+	
 	claim_changed.emit()
 
 
