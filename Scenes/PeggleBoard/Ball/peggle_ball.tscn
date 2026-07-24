@@ -1,26 +1,104 @@
 [gd_scene format=3 uid="uid://hxtqjqdwxevl"]
 
-[ext_resource type="Texture2D" uid="uid://b5t0xcpm8x13p" path="res://Placeholders/PngItem_4184328.png" id="1_qyxuo"]
+[ext_resource type="Script" uid="uid://c3ivwy6d4s25w" path="res://Scripts/PeggleBoard/Ball/peggle_ball.gd" id="1_clndv"]
+[ext_resource type="Texture2D" uid="uid://cr45qgdoracu5" path="res://Assets/Art/Game/PeggleBoard/Ball (2).png" id="2_3b845"]
+[ext_resource type="PackedScene" uid="uid://d2clrebmnqq3x" path="res://Scenes/PeggleBoard/Ball/ball_dot.tscn" id="2_nvg7r"]
+[ext_resource type="Texture2D" uid="uid://cwmlbsepyk08v" path="res://Assets/Art/Game/PeggleBoard/Ball3.png" id="3_nvg7r"]
+[ext_resource type="Texture2D" uid="uid://bggdu3vaw7sfl" path="res://Assets/Art/Game/PeggleBoard/Ball (1).png" id="4_2ybm5"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ryebi"]
 bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ddted"]
-radius = 6.0
+radius = 3.0
+
+[sub_resource type="Animation" id="Animation_nvg7r"]
+resource_name = "BALL_BOUNCE"
+length = 0.14
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03333334, 0.1, 0.13333334),
+"transitions": PackedFloat32Array(0.2, 0.5, 1, 1.7),
+"update": 0,
+"values": [Vector2(0.15, 0.15), Vector2(0.1, 0.1), Vector2(0.226, 0.226), Vector2(0.2, 0.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 18.892157, 18.892157, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2ybm5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.2, 0.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1y25h"]
+_data = {
+&"BALL_BOUNCE": SubResource("Animation_nvg7r"),
+&"RESET": SubResource("Animation_2ybm5")
+}
 
 [node name="PeggleBall" type="RigidBody2D" unique_id=162794285]
 collision_layer = 4
 collision_mask = 7
 physics_material_override = SubResource("PhysicsMaterial_ryebi")
 gravity_scale = 0.3
+contact_monitor = true
+max_contacts_reported = 1
 linear_damp_mode = 1
 angular_damp_mode = 1
+script = ExtResource("1_clndv")
+ball_dot = ExtResource("2_nvg7r")
+ball_textures = Array[Texture2D]([ExtResource("2_3b845"), ExtResource("3_nvg7r"), ExtResource("4_2ybm5")])
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=316302717]
-position = Vector2(0.05, -0.5)
-scale = Vector2(0.02, 0.02)
-texture = ExtResource("1_qyxuo")
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_2ybm5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=71242518]
-scale = Vector2(1.02, 1.02)
 shape = SubResource("CircleShape2D_ddted")
+
+[node name="DotCooldown" type="Timer" parent="." unique_id=511193528]
+wait_time = 0.08
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1665290503]
+libraries/ = SubResource("AnimationLibrary_1y25h")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="DotCooldown" to="." method="_on_timer_timeout"]
