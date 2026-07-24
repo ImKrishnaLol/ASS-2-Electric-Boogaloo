@@ -47,6 +47,7 @@ var dialogue_levels: Dictionary = {
 }
 
 func _ready() -> void:
+	self.visible = true
 	EventBus.dialogue_level_triggered.connect(_on_dialogue_level_triggered)
 	# hide dialogue boxes on ready
 	for dialogue_box: DialogueBox in dialogue_boxes:

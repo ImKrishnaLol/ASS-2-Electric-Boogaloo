@@ -1,9 +1,11 @@
 extends Control
 
-@onready var dialogue_box: DialogueBox = $DialogueBox
-
 @export var on_display_audio : AudioStream
 @export var on_text_audio : AudioStream
+
+@export_subgroup("Child Nodes")
+@export var dialogue_box: DialogueBox
+
 
 var dialogue_moods: Dictionary = {
 	"HAPPY": [
@@ -30,6 +32,7 @@ var dialogue_moods: Dictionary = {
 }
 
 func _ready() -> void:
+	self.visible = true
 	EventBus.dialogue_mood_triggered.connect(_on_dialogue_mood_triggered)
 	# hide dialogue box on ready
 	dialogue_box.instant_hide_dialogue()

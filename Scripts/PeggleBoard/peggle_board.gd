@@ -101,7 +101,8 @@ func _input(event: InputEvent) -> void:
 		return
 
 	if event.is_action_pressed("action_primary"):
-		fire_ball(get_global_mouse_position())
+		if not DialogueManager.dialogue_box_displayed:
+			fire_ball(get_global_mouse_position())
 
 
 func setup_ball_counter() -> void:
