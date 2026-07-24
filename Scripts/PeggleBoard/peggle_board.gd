@@ -44,8 +44,6 @@ const END_SCREEN_TRANSITION_DURATION: float = 1.0
 @export_range(0, 180, 1) var right_turn_limit: int = 15
 
 # TURN SYSTEM
-@export var player_hit_colour: Color = Color("#54cea7")
-@export var ai_hit_colour: Color = Color("#ff82bd")
 @export var ai_aim_time: float = 0.75
 
 # PROGRESS BARS
@@ -290,8 +288,8 @@ func fire_ball(target_position: Vector2) -> void:
 	new_ball.set_meta("is_peggle_ball", true)
 	new_ball.set_meta("ball_resolved", false)
 	new_ball.set_meta(
-		"hit_colour",
-		get_current_hit_colour()
+		"ball_owner",
+		get_current_ball_owner()
 	)
 	new_ball.set_meta("turn_owner", current_turn)
 
@@ -310,11 +308,11 @@ func fire_ball(target_position: Vector2) -> void:
 	game_feel()
 
 
-func get_current_hit_colour() -> Color:
+func get_current_ball_owner() -> String:
 	if current_turn == Turn.PLAYER:
-		return player_hit_colour
+		return "player"
 
-	return ai_hit_colour
+	return "ai"
 
 
 func game_feel() -> void:

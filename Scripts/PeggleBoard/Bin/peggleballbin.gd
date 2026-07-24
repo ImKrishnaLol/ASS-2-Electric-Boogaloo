@@ -13,7 +13,6 @@ func _ready() -> void:
 	if get_child_count() == 3:
 		GameData.connect("emotion_changed", get_child(2).emotion_effect())
 
-
 func _on_body_entered(body: Node2D) -> void:
 	if body.get_meta("is_peggle_ball", false) != true:
 		return

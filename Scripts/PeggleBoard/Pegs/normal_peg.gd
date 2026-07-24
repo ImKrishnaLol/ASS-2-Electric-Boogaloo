@@ -3,7 +3,7 @@ extends StaticBody2D
 signal claim_changed
 
 @onready var hit_area: Area2D = $Area2D
-@onready var peg_sprite: Sprite2D = $Sprite2D
+@onready var peg_sprite: AnimatedSprite2D = $Sprite2D
 
 const PEG_TEXTURE_A = preload("uid://dvw1g6cx3q43s")
 const PEG_TEXTURE_B = preload("uid://dfr50ew5ksk84")
@@ -13,13 +13,9 @@ var claimed_turn: int = -1
 
 
 func _ready() -> void:
-	add_to_group("pegs")
 	hit_area.body_entered.connect(change_peg_colour)
 
-	if randi() % 2 == 0:
-		peg_sprite.texture = PEG_TEXTURE_A
-	else:
-		peg_sprite.texture = PEG_TEXTURE_B
+	peg_sprite.play("default")
 
 
 func change_peg_colour(body: Node2D) -> void:
@@ -33,12 +29,13 @@ func change_peg_colour(body: Node2D) -> void:
 	if new_claimed_turn == -1:
 		return
 
-	var hit_colour: Color = body.get_meta(
-		"hit_colour",
-		Color.WHITE
-	)
+	peg_sprite.play( body.get_meta( "ball_owner", "default" ))
+	#var hit_colour: Color = body.get_meta(
+		#"ball_owner",
+		#Color.WHITE
+	#)
 
-	modulate = hit_colour
+	#modulate = hit_colour
 
 	if claimed_turn == new_claimed_turn:
 		return
