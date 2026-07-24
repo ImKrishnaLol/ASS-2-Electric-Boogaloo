@@ -64,7 +64,7 @@ radius = 79.99999
 [sub_resource type="CircleShape2D" id="CircleShape2D_oy24c"]
 radius = 9.52381
 
-[node name="PegglePeg" type="StaticBody2D" unique_id=1411103836]
+[node name="PegglePeg" type="StaticBody2D" unique_id=1411103836 groups=["pegs"]]
 scale = Vector2(0.6, 0.6)
 collision_layer = 2
 collision_mask = 4

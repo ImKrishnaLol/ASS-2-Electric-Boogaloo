@@ -1,9 +1,11 @@
 extends Control
 
-@onready var dialogue_box: DialogueBox = $DialogueBox
-
 @export var on_display_audio : AudioStream
 @export var on_text_audio : AudioStream
+
+@export_subgroup("Child Nodes")
+@export var dialogue_box: DialogueBox
+
 
 var dialogue_moods: Dictionary = {
 	"HAPPY": [
@@ -30,6 +32,7 @@ var dialogue_moods: Dictionary = {
 }
 
 func _ready() -> void:
+	self.visible = true
 	EventBus.dialogue_mood_triggered.connect(_on_dialogue_mood_triggered)
 	# hide dialogue box on ready
 	dialogue_box.instant_hide_dialogue()
@@ -39,10 +42,10 @@ func _ready() -> void:
 		dialogue_box.on_text_audio = on_text_audio
 			
 func _on_dialogue_mood_triggered(mood: String, level: int) -> void:
-	DialogueManager.dialogue_box_displayed = true
+	DialogueManager.open_dialogue()
 	# Dialogue system for mood mode
 	var dialogue : String = dialogue_moods[mood].pick_random()
 	dialogue_box.display_dialogue(dialogue)
 	await EventBus.dialogue_next
 	dialogue_box.hide_dialogue()
-	DialogueManager.dialogue_box_displayed = false
+	DialogueManager.close_dialogue()

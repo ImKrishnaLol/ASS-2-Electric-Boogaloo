@@ -21,6 +21,7 @@ const END_SCREEN_TRANSITION_DURATION: float = 1.0
 
 # SCENES
 @export var ball: PackedScene
+@export var NEXT_LEVEL_SCENE_KEY: String
 
 # NODES
 @onready var peggle_ball_shooter: Node2D = $PeggleBallShooter
@@ -43,6 +44,7 @@ const END_SCREEN_TRANSITION_DURATION: float = 1.0
 @export var shoot_strength: float = 100.0
 @export_range(0, 180, 1) var left_turn_limit: int = 165
 @export_range(0, 180, 1) var right_turn_limit: int = 15
+var shoot_direction
 
 # TURN SYSTEM
 @export var ai_aim_time: float = 0.75
@@ -62,6 +64,11 @@ var total_peg_count: int = 0
 
 var progress_tween: Tween
 
+#VARIABLES(for power ups)
+var is_ghost_ball=1
+var is_split_ball=0
+var new_ball
+var split_ball
 
 func _ready() -> void:
 	endzone.body_entered.connect(destroy_ball)
@@ -101,7 +108,8 @@ func _input(event: InputEvent) -> void:
 		return
 
 	if event.is_action_pressed("action_primary"):
-		fire_ball(get_global_mouse_position())
+		if not DialogueManager._dialogue_box_displayed:
+			fire_ball(get_global_mouse_position())
 
 
 func setup_ball_counter() -> void:
@@ -186,6 +194,7 @@ func get_progress_values() -> Vector2:
 		var claimed_turn: int = int(
 			peg.call("get_claimed_turn")
 		)
+		
 
 		if claimed_turn == Turn.PLAYER:
 			player_peg_count += 1
@@ -264,7 +273,10 @@ func get_progress_percentage(
 
 func check_for_winner() -> void:
 	if player_progress_bar.value >= player_progress_bar.max_value:
-		end_game(WIN_SCENE_KEY)
+		if LevelManager.level < LevelManager.MAX_LEVEL - 1:
+			end_game(NEXT_LEVEL_SCENE_KEY)
+		else:
+			end_game(WIN_SCENE_KEY)
 	elif ai_progress_bar.value >= ai_progress_bar.max_value:
 		end_game(LOSS_SCENE_KEY)
 
@@ -274,11 +286,28 @@ func end_game(scene_key: String) -> void:
 		return
 
 	game_ended = true
-
-	SceneManager.go(
-		scene_key,
-		END_SCREEN_TRANSITION_DURATION
-	)
+	
+	if scene_key == WIN_SCENE_KEY or scene_key == NEXT_LEVEL_SCENE_KEY:
+		if NEXT_LEVEL_SCENE_KEY:
+			# increment to the next level
+			LevelManager.set_level(LevelManager.level + 1)
+		# trigger next level dialogue
+		# register scene transition as a callback when dialogue closes
+		DialogueManager.dialogue_closed.connect(
+			func() -> void:
+				SceneManager.go(
+				scene_key,
+				END_SCREEN_TRANSITION_DURATION,
+				true),
+			CONNECT_ONE_SHOT
+		)
+		EventBus.dialogue_level_triggered.emit(LevelManager.level)
+	if scene_key == LOSS_SCENE_KEY:
+		SceneManager.go(
+			scene_key,
+			END_SCREEN_TRANSITION_DURATION
+		)
+	
 
 
 func aim_shooter_at(target_position: Vector2) -> void:
@@ -302,7 +331,7 @@ func fire_ball(target_position: Vector2) -> void:
 		end_game(LOSS_SCENE_KEY)
 		return
 
-	var new_ball := ball.instantiate() as RigidBody2D
+	new_ball = ball.instantiate() as RigidBody2D
 
 	if new_ball == null:
 		push_error(
@@ -311,6 +340,12 @@ func fire_ball(target_position: Vector2) -> void:
 		return
 
 	get_tree().current_scene.add_child(new_ball)
+	new_ball.body_entered.connect(func(body):_on_ball_body_entered(new_ball, body))
+	
+	 #Checking for powerups
+	if is_ghost_ball == 1:
+		is_ghost_ball=0
+		new_ball.ghost_ball()
 
 	new_ball.global_position = (
 		peggle_ball_firing_point.global_position
@@ -330,7 +365,7 @@ func fire_ball(target_position: Vector2) -> void:
 		current_turn
 	)
 
-	var shoot_direction := (
+	shoot_direction = (
 		peggle_ball_firing_point.global_position
 		.direction_to(target_position)
 	)
@@ -482,3 +517,13 @@ func start_ai_turn() -> void:
 func _on_flash_cooldown_timeout() -> void:
 	peggle_ball_barrel.modulate = Color.WHITE
 	peggle_ball_animation_player.play("RESET")
+	
+func _on_ball_body_entered(current_ball,body):
+	if is_split_ball==1:
+		is_split_ball=0
+		split_ball = ball.instantiate()
+		get_tree().current_scene.add_child(split_ball)  
+		split_ball.global_position = (new_ball.global_position + shoot_offset)
+		split_ball.apply_central_impulse(shoot_strength * shoot_direction)
+		
+		

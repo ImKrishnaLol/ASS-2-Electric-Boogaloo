@@ -47,6 +47,7 @@ var dialogue_levels: Dictionary = {
 }
 
 func _ready() -> void:
+	self.visible = true
 	EventBus.dialogue_level_triggered.connect(_on_dialogue_level_triggered)
 	# hide dialogue boxes on ready
 	for dialogue_box: DialogueBox in dialogue_boxes:
@@ -60,7 +61,7 @@ func _on_dialogue_level_triggered(level: int):
 	if not in_level_dialogue:
 		in_level_dialogue = true
 		# Dialogue system for level mode
-		DialogueManager.dialogue_box_displayed = true
+		DialogueManager.open_dialogue()
 		for index: int in range(len(dialogue_levels[level])):
 			var message : String = dialogue_levels[level][index]
 			if len(dialogue_boxes) >= index:
@@ -70,5 +71,5 @@ func _on_dialogue_level_triggered(level: int):
 			await EventBus.dialogue_next
 		for box: DialogueBox in dialogue_boxes:
 			box.hide_dialogue()
-		DialogueManager.dialogue_box_displayed = false
+		DialogueManager.close_dialogue()
 		in_level_dialogue = false
