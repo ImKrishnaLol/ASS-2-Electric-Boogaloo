@@ -164,6 +164,19 @@ position = Vector2(371, 205.00002)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("17_lhp0w")
 
+[node name="Label" type="Label" parent="." unique_id=328417273]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -77.5
+offset_top = 31.0
+offset_right = 77.5
+offset_bottom = 45.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 31
+text = "our little apocalypse <3"
+
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/CreditsButton" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]

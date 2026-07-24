@@ -6,7 +6,8 @@ enum Turn {
 }
 
 const FULL_BAR_FRACTION: float = 0.75
-const STARTING_BALL_COUNT: int = 50
+
+@export var STARTING_BALL_COUNT: int = 10
 
 const WIN_SCENE_KEY: String = "win_screen"
 const LOSS_SCENE_KEY: String = "loss_screen"
@@ -54,7 +55,7 @@ var ball_in_play: bool = false
 var resolving_ball: bool = false
 var game_ended: bool = false
 
-var balls_remaining: int = STARTING_BALL_COUNT
+var balls_remaining: int = 0
 
 var all_pegs: Array[Node] = []
 var total_peg_count: int = 0
@@ -64,12 +65,11 @@ var progress_tween: Tween
 
 func _ready() -> void:
 	endzone.body_entered.connect(destroy_ball)
-	
-	for child in bins.get_children():
-		child.ball_caught.connect(catch_ball)
-	
-	#ball_bin.ball_caught.connect(catch_ball)
-	
+
+	for child: Node in bins.get_children():
+		if child.has_signal("ball_caught"):
+			child.ball_caught.connect(catch_ball)
+
 	peggle_ball_shooter.rotation = deg_to_rad(90)
 
 	setup_progress_bars()
@@ -79,7 +79,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if game_ended:
 		return
-	
+
 	if resolving_ball:
 		return
 
@@ -90,7 +90,7 @@ func _process(_delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if game_ended:
 		return
-	
+
 	if resolving_ball:
 		return
 
@@ -146,11 +146,33 @@ func setup_progress_bars() -> void:
 	ai_progress_bar.max_value = 100.0
 	ai_progress_bar.value = 0.0
 
-	all_pegs = get_tree().get_nodes_in_group("pegs")
-	total_peg_count = all_pegs.size()
+	refresh_pegs()
+
+
+func refresh_pegs() -> void:
+	var current_pegs: Array[Node] = (
+		get_tree().get_nodes_in_group("pegs")
+	)
+
+	if current_pegs.is_empty():
+		push_warning(
+			"No nodes were found in the 'pegs' group."
+		)
+		return
+
+	all_pegs = current_pegs
+
+	# Keep the largest count found so removed pegs do not
+	# lower the total required for the progress bars.
+	total_peg_count = maxi(
+		total_peg_count,
+		all_pegs.size()
+	)
 
 
 func get_progress_values() -> Vector2:
+	refresh_pegs()
+
 	var player_peg_count: int = 0
 	var ai_peg_count: int = 0
 
@@ -193,14 +215,22 @@ func animate_progress_bars() -> void:
 		"value",
 		progress_values.x,
 		progress_bar_duration
-	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	).set_trans(
+		Tween.TRANS_QUAD
+	).set_ease(
+		Tween.EASE_OUT
+	)
 
 	progress_tween.tween_property(
 		ai_progress_bar,
 		"value",
 		progress_values.y,
 		progress_bar_duration
-	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	).set_trans(
+		Tween.TRANS_QUAD
+	).set_ease(
+		Tween.EASE_OUT
+	)
 
 	await progress_tween.finished
 
@@ -214,17 +244,19 @@ func get_progress_percentage(
 		return 0.0
 
 	var pegs_required_for_full_bar: int = maxi(
-		int(ceil(
-			float(total_peg_count)
-			* FULL_BAR_FRACTION
-		)),
+		int(
+			ceil(
+				float(total_peg_count)
+				* FULL_BAR_FRACTION
+			)
+		),
 		1
 	)
 
 	return clampf(
 		float(claimed_peg_count)
-		/ float(pegs_required_for_full_bar)
-		* 100.0,
+			/ float(pegs_required_for_full_bar)
+			* 100.0,
 		0.0,
 		100.0
 	)
@@ -262,7 +294,7 @@ func aim_shooter_at(target_position: Vector2) -> void:
 func fire_ball(target_position: Vector2) -> void:
 	if game_ended:
 		return
-	
+
 	if resolving_ball:
 		return
 
@@ -287,11 +319,16 @@ func fire_ball(target_position: Vector2) -> void:
 
 	new_ball.set_meta("is_peggle_ball", true)
 	new_ball.set_meta("ball_resolved", false)
+
 	new_ball.set_meta(
 		"ball_owner",
 		get_current_ball_owner()
 	)
-	new_ball.set_meta("turn_owner", current_turn)
+
+	new_ball.set_meta(
+		"turn_owner",
+		current_turn
+	)
 
 	var shoot_direction := (
 		peggle_ball_firing_point.global_position
@@ -325,7 +362,10 @@ func game_feel() -> void:
 	flash_cooldown.start()
 
 
-func catch_ball(body: Node2D, bin_emotion: int) -> void:
+func catch_ball(
+	body: Node2D,
+	_bin_emotion: int
+) -> void:
 	resolve_ball(body, true)
 
 
@@ -346,7 +386,10 @@ func resolve_ball(
 	body.set_meta("ball_resolved", true)
 
 	var finished_turn: int = int(
-		body.get_meta("turn_owner", current_turn)
+		body.get_meta(
+			"turn_owner",
+			current_turn
+		)
 	)
 
 	body.queue_free()
@@ -356,6 +399,16 @@ func resolve_ball(
 
 	if should_refund:
 		refund_ball()
+	else:
+		var percentage_left := (
+			float(balls_remaining)
+				/ float(STARTING_BALL_COUNT)
+				* 100.0
+		)
+
+		EventBus.balls_left_percentage_changed.emit(
+			percentage_left
+		)
 
 	finish_ball_resolution(finished_turn)
 
@@ -363,9 +416,9 @@ func resolve_ball(
 func finish_ball_resolution(
 	finished_turn: int
 ) -> void:
-	# Wait one frame so the final peg collision is registered.
+	# Allow the final peg collision to register.
 	await get_tree().process_frame
-	
+
 	await animate_progress_bars()
 
 	if game_ended:
@@ -389,11 +442,13 @@ func finish_ball_resolution(
 func start_ai_turn() -> void:
 	if game_ended:
 		return
-	
+
 	if resolving_ball:
 		return
 
-	var pegs := get_tree().get_nodes_in_group("pegs")
+	var pegs: Array[Node] = (
+		get_tree().get_nodes_in_group("pegs")
+	)
 
 	if pegs.is_empty():
 		current_turn = Turn.PLAYER
@@ -407,7 +462,9 @@ func start_ai_turn() -> void:
 
 	aim_shooter_at(target_peg.global_position)
 
-	await get_tree().create_timer(ai_aim_time).timeout
+	await get_tree().create_timer(
+		ai_aim_time
+	).timeout
 
 	if game_ended:
 		return

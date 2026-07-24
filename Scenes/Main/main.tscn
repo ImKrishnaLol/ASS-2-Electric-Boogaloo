@@ -1,15 +1,23 @@
 [gd_scene format=3 uid="uid://bqft37mjb3ugt"]
 
 [ext_resource type="Script" uid="uid://bosuxxqu7ihfu" path="res://Scripts/Main/main.gd" id="1_lixft"]
+[ext_resource type="PackedScene" uid="uid://bqpnku2ciqbwj" path="res://Scenes/Misc/background.tscn" id="2_5yls4"]
 [ext_resource type="PackedScene" uid="uid://dafxpj0c1t616" path="res://Scenes/UI/Pause Menu/pause_menu.tscn" id="2_76geb"]
 [ext_resource type="PackedScene" uid="uid://buj73velq1icb" path="res://Scenes/PeggleBoard/peggle_board.tscn" id="2_qw60k"]
+[ext_resource type="PackedScene" uid="uid://0v5yeo36exk8" path="res://Scenes/partner_character.tscn" id="4_p6jpk"]
 
 [node name="main" type="Node" unique_id=1907013364]
 script = ExtResource("1_lixft")
 
 [node name="World2D" type="Node2D" parent="." unique_id=1856865536]
 
-[node name="PeggleBoard" parent="World2D" unique_id=1037463456 instance=ExtResource("2_qw60k")]
+[node name="Background" parent="World2D" unique_id=179009874 instance=ExtResource("2_5yls4")]
+
+[node name="PeggleBoard" parent="World2D/Background" unique_id=1037463456 instance=ExtResource("2_qw60k")]
+z_index = 1
+
+[node name="PartnerCharacter" parent="World2D" unique_id=1055636776 instance=ExtResource("4_p6jpk")]
+position = Vector2(40, 0)
 
 [node name="UIlayer" type="CanvasLayer" parent="." unique_id=2058014531]
 

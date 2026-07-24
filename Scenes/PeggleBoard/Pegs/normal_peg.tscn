@@ -70,7 +70,7 @@ collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_53qdc")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=410652046 groups=["pegs"]]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=410652046]
 position = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_ec47r")
 animation = &"ai"
