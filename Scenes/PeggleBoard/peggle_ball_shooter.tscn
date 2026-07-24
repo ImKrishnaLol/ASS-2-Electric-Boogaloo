@@ -67,11 +67,11 @@ _data = {
 [node name="PeggleBallShooter" type="Node2D" unique_id=1839521812]
 
 [node name="PeggleBallBase" type="Sprite2D" parent="." unique_id=345197782]
+position = Vector2(0, 1)
 scale = Vector2(0.22, 0.22)
 texture = ExtResource("1_hqqx0")
 
 [node name="PeggleBallBarrel" type="Sprite2D" parent="." unique_id=1449746995]
-position = Vector2(0, -1)
 rotation = 4.712389
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_y8aek")

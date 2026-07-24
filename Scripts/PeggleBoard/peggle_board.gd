@@ -257,13 +257,17 @@ func end_game(scene_key: String) -> void:
 
 
 func aim_shooter_at(target_position: Vector2) -> void:
-	peggle_ball_shooter.look_at(target_position)
+	
+	var tween = create_tween()
+	tween.tween_property(peggle_ball_shooter, "rotation", clampf(peggle_ball_shooter.rotation + angle_difference(peggle_ball_shooter.rotation, peggle_ball_shooter.global_position.angle_to_point(target_position)), deg_to_rad(right_turn_limit), deg_to_rad(left_turn_limit)), 0.1).set_trans(Tween.TRANS_BOUNCE)
+	
 
-	peggle_ball_shooter.rotation = clampf(
-		peggle_ball_shooter.rotation,
-		deg_to_rad(right_turn_limit),
-		deg_to_rad(left_turn_limit)
-	)
+	
+	#peggle_ball_shooter.rotation = clampf(
+		#peggle_ball_shooter.rotation,
+		#deg_to_rad(right_turn_limit),
+		#deg_to_rad(left_turn_limit)
+	#)
 
 
 func fire_ball(target_position: Vector2) -> void:

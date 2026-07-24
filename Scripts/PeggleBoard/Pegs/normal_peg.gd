@@ -10,7 +10,7 @@ const PEG_TEXTURE_B = preload("uid://dfr50ew5ksk84")
 
 # -1 means the peg has not been claimed yet.
 var claimed_turn: int = -1
-
+var tween = create_tween()
 
 func _ready() -> void:
 	hit_area.body_entered.connect(change_peg_colour)
@@ -19,6 +19,7 @@ func _ready() -> void:
 
 
 func change_peg_colour(body: Node2D) -> void:
+	scale = Vector2(0.6, 0.6)
 	if body.get_meta("is_peggle_ball", false) != true:
 		return
 
@@ -30,14 +31,15 @@ func change_peg_colour(body: Node2D) -> void:
 
 	if new_claimed_turn == -1:
 		return
-
+	
+	peg_sprite.stop()
 	peg_sprite.play( body.get_meta( "ball_owner", "default" ))
-	#var hit_colour: Color = body.get_meta(
-		#"ball_owner",
-		#Color.WHITE
-	#)
-
-	#modulate = hit_colour
+	
+	#other effects
+	tween.kill()
+	tween = create_tween()
+	tween.tween_property(self, "scale", scale * 1.5, 0.3).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "scale", Vector2(0.6, 0.6), 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 	if claimed_turn == new_claimed_turn:
 		return
