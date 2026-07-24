@@ -1,17 +1,24 @@
 extends Control
 
+
 @export_group("Scenes")
-# Used if GameData has no saved current level.
-@export var fallback_level_scene: String = "main"
+
+# SceneManager key for level 1.
+@export var first_level_scene: String = "main"
 
 # SceneManager key for the main menu.
 @export var main_menu_scene: String = "main_menu"
 
-@export_group("Scene Transitions")
-# Loading duration when retrying after losing.
-@export var retry_loading_duration: float = 1.0
 
-# Loading duration when returning to the main menu.
+@export_group("Game")
+
+# Used if GameData does not have a valid maximum.
+@export var default_max_ball_count: int = 20
+
+
+@export_group("Scene Transitions")
+
+@export var retry_loading_duration: float = 1.0
 @export var menu_loading_duration: float = 1.0
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -22,40 +29,41 @@ func _ready() -> void:
 
 
 func _on_retry_button_pressed() -> void:
-	SceneManager.go(get_retry_level_scene(), retry_loading_duration)
+	# Return to level 1.
+	LevelManager.set_level(1)
+
+	# Use the existing maximum ball count.
+	var maximum_balls: int = (
+		GameData.maximum_ball_count
+	)
+
+	# Use the fallback if no maximum exists.
+	if maximum_balls <= 0:
+		maximum_balls = default_max_ball_count
+
+	# Begin a new run with full balls.
+	GameData.start_new_game(
+		maximum_balls
+	)
+
+	# Store level 1 as the current level.
+	GameData.set_current_level(
+		first_level_scene
+	)
+
+	# Force level 1 to load from a fresh instance.
+	SceneManager.go(
+		first_level_scene,
+		retry_loading_duration,
+		true
+	)
 
 
 func _on_main_menu_button_pressed() -> void:
-	LevelManager.set_level(1) # set back to level 1 on loading main menu
-	SceneManager.go(main_menu_scene, menu_loading_duration)
+	# Prepare the level number for a new game.
+	LevelManager.set_level(1)
 
-
-# Gets the scene the Retry button should load.
-func get_retry_level_scene() -> String:
-	# First try the current level saved in GameData. This is preferred
-	var current_level_scene: String = _get_game_data_scene("get_current_level")
-	
-	
-	# strip_edges() makes sure spaces like "   " do not count. and accidental spaces are removed.
-	if current_level_scene.strip_edges() != "":
-		return current_level_scene
-
-	# If that is empty, try the most recent level.
-	var recent_level_scene: String = _get_game_data_scene("get_most_recent_level")
-
-	if recent_level_scene.strip_edges() != "":
-		return recent_level_scene
-
-	# If GameData has nothing, use the fallback from the Inspector.
-	return fallback_level_scene
-
-
-# Safely calls a GameData scene getter if it exists.
-# This keeps the loss screen from exploding if that GameData function is missing.
-func _get_game_data_scene(method_name: String) -> String:
-	
-	
-	if not GameData.has_method(method_name):
-		return ""
-
-	return GameData.call(method_name)
+	SceneManager.go(
+		main_menu_scene,
+		menu_loading_duration
+	)
