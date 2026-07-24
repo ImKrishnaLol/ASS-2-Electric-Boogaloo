@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://ch8jnia88spfp" path="res://Assets/Art/Snake parts/Part9.png" id="14_k5fhq"]
 [ext_resource type="Texture2D" uid="uid://bdydriqtigct" path="res://Assets/Art/Game/PeggleBoard/Rock2.png" id="16_6asrm"]
 [ext_resource type="Texture2D" uid="uid://cg0fquntmsqb4" path="res://Assets/Art/Game/PeggleBoard/Building.png" id="17_lhp0w"]
+[ext_resource type="Texture2D" uid="uid://blyqjy2v1o80x" path="res://Assets/Art/Game/PeggleBoard/Cannon rim.png" id="18_ocqal"]
+[ext_resource type="Texture2D" uid="uid://dk4xq22h4saw1" path="res://Assets/Art/Game/PeggleBoard/Cannon barrel.png" id="19_jp6cc"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_h5u6l"]
 random_pitch = 1.0293022
@@ -102,7 +104,7 @@ z_index = 1
 position = Vector2(354, 232.99998)
 scale = Vector2(0.2, 0.2)
 script = ExtResource("6_1kc1o")
-segments = [NodePath("Snakepart1"), NodePath("Snakepart2"), NodePath("Snakepart3"), NodePath("Snakepart4"), NodePath("Snakepart5"), NodePath("Snakepart6"), NodePath("Snakepart7"), NodePath("Snakepart8"), NodePath("Snakepart9")]
+segments = [NodePath("Snakepart1"), NodePath("Snakepart2"), NodePath("Snakepart3"), NodePath("Snakepart4"), NodePath("Snakepart5"), NodePath("Snakepart8/Snakepart6"), NodePath("Snakepart7"), NodePath("Snakepart8"), NodePath("Snakepart9")]
 
 [node name="FixedPoint" type="Marker2D" parent="Snake" unique_id=1332860928]
 position = Vector2(184.99997, -454.99985)
@@ -133,11 +135,6 @@ position = Vector2(-470.00006, -349.9999)
 scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("10_l6o0q")
 
-[node name="Snakepart6" type="Sprite2D" parent="Snake" unique_id=97338567]
-position = Vector2(-595.00006, -464.9999)
-scale = Vector2(0.99999994, 0.99999994)
-texture = ExtResource("11_af3ef")
-
 [node name="Snakepart7" type="Sprite2D" parent="Snake" unique_id=1342418052]
 position = Vector2(-700.00006, -479.99988)
 scale = Vector2(0.99999994, 0.99999994)
@@ -147,6 +144,10 @@ texture = ExtResource("12_e4dfx")
 position = Vector2(-690.00006, -309.99988)
 scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("13_dkfp2")
+
+[node name="Snakepart6" type="Sprite2D" parent="Snake/Snakepart8" unique_id=97338567]
+position = Vector2(95, -155)
+texture = ExtResource("11_af3ef")
 
 [node name="Snakepart9" type="Sprite2D" parent="Snake" unique_id=1399465579]
 position = Vector2(-600.00006, -149.99988)
@@ -163,6 +164,28 @@ z_index = 2
 position = Vector2(371, 205.00002)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("17_lhp0w")
+
+[node name="Cannon" type="CenterContainer" parent="." unique_id=1588305220]
+z_index = 3
+layout_mode = 0
+offset_left = 309.99997
+offset_top = -146.99998
+offset_right = 510.0
+offset_bottom = 103.00008
+rotation = 0.70133686
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.65, 0.65)
+offset_transform_rotation = -0.87266463
+
+[node name="CannonRim" type="TextureRect" parent="Cannon" unique_id=1908763921]
+layout_mode = 2
+offset_transform_enabled = true
+texture = ExtResource("18_ocqal")
+
+[node name="CannonBarrel" type="TextureRect" parent="Cannon" unique_id=192117326]
+layout_mode = 2
+offset_transform_enabled = true
+texture = ExtResource("19_jp6cc")
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/CreditsButton" to="." method="_on_load_pressed"]

@@ -7,6 +7,7 @@ extends Control
 @onready var new_game_button: Button = %NewGameButton
 @onready var credits_button: Button = %CreditsButton
 @onready var settings_button: Button = %SettingsButton
+@onready var cannon: CenterContainer = $Cannon
 
 
 @export_group("Scenes")
@@ -55,6 +56,7 @@ func _on_settings_button_pressed() -> void:
 	SceneManager.go(settings_scene, settings_transition_duration)
 
 
+
 # This is still named "load" so existing editor signal connections do not break.
 # In this template, the old Load button is used as Credits.
 func _on_load_pressed() -> void:
@@ -97,6 +99,12 @@ func _setup_buttons() -> void:
 func _on_button_mouse_entered(button: Button) -> void:
 	play_sfx(hover_sound)
 	_animate_button(button, button_hover_scale, button_hover_duration)
+	if button == new_game_button:
+		rotate_cannon(18)
+	elif button == credits_button:
+		rotate_cannon(10)
+	elif button == settings_button:
+		rotate_cannon(0)
 
 
 func _on_button_mouse_exited(button: Button) -> void:
@@ -143,6 +151,6 @@ func play_sfx(sound: AudioStream) -> void:
 	if sound != null:
 		SfxPlayer.play(sound)
 
-func rotate_cannon(degrees) -> void:
-	rotate_toward()
-	
+# Rotates the cannon to the given degrees
+func rotate_cannon(degrees: float) -> void:
+	cannon.offset_transform_rotation = deg_to_rad(degrees)
