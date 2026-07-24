@@ -1,17 +1,26 @@
 [gd_scene format=3 uid="uid://bqft37mjb3ugt"]
 
 [ext_resource type="Script" uid="uid://bosuxxqu7ihfu" path="res://Scripts/Main/main.gd" id="1_lixft"]
+[ext_resource type="Script" uid="uid://dp8mkj586tbet" path="res://Scripts/Main/world_2d.gd" id="2_2a143"]
 [ext_resource type="PackedScene" uid="uid://dafxpj0c1t616" path="res://Scenes/UI/Pause Menu/pause_menu.tscn" id="2_76geb"]
 [ext_resource type="PackedScene" uid="uid://buj73velq1icb" path="res://Scenes/PeggleBoard/peggle_board.tscn" id="2_qw60k"]
+[ext_resource type="PackedScene" uid="uid://7k7y3bw712vo" path="res://Scenes/UI/Dialogue/mood_dialogue_box.tscn" id="3_p6jpk"]
+[ext_resource type="PackedScene" uid="uid://d2yo3ypycjkqu" path="res://Scenes/UI/Dialogue/level_dialogue_boxes.tscn" id="4_2a143"]
 
 [node name="main" type="Node" unique_id=1907013364]
 script = ExtResource("1_lixft")
 
 [node name="World2D" type="Node2D" parent="." unique_id=1856865536]
+script = ExtResource("2_2a143")
 
 [node name="PeggleBoard" parent="World2D" unique_id=1037463456 instance=ExtResource("2_qw60k")]
+NEXT_LEVEL_SCENE_KEY = "main"
 
 [node name="UIlayer" type="CanvasLayer" parent="." unique_id=2058014531]
+
+[node name="MoodDialogueBox" parent="." unique_id=1661028365 instance=ExtResource("3_p6jpk")]
+
+[node name="LevelDialogueBoxes" parent="." unique_id=397841832 instance=ExtResource("4_2a143")]
 
 [node name="PauseMenu" parent="." unique_id=624797746 instance=ExtResource("2_76geb")]
 visible = false

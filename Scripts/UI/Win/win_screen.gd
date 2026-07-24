@@ -29,6 +29,7 @@ func _on_retry_button_pressed() -> void:
 
 # Go back to the main menu.
 func _on_main_menu_button_pressed() -> void:
+	LevelManager.level = 1 # set back to level 1 on loading main menu
 	SceneManager.go(main_menu_scene, menu_loading_duration)
 
 

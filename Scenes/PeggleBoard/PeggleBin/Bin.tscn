@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cyohg8tsod6lf"]
+
+[ext_resource type="Script" uid="uid://cme374au0hxno" path="res://Scripts/PeggleBoard/Bin/peggleballbin.gd" id="1_qvfqv"]
+[ext_resource type="Texture2D" uid="uid://eowantesoctg" path="res://Assets/Art/Game/BinSprites/AngryBin.png" id="2_jl7ri"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_715ky"]
+size = Vector2(25, 20)
+
+[node name="Bin" type="Area2D" unique_id=212364139]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_qvfqv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=303373192]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_715ky")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=855845330]
+texture = ExtResource("2_jl7ri")

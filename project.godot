@@ -31,6 +31,8 @@ SceneMusicManager="*uid://dv1plvrt7vbkr"
 SceneManager="*uid://b0vdhyf20u0ed"
 EventBus="*uid://il5fmhhrx06d"
 InputSettings="*uid://cxr1nueelnml5"
+DialogueManager="*uid://cvaw12cew253o"
+LevelManager="*uid://defqjybdfo4dx"
 
 [display]
 
@@ -50,6 +52,12 @@ enabled=PackedStringArray("res://addons/TileMapDual/plugin.cfg")
 
 Player=""
 Stapler=""
+breakable_blocks=""
+orange_blocks=""
+green_blocks=""
+purple_blocks=""
+blue_blocks=""
+pegs=""
 
 [gui]
 
@@ -116,6 +124,10 @@ pause={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":6,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_physics/layer_4="Bins"
 
 [physics]
 

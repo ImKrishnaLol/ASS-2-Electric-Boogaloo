@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://bhm2n7kl12prv"]
+
+[ext_resource type="PackedScene" uid="uid://d2yo3ypycjkqu" path="res://Scenes/UI/Dialogue/level_dialogue_boxes.tscn" id="2_exy4o"]
+[ext_resource type="Script" uid="uid://d0ppqc5ck3a31" path="res://Scripts/UI/Dialogue/buttons_mood_test.gd" id="2_xk30d"]
+[ext_resource type="PackedScene" uid="uid://7k7y3bw712vo" path="res://Scenes/UI/Dialogue/mood_dialogue_box.tscn" id="3_exy4o"]
+
+[node name="DialogueTestScene" type="Node2D" unique_id=811228987]
+
+[node name="MoodDialogueBox" parent="." unique_id=1661028365 instance=ExtResource("3_exy4o")]
+offset_left = 243.0
+offset_top = 242.0
+offset_right = 243.0
+offset_bottom = 242.0
+
+[node name="LevelDialogueBoxes" parent="." unique_id=1190864873 instance=ExtResource("2_exy4o")]
+visible = false
+offset_left = 243.0
+offset_top = 136.0
+offset_right = 243.0
+offset_bottom = 136.0
+
+[node name="ButtonsTest" type="VBoxContainer" parent="." unique_id=288035053]
+offset_top = 19.0
+offset_right = 62.0
+offset_bottom = 249.0
+script = ExtResource("2_xk30d")
+metadata/_edit_group_ = true
+
+[node name="LevelButton1" type="Button" parent="ButtonsTest" unique_id=1018677165]
+layout_mode = 2
+text = "Level 1"
+
+[node name="LevelButton2" type="Button" parent="ButtonsTest" unique_id=972003340]
+layout_mode = 2
+text = "Level 2
+"
+
+[node name="LevelButton3" type="Button" parent="ButtonsTest" unique_id=1620349485]
+layout_mode = 2
+text = "Level 3"
+
+[node name="LevelButton4" type="Button" parent="ButtonsTest" unique_id=189248357]
+layout_mode = 2
+text = "Level 4"
+
+[node name="LevelButton5" type="Button" parent="ButtonsTest" unique_id=1654119974]
+layout_mode = 2
+text = "Level 5"
+
+[node name="HappyButton" type="Button" parent="ButtonsTest" unique_id=1063432979]
+layout_mode = 2
+text = "Happy"
+
+[node name="FlirtyButton" type="Button" parent="ButtonsTest" unique_id=1509598644]
+layout_mode = 2
+text = "Flirty"
+
+[node name="AngryButton" type="Button" parent="ButtonsTest" unique_id=37416233]
+layout_mode = 2
+text = "Angry"
+
+[node name="DejectedButton" type="Button" parent="ButtonsTest" unique_id=595880747]
+layout_mode = 2
+text = "Dejected"
+
+[connection signal="pressed" from="ButtonsTest/LevelButton1" to="ButtonsTest" method="_on_level_button_1_pressed"]
+[connection signal="pressed" from="ButtonsTest/LevelButton2" to="ButtonsTest" method="_on_level_button_2_pressed"]
+[connection signal="pressed" from="ButtonsTest/LevelButton3" to="ButtonsTest" method="_on_level_button_3_pressed"]
+[connection signal="pressed" from="ButtonsTest/LevelButton4" to="ButtonsTest" method="_on_level_button_4_pressed"]
+[connection signal="pressed" from="ButtonsTest/LevelButton5" to="ButtonsTest" method="_on_level_button_5_pressed"]
+[connection signal="pressed" from="ButtonsTest/HappyButton" to="ButtonsTest" method="_on_happy_button_pressed"]
+[connection signal="pressed" from="ButtonsTest/FlirtyButton" to="ButtonsTest" method="_on_flirty_button_pressed"]
+[connection signal="pressed" from="ButtonsTest/AngryButton" to="ButtonsTest" method="_on_angry_button_pressed"]
+[connection signal="pressed" from="ButtonsTest/DejectedButton" to="ButtonsTest" method="_on_dejected_button_pressed"]
