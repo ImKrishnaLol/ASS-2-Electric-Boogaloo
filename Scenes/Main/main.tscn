@@ -14,6 +14,7 @@ script = ExtResource("1_lixft")
 script = ExtResource("2_2a143")
 
 [node name="PeggleBoard" parent="World2D" unique_id=1037463456 instance=ExtResource("2_qw60k")]
+NEXT_LEVEL_SCENE_KEY = "main"
 
 [node name="UIlayer" type="CanvasLayer" parent="." unique_id=2058014531]
 

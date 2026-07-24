@@ -5,7 +5,7 @@ enum Turn {
 	AI
 }
 
-const FULL_BAR_FRACTION: float = 0.75
+const FULL_BAR_FRACTION: float = 0.1
 const STARTING_BALL_COUNT: int = 50
 
 const WIN_SCENE_KEY: String = "win_screen"
@@ -20,6 +20,7 @@ const END_SCREEN_TRANSITION_DURATION: float = 1.0
 
 # SCENES
 @export var ball: PackedScene
+@export var NEXT_LEVEL_SCENE_KEY: String
 
 # NODES
 @onready var peggle_ball_shooter: Node2D = $PeggleBallShooter
@@ -101,7 +102,7 @@ func _input(event: InputEvent) -> void:
 		return
 
 	if event.is_action_pressed("action_primary"):
-		if not DialogueManager.dialogue_box_displayed:
+		if not DialogueManager._dialogue_box_displayed:
 			fire_ball(get_global_mouse_position())
 
 
@@ -165,6 +166,7 @@ func get_progress_values() -> Vector2:
 		var claimed_turn: int = int(
 			peg.call("get_claimed_turn")
 		)
+		
 
 		if claimed_turn == Turn.PLAYER:
 			player_peg_count += 1
@@ -233,7 +235,10 @@ func get_progress_percentage(
 
 func check_for_winner() -> void:
 	if player_progress_bar.value >= player_progress_bar.max_value:
-		end_game(WIN_SCENE_KEY)
+		if LevelManager.level < 5:
+			end_game(NEXT_LEVEL_SCENE_KEY)
+		else:
+			end_game(WIN_SCENE_KEY)
 	elif ai_progress_bar.value >= ai_progress_bar.max_value:
 		end_game(LOSS_SCENE_KEY)
 
@@ -243,11 +248,27 @@ func end_game(scene_key: String) -> void:
 		return
 
 	game_ended = true
-
-	SceneManager.go(
-		scene_key,
-		END_SCREEN_TRANSITION_DURATION
-	)
+	
+	print(scene_key, game_ended)
+	
+	if scene_key == WIN_SCENE_KEY or NEXT_LEVEL_SCENE_KEY:
+		# increment to the next level
+		LevelManager.set_level(LevelManager.level + 1)
+		# trigger next level dialogue
+		EventBus.dialogue_level_triggered.emit(LevelManager.level)
+		# register scene transition as a callback when dialogue closes
+		DialogueManager.dialogue_closed.connect(
+			func() -> void: 
+				SceneManager.go(
+				scene_key,
+				END_SCREEN_TRANSITION_DURATION)	
+		)
+	if scene_key == LOSS_SCENE_KEY:
+		SceneManager.go(
+			scene_key,
+			END_SCREEN_TRANSITION_DURATION
+		)
+	
 
 
 func aim_shooter_at(target_position: Vector2) -> void:
