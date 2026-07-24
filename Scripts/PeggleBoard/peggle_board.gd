@@ -5,7 +5,7 @@ enum Turn {
 	AI
 }
 
-const FULL_BAR_FRACTION: float = 0.1
+const FULL_BAR_FRACTION: float = 0.75
 const STARTING_BALL_COUNT: int = 50
 
 const WIN_SCENE_KEY: String = "win_screen"
