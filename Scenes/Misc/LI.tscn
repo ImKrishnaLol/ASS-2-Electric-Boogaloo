@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://djt6fe3di5ucx"]
+
+[ext_resource type="Script" uid="uid://dvoxr3ffy7jrx" path="res://Scripts/Characters/li.gd" id="1_xinr4"]
+[ext_resource type="Texture2D" uid="uid://dl2f6t3upe71n" path="res://Assets/Art/Characters/时间轴 1_0000.png" id="2_5v4xf"]
+
+[node name="Li" type="Node2D" unique_id=476922062]
+script = ExtResource("1_xinr4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1076489781]
+position = Vector2(241.99998, 140.00002)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_5v4xf")
