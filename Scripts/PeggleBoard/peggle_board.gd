@@ -30,6 +30,7 @@ const END_SCREEN_TRANSITION_DURATION: float = 1.0
 
 @onready var endzone: Area2D = $Endzone
 @onready var ball_bin: PeggleBallBin = %Bin
+@onready var bins: Node2D = $Bins
 
 @onready var player_progress_bar: ProgressBar = $ProgressBar
 @onready var ai_progress_bar: ProgressBar = $ProgressBar2
@@ -65,7 +66,11 @@ var progress_tween: Tween
 
 func _ready() -> void:
 	endzone.body_entered.connect(destroy_ball)
-	ball_bin.ball_caught.connect(catch_ball)
+	
+	for child in bins.get_children():
+		child.ball_caught.connect(catch_ball)
+	
+	#ball_bin.ball_caught.connect(catch_ball)
 	
 	peggle_ball_shooter.rotation = deg_to_rad(90)
 
@@ -322,7 +327,7 @@ func game_feel() -> void:
 	flash_cooldown.start()
 
 
-func catch_ball(body: Node2D) -> void:
+func catch_ball(body: Node2D, bin_emotion: int) -> void:
 	resolve_ball(body, true)
 
 

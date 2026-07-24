@@ -8,6 +8,7 @@ signal current_level_changed(current_level_scene: String)
 signal input_bindings_changed(input_bindings: Dictionary)
 signal settings_saved
 signal settings_loaded
+signal emotion_changed
 
 const SAVE_PATH: String = "user://game_data.cfg"
 
@@ -37,11 +38,25 @@ var current_level_scene: String = DEFAULT_CURRENT_LEVEL_SCENE
 var input_bindings: Dictionary = {}
 
 
+#breaks naming convention for a reason
+enum emotions{
+	Angry,
+	Sad
+}
+
+#
+var current_emotion: int: 
+	set(value):
+		emotion_changed.emit(value)
+		current_emotion = value
+		
+
 # Loads saved data and applies it when the game starts.
 func _ready() -> void:
 	load_game()
 	apply_audio_settings()
 	apply_display_settings()
+	current_emotion = 0
 
 
 # Saves all current settings to disk.
