@@ -20,6 +20,7 @@ func _on_retry_button_pressed() -> void:
 
 
 func _on_main_menu_button_pressed() -> void:
+	LevelManager.set_level(1)
 	SceneManager.go(main_menu_scene, menu_loading_duration)
 
 

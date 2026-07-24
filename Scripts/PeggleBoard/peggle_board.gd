@@ -235,7 +235,7 @@ func get_progress_percentage(
 
 func check_for_winner() -> void:
 	if player_progress_bar.value >= player_progress_bar.max_value:
-		if LevelManager.level < 5:
+		if LevelManager.level < LevelManager.MAX_LEVEL - 1:
 			end_game(NEXT_LEVEL_SCENE_KEY)
 		else:
 			end_game(WIN_SCENE_KEY)
@@ -249,20 +249,21 @@ func end_game(scene_key: String) -> void:
 
 	game_ended = true
 	
-	print(scene_key, game_ended)
-	
-	if scene_key == WIN_SCENE_KEY or NEXT_LEVEL_SCENE_KEY:
-		# increment to the next level
-		LevelManager.set_level(LevelManager.level + 1)
+	if scene_key == WIN_SCENE_KEY or scene_key == NEXT_LEVEL_SCENE_KEY:
+		if NEXT_LEVEL_SCENE_KEY:
+			# increment to the next level
+			LevelManager.set_level(LevelManager.level + 1)
 		# trigger next level dialogue
-		EventBus.dialogue_level_triggered.emit(LevelManager.level)
 		# register scene transition as a callback when dialogue closes
 		DialogueManager.dialogue_closed.connect(
-			func() -> void: 
+			func() -> void:
 				SceneManager.go(
 				scene_key,
-				END_SCREEN_TRANSITION_DURATION)	
+				END_SCREEN_TRANSITION_DURATION,
+				true),
+			CONNECT_ONE_SHOT
 		)
+		EventBus.dialogue_level_triggered.emit(LevelManager.level)
 	if scene_key == LOSS_SCENE_KEY:
 		SceneManager.go(
 			scene_key,
