@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://c3jftkmb744ki"]
+
+[ext_resource type="Script" uid="uid://bm5tiqnqhboh" path="res://Lockers/Programmers/BionicMango/moon.gd" id="1_16duq"]
+[ext_resource type="Texture2D" uid="uid://c5lns8a67s8hj" path="res://Assets/Art/Background/Moons/grey_moon_placeholder.png" id="2_n3vpe"]
+[ext_resource type="Texture2D" uid="uid://j4n40yfghngq" path="res://Assets/Art/Background/Moons/purple_moon_placeholder.png" id="3_w6w8x"]
+
+[sub_resource type="Curve" id="Curve_ddted"]
+_data = [Vector2(0.049645394, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.26436788), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_mirdo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_eo3mc"]
+resource_name = "explode"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.9, 0.9), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.75, 0.75, 1), Color(0.32, 0.06719999, 0.06719999, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w3418"]
+_data = {
+&"RESET": SubResource("Animation_mirdo"),
+&"explode": SubResource("Animation_eo3mc")
+}
+
+[node name="Moon" type="Node2D" unique_id=915514993]
+script = ExtResource("1_16duq")
+moon_textures = Array[Texture2D]([ExtResource("2_n3vpe"), ExtResource("3_w6w8x")])
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1447653575]
+position = Vector2(46, 29)
+texture = ExtResource("2_n3vpe")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1762861660]
+emitting = false
+amount = 100
+lifetime = 0.7
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_ddted")
+color = Color(1, 0.5503334, 0.29000002, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1150536743]
+libraries/ = SubResource("AnimationLibrary_w3418")
