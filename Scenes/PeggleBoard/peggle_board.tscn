@@ -172,18 +172,6 @@ position = Vector2(183, 115)
 [node name="PegglePeg12" parent="PegsLevel1" unique_id=1163546502 instance=ExtResource("4_ryebi")]
 position = Vector2(294, 114)
 
-<<<<<<< Updated upstream
-=======
-[node name="SplineWall" type="Path2D" parent="PegsLevel1" unique_id=1420181371]
-position = Vector2(37, 3)
-curve = SubResource("Curve2D_57qmd")
-script = ExtResource("8_h4o7a")
-block_scene = ExtResource("4_ryebi")
-block_types = Array[int]([0, 0, 0, 0, 0, 0, 0, 0])
-closed_loop = true
-metadata/_custom_type_script = "uid://lidblx52ul6"
-
->>>>>>> Stashed changes
 [node name="PegsLevel2" type="Node2D" parent="." unique_id=752156241]
 visible = false
 position = Vector2(6, 13)

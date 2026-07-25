@@ -26,16 +26,14 @@ extends Control
 @export var new_game_sound: AudioStream
 
 
-@export_group("TextureButton Juice")
+@export_group("Button Juice")
 
-@export var button_hover_scale: Vector2 = Vector2(1.3, 1.3)
+@export var button_hover_scale: Vector2 = Vector2(1.06, 1.06)
 @export var button_down_scale: Vector2 = Vector2(0.94, 0.94)
-@export var button_up_scale: Vector2 = Vector2(1.35, 1.35)
-@export var button_hover_duration: float = 0.5
+@export var button_up_scale: Vector2 = Vector2(1.08, 1.08)
+@export var button_hover_duration: float = 0.10
 @export var button_down_duration: float = 0.06
 @export var button_up_duration: float = 0.08
-@export var button_move_distance: float = 0.06
-@export var button_move_duration: float = 0.08
 
 
 @export_group("Logo Neon")
@@ -47,9 +45,9 @@ extends Control
 @export var neon_flicker_volume_db: float = 0.0
 @export var neon_sound_tail_duration: float = 0.5
 
-@onready var new_game_button: TextureButton = %NewGameButton
-@onready var credits_button: TextureButton = %CreditsButton
-@onready var settings_button: TextureButton = %SettingsButton
+@onready var new_game_button: Button = %NewGameButton
+@onready var credits_button: Button = %CreditsButton
+@onready var settings_button: Button = %SettingsButton
 
 @onready var logo: Sprite2D = $Logo
 @onready var neon_light: PointLight2D = %NeonLight
@@ -57,7 +55,7 @@ extends Control
 
 
 # Stores active button tweens so new animations can cancel old ones.
-var button_tweens: Dictionary[TextureButton, Tween] = {}
+var button_tweens: Dictionary[Button, Tween] = {}
 
 var logo_tween: Tween
 
@@ -110,10 +108,12 @@ func _on_load_pressed() -> void:
 
 # Sets button text, pivots, and hover/click signals.
 func _setup_buttons() -> void:
+	new_game_button.text = "New game"
+	credits_button.text = "Credits"
+	settings_button.text = "Settings"
 
-
-	for node: Node in find_children("*", "TextureButton", true, false):
-		var button: TextureButton = node as TextureButton
+	for node: Node in find_children("*", "Button", true, false):
+		var button: Button = node as Button
 
 		if button == null:
 			continue
@@ -163,47 +163,41 @@ func _setup_buttons() -> void:
 
 
 func _on_button_mouse_entered(
-	button: TextureButton
+	button: Button
 ) -> void:
 	play_sfx(hover_sound)
 
 	_animate_button(
 		button,
 		button_hover_scale,
-		button_hover_duration,
-		button_move_distance,
-		button_move_duration
+		button_hover_duration
 	)
 
 
 func _on_button_mouse_exited(
-	button: TextureButton
+	button: Button
 ) -> void:
 	_animate_button(
 		button,
 		Vector2.ONE,
-		button_hover_duration,
-		0.0,
-		button_move_duration
+		button_hover_duration
 	)
 
 
 func _on_button_down(
-	button: TextureButton
+	button: Button
 ) -> void:
 	play_sfx(click_sound)
 
 	_animate_button(
 		button,
 		button_down_scale,
-		button_down_duration,
-		button_move_distance/2,
-		button_move_duration
+		button_down_duration
 	)
 
 
 func _on_button_up(
-	button: TextureButton
+	button: Button
 ) -> void:
 	if button.get_global_rect().has_point(
 		get_global_mouse_position()
@@ -211,28 +205,21 @@ func _on_button_up(
 		_animate_button(
 			button,
 			button_up_scale,
-			button_up_duration,
-			button_move_distance,
-			button_move_duration
-			
+			button_up_duration
 		)
 	else:
 		_animate_button(
 			button,
 			Vector2.ONE,
-			button_up_duration,
-			0.0,
-			button_move_duration
+			button_up_duration
 		)
 
 
 # Tweens a button to a target scale.
 func _animate_button(
-	button: TextureButton,
+	button: Button,
 	target_scale: Vector2,
-	duration: float,
-	target_move_distance: float,
-	target_move_duration: float
+	duration: float
 ) -> void:
 	if button == null:
 		return
@@ -258,14 +245,6 @@ func _animate_button(
 	).set_ease(
 		Tween.EASE_OUT
 	)
-	tween.parallel()
-	tween.tween_property(
-		button,
-		"position:x",
-		target_move_distance,
-		target_move_duration
-	).from_current()
-	
 
 
 # Flickers the logo and both neon lights before leaving them illuminated.

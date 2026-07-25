@@ -8,24 +8,19 @@
 [ext_resource type="Shader" uid="uid://ck5h06pek6dsm" path="res://Shaders/Background/starry.gdshader" id="5_wtern"]
 [ext_resource type="Script" uid="uid://dysgrw1rcoajh" path="res://Scripts/UI/Settings/snake.gd" id="6_1kc1o"]
 [ext_resource type="Texture2D" uid="uid://su82lcvygsc4" path="res://Assets/Art/Snake parts/Part1 (1).png" id="7_6asrm"]
-[ext_resource type="Texture2D" uid="uid://c1g6ypsqx7u7b" path="res://Assets/Art/UI/New_Game_Button_Green.png" id="7_af3ef"]
 [ext_resource type="Script" uid="uid://coldb71281d8e" path="res://Scripts/UI/Settings/island.gd" id="7_l6o0q"]
 [ext_resource type="Texture2D" uid="uid://dylbw5fmaa4ky" path="res://Assets/Art/Snake parts/Part2 (1).png" id="8_1kc1o"]
-[ext_resource type="Texture2D" uid="uid://4gioqqdw8ff6" path="res://Assets/Art/UI/New_Game_Button_Pink.png" id="8_e4dfx"]
 [ext_resource type="Texture2D" uid="uid://dfqhpr6s3irjx" path="res://Assets/Art/Snake parts/Part4.png" id="9_jp6cc"]
 [ext_resource type="Texture2D" uid="uid://btdwgjus77qaa" path="res://Assets/Art/Snake parts/Part3 (1).png" id="9_ocqal"]
-[ext_resource type="Texture2D" uid="uid://8scef0k05c6u" path="res://Assets/Art/UI/Credits_Button_Green.png" id="9_r818g"]
-[ext_resource type="Texture2D" uid="uid://dpmwhb6pll66s" path="res://Assets/Art/UI/Credits_Button_Pink.png" id="10_8d3ud"]
 [ext_resource type="Texture2D" uid="uid://dfqdmpisrifj4" path="res://Assets/Art/Snake parts/Part5.png" id="10_l6o0q"]
 [ext_resource type="Texture2D" uid="uid://6o43f3xpr4gu" path="res://Assets/Art/Snake parts/Part6.png" id="11_af3ef"]
-[ext_resource type="Texture2D" uid="uid://b1ccwydrmlno1" path="res://Assets/Art/UI/Settings_Button_Green.png" id="11_lhp0w"]
 [ext_resource type="Texture2D" uid="uid://2jt7ympyx5yr" path="res://Assets/Art/Snake parts/Part7.png" id="12_e4dfx"]
-[ext_resource type="Texture2D" uid="uid://xntdiubj2vlt" path="res://Assets/Art/UI/Settings_Button_Pink.png" id="12_i3q7f"]
 [ext_resource type="Texture2D" uid="uid://djb6w06ym3wgg" path="res://Assets/Art/Snake parts/Part8.png" id="13_dkfp2"]
 [ext_resource type="Texture2D" uid="uid://ch8jnia88spfp" path="res://Assets/Art/Snake parts/Part9.png" id="14_k5fhq"]
 [ext_resource type="Texture2D" uid="uid://bdydriqtigct" path="res://Assets/Art/Game/PeggleBoard/Rock2.png" id="16_6asrm"]
 [ext_resource type="Texture2D" uid="uid://cg0fquntmsqb4" path="res://Assets/Art/Game/PeggleBoard/Building.png" id="17_lhp0w"]
 [ext_resource type="Texture2D" uid="uid://bne85p3j7etq0" path="res://Assets/Art/MainMenu/Logo.png" id="18_1kc1o"]
+[ext_resource type="Shader" uid="uid://c4jrkc6ip0ew1" path="res://Shaders/Background/VHS.gdshader" id="19_ocqal"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_h5u6l"]
 random_pitch = 1.0293022
@@ -55,6 +50,15 @@ height = 258
 fill = 1
 fill_from = Vector2(0.47826087, 0.42608696)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_715ky"]
+shader = ExtResource("19_ocqal")
+shader_parameter/grain_strength = 0.002000000095
+shader_parameter/scanline_strength = 0.00800000038
+shader_parameter/horizontal_wobble = 0.0
+shader_parameter/colour_separation = 0.0010000000475
+shader_parameter/grain_speed = 16.0
+shader_parameter/horizontal_lines = 480.0
+
 [node name="MainMenu" type="Control" unique_id=1266202951]
 layout_mode = 3
 anchors_preset = 15
@@ -66,10 +70,6 @@ script = ExtResource("1_o14dv")
 click_sound = ExtResource("2_4pqbp")
 hover_sound = SubResource("AudioStreamRandomizer_h5u6l")
 new_game_sound = ExtResource("3_4pqbp")
-button_hover_scale = Vector2(1.06, 1.06)
-button_hover_duration = 0.3
-button_move_distance = 10.0
-button_move_duration = 0.3
 neon_flicker_sound = ExtResource("5_jp6cc")
 neon_flicker_volume_db = -3.0
 neon_sound_tail_duration = 0.3
@@ -103,37 +103,26 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1660010953]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-theme_override_constants/separation = -20
+theme_override_constants/separation = 8
 alignment = 1
 
-[node name="NewGameButton" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=763619098]
+[node name="NewGameButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1113614768]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 58)
+custom_minimum_size = Vector2(50, 32)
 layout_mode = 2
-texture_normal = ExtResource("7_af3ef")
-texture_hover = ExtResource("8_e4dfx")
-ignore_texture_size = true
-stretch_mode = 5
+text = "New Game"
 
-[node name="CreditsButton" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1253206310]
+[node name="CreditsButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=962934673]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 58)
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-texture_normal = ExtResource("9_r818g")
-texture_hover = ExtResource("10_8d3ud")
-ignore_texture_size = true
-stretch_mode = 5
+text = "Credits"
 
-[node name="SettingsButton" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1330516810]
+[node name="SettingsButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=94191866]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 58)
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-texture_normal = ExtResource("11_lhp0w")
-texture_hover = ExtResource("12_i3q7f")
-ignore_texture_size = true
-stretch_mode = 5
+text = "Settings"
 
 [node name="Island" type="Node2D" parent="." unique_id=437020094]
 script = ExtResource("7_l6o0q")
@@ -225,6 +214,16 @@ color = Color(1, 0.50980395, 0.7411765, 1)
 energy = 0.1
 texture = SubResource("GradientTexture2D_715ky")
 texture_scale = 9.88
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=483270843]
+material = SubResource("ShaderMaterial_715ky")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/CreditsButton" to="." method="_on_load_pressed"]

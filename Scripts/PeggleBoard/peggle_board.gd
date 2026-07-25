@@ -99,14 +99,6 @@ var sfx_max_scale: float = 2.0
 	$CountingLabel
 )
 
-<<<<<<< Updated upstream
-=======
-# AI
-@export var ai_aim_time: float = 2
-
-# PROGRESS BARS
-@export var progress_bar_duration: float = 0.75
->>>>>>> Stashed changes
 
 # ROUND STATE
 
@@ -666,30 +658,17 @@ func fire_ball() -> void:
 	var fired_ball: RigidBody2D = (
 		cannon.fire()
 	)
-	
-	
 
 	if fired_ball == null:
 		return
 
-<<<<<<< Updated upstream
 	fired_ball.body_entered.connect(
-=======
-
-	get_tree().current_scene.add_child(
-		new_ball
-	)
-	
-	new_ball.body_entered.connect(
->>>>>>> Stashed changes
 		func(body: Node) -> void:
 			_on_ball_body_entered(
 				fired_ball,
 				body
 			)
 	)
-
-	
 
 	if is_ghost_ball:
 		is_ghost_ball = false
@@ -706,29 +685,9 @@ func fire_ball() -> void:
 		current_turn
 	)
 
-<<<<<<< Updated upstream
 	ball_in_play = true
 
 	use_ball()
-=======
-	shoot_direction = (
-		peggle_ball_firing_point.global_position
-		.direction_to(target_position)
-	)
-
-	new_ball.apply_central_impulse(
-		shoot_strength * shoot_direction
-	)
-	
-	
-	ball_in_play = true
-
-	use_ball()
-	game_feel()
-	
-	
-	
->>>>>>> Stashed changes
 
 
 func configure_ball(
