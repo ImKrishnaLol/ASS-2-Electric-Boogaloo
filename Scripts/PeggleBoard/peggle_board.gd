@@ -91,10 +91,6 @@ var sfx_max_scale: float = 2.0
 @onready var ai_progress_bar: ProgressBar = (
 	$ProgressBar2
 )
-@onready var ball_bar: ProgressBar = $BallBar
-@onready var counting_label: Label = $CountingLabel
-
-@onready var bounce_once: StaticBody2D = $BounceOnce
 
 @onready var ball_bar: ProgressBar = (
 	$BallBar
@@ -135,12 +131,6 @@ var progress_tween: Tween
 
 var is_ghost_ball: bool = false
 var is_split_ball: bool = false
-var is_bounce_once: bool = false
-var is_ai_ball_smol = 0
-
-# SPAWNED BALLS
-var new_ball: RigidBody2D
-var split_ball: RigidBody2D
 
 
 func _ready() -> void:
@@ -698,7 +688,7 @@ func fire_ball() -> void:
 				body
 			)
 	)
-	
+
 	if is_ghost_ball:
 		is_ghost_ball = false
 
@@ -708,21 +698,6 @@ func fire_ball() -> void:
 			fired_ball.call(
 				"ghost_ball"
 			)
-		if is_ai_ball_smol == 2:
-			is_ai_ball_smol -= 1
-
-		elif is_ai_ball_smol == 1:
-			is_ai_ball_smol -= 1
-			new_ball.get_node("Sprite2D").scale = Vector2(0.1, 0.1)
-			new_ball.get_node("CollisionShape2D").shape.radius *= 0.5
-
-		else:
-			new_ball.get_node("Sprite2D").scale = Vector2(0.2,0.2)
-			new_ball.get_node("CollisionShape2D").shape.radius =3
-
-	if is_bounce_once:
-		is_bounce_once=false
-		bounce_once.bounce_once()
 
 	configure_ball(
 		fired_ball,

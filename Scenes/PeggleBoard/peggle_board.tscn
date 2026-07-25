@@ -9,7 +9,6 @@
 [ext_resource type="AudioStream" uid="uid://cmvatd14ckwn7" path="res://Assets/Audio/SFX/Sad Bin.mp3" id="5_iotme"]
 [ext_resource type="AudioStream" uid="uid://u0u03y0b1pjx" path="res://Assets/Audio/SFX/Angry Bin.mp3" id="6_pr6su"]
 [ext_resource type="PackedScene" uid="uid://cyohg8tsod6lf" path="res://Scenes/PeggleBoard/PeggleBin/Bin.tscn" id="6_sxo5r"]
-[ext_resource type="Script" uid="uid://npmb044qwxjg" path="res://Scripts/PeggleBoard/bounce_once.gd" id="7_42h65"]
 [ext_resource type="AudioStream" uid="uid://dmx3b2ht8gmgu" path="res://Assets/Audio/SFX/GAME/happy_bin.mp3" id="7_1uqbv"]
 [ext_resource type="Texture2D" uid="uid://d0h8k7ioy5flp" path="res://Assets/Art/Frame/Peggle_Frame_0.png" id="7_bnnyb"]
 [ext_resource type="Texture2D" uid="uid://bl4qhbvyqfhvd" path="res://Assets/Art/Frame/Peggle_Frame_1.png" id="8_7po2y"]
@@ -183,6 +182,7 @@ position = Vector2(294, 114)
 dummy = true
 
 [node name="PegsLevel2" type="Node2D" parent="." unique_id=752156241]
+visible = false
 position = Vector2(6, 13)
 
 [node name="PegglePeg" parent="PegsLevel2" unique_id=109279465 instance=ExtResource("4_ryebi")]
@@ -222,6 +222,7 @@ position = Vector2(208, 170)
 position = Vector2(271, 169)
 
 [node name="PegsLevel3" type="Node2D" parent="." unique_id=1268814216]
+visible = false
 position = Vector2(6, 13)
 
 [node name="PegglePeg" parent="PegsLevel3" unique_id=728100677 instance=ExtResource("4_ryebi")]
@@ -261,6 +262,7 @@ position = Vector2(269, 153)
 position = Vector2(271, 105)
 
 [node name="PegsLevel4" type="Node2D" parent="." unique_id=1945990691]
+visible = false
 position = Vector2(6, 13)
 
 [node name="PegglePeg" parent="PegsLevel4" unique_id=781750181 instance=ExtResource("4_ryebi")]
@@ -300,6 +302,7 @@ position = Vector2(282, 127)
 position = Vector2(239, 126)
 
 [node name="PegsLevel5" type="Node2D" parent="." unique_id=2069571751]
+visible = false
 position = Vector2(6, 13)
 
 [node name="PegglePeg" parent="PegsLevel5" unique_id=2084831918 instance=ExtResource("4_ryebi")]
@@ -337,28 +340,6 @@ position = Vector2(291, 105)
 
 [node name="PegglePeg12" parent="PegsLevel5" unique_id=865599054 instance=ExtResource("4_ryebi")]
 position = Vector2(271, 73)
-
-[node name="Bins" type="Node2D" parent="." unique_id=1386732025]
-position = Vector2(0, 29)
-
-[node name="Bin1" parent="Bins" unique_id=407736055 instance=ExtResource("6_sxo5r")]
-unique_name_in_owner = true
-position = Vector2(197, 184)
-
-[node name="Bin2" parent="Bins" unique_id=212364139 instance=ExtResource("6_sxo5r")]
-unique_name_in_owner = true
-position = Vector2(227.00002, 184)
-what_emotion_to_respond_with = 1
-
-[node name="Bin3" parent="Bins" unique_id=2044842428 instance=ExtResource("6_sxo5r")]
-unique_name_in_owner = true
-position = Vector2(260, 184)
-what_emotion_to_respond_with = 2
-
-[node name="Bin4" parent="Bins" unique_id=921239040 instance=ExtResource("6_sxo5r")]
-unique_name_in_owner = true
-position = Vector2(291, 184)
-what_emotion_to_respond_with = 3
 
 [node name="Walls" type="Node2D" parent="." unique_id=789008413]
 
@@ -478,32 +459,6 @@ autoplay = "default"
 frame_progress = 0.059644017
 metadata/_edit_lock_ = true
 
-[node name="Eye" type="AnimatedSprite2D" parent="." unique_id=865351097]
-position = Vector2(248, 19.000002)
-scale = Vector2(0.7, 0.7)
-sprite_frames = SubResource("SpriteFrames_pr6su")
-
-[node name="EyePupil" type="Sprite2D" parent="Eye" unique_id=253238988]
-texture = ExtResource("19_1uqbv")
-script = ExtResource("20_iotme")
-
-[node name="BounceOnce" type="StaticBody2D" parent="." unique_id=249566150]
-position = Vector2(243, 206)
-collision_layer = 16
-script = ExtResource("7_42h65")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BounceOnce" unique_id=147314452]
-position = Vector2(5, 0)
-shape = SubResource("RectangleShape2D_cvs26")
-
-[node name="Area2D" type="Area2D" parent="BounceOnce" unique_id=1568000702]
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BounceOnce/Area2D" unique_id=2073638313]
-position = Vector2(5, -1)
-shape = SubResource("RectangleShape2D_1eppy")
-
 [connection signal="timeout" from="PeggleBallShooter/FlashCooldown" to="." method="_on_flash_cooldown_timeout"]
-[connection signal="body_entered" from="BounceOnce/Area2D" to="BounceOnce" method="_on_area_2d_body_entered"]
 
 [editable path="PeggleBallShooter"]
